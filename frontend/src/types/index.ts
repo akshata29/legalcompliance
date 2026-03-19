@@ -75,6 +75,26 @@ export interface ClauseFinding {
 
 // ─── Metrics ──────────────────────────────────────────────────────────────────
 
+export interface CapturedLlmCall {
+  phase: string
+  call_index: number
+  system_prompt: string
+  user_prompt: string
+  response_text: string
+  input_tokens: number
+  output_tokens: number
+  latency_ms: number
+}
+
+export interface PrefilterSample {
+  provision_id: string
+  text: string
+  passed: boolean
+  reason: string
+  matched_categories: string[]
+  matched_terms: string[]
+}
+
 export interface PhaseMetrics {
   phase: string
   started_at?: string
@@ -84,6 +104,7 @@ export interface PhaseMetrics {
   items_processed: number
   tokens_used: number
   api_errors: number
+  pipelined: boolean
 }
 
 export interface PipelineMetrics {
@@ -97,6 +118,8 @@ export interface PipelineMetrics {
   provisions_llm_not_relevant: number  // reached LLM but classified as not-relevant
   clauses_extracted: number
   findings_generated: number
+  prompt_samples: CapturedLlmCall[]
+  prefilter_samples: PrefilterSample[]
 }
 
 // ─── Session ──────────────────────────────────────────────────────────────────

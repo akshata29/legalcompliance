@@ -137,52 +137,76 @@ _FLAT_KEYWORDS: list[tuple[str, str]] = [
 ]
 
 
-def keyword_prefilter(provision_text: str) -> tuple[bool, list[str]]:
+def keyword_prefilter(provision_text: str) -> tuple[bool, list[str], str, list[str]]:
     """
-    Returns (passes_filter, matched_categories).
+    Returns (passes_filter, matched_categories, reason, matched_terms).
 
     A provision passes if:
-      1. It is short enough to be a possible header/numeric and contains
-         a legal-obligation marker (safety-net), OR
+      1. It contains a legal-obligation marker (safety-net), OR
       2. ANY keyword from ANY category is found in the text.
 
     Safety-net: provisions with "shall / must / obliged / prohibited / entitled"
     etc. always pass because they express legal obligations even when they do
     not contain category-specific vocabulary.
     """
-    # Very short provisions are likely section titles — still let obligation
-    # markers save them, but skip the expensive keyword loop if they're tiny.
     text_lower = provision_text.lower()
 
     # ── Obligation safety-net ─────────────────────────────────────────────
     for pat in _OBLIGATION_PATTERNS:
         if pat.search(text_lower):
-            return True, []   # Pass with no category hints; LLM will decide
+            return True, [], "obligation_marker", [pat.pattern]
 
     # ── Category keyword matching ─────────────────────────────────────────
     matched: set[str] = set()
+    matched_terms: list[str] = []
     for kw, cat in _FLAT_KEYWORDS:
         # Use word-boundary matching for short keywords to avoid false positives
         pattern = r"\b" + re.escape(kw) + r"\b" if len(kw) < 8 else re.escape(kw)
         if re.search(pattern, text_lower):
             matched.add(cat)
-    return bool(matched), sorted(matched)
+            matched_terms.append(kw)
+    if matched:
+        return True, sorted(matched), "keyword_match", matched_terms
+    return False, [], "no_match", []
 
 
 def batch_prefilter(
     provisions: list[dict],
-) -> tuple[list[dict], list[dict]]:
+    max_samples: int = 3,
+) -> tuple[list[dict], list[dict], list[dict]]:
     """
-    Split provisions into (candidates, eliminated).
+    Split provisions into (candidates, eliminated, samples).
     Each item in `eliminated` has relevant=False and prefiltered=True.
+    ``samples`` contains up to ``max_samples`` passed and ``max_samples``
+    eliminated provisions with the match reason for UI display.
     """
     candidates: list[dict] = []
     eliminated: list[dict] = []
+    passed_samples: list[dict] = []
+    eliminated_samples: list[dict] = []
     for p in provisions:
-        passes, hint_cats = keyword_prefilter(p["text"])
+        passes, hint_cats, reason, terms = keyword_prefilter(p["text"])
         if passes:
-            p["hint_categories"] = hint_cats   # pass hints to LLM as soft context
+            p["hint_categories"] = hint_cats
             candidates.append(p)
+            if len(passed_samples) < max_samples:
+                passed_samples.append({
+                    "provision_id": p["provision_id"],
+                    "text": p["text"][:300],
+                    "passed": True,
+                    "reason": reason,
+                    "matched_categories": hint_cats,
+                    "matched_terms": terms[:5],
+                })
         else:
             eliminated.append(p)
-    return candidates, eliminated
+            if len(eliminated_samples) < max_samples:
+                eliminated_samples.append({
+                    "provision_id": p["provision_id"],
+                    "text": p["text"][:300],
+                    "passed": False,
+                    "reason": reason,
+                    "matched_categories": [],
+                    "matched_terms": [],
+                })
+    return candidates, eliminated, eliminated_samples + passed_samples

@@ -105,6 +105,28 @@ class ClauseFinding(BaseModel):
 # Processing Session Models
 # ────────────────────────────────────────────────────────────────────────────
 
+class CapturedLlmCall(BaseModel):
+    """A sampled LLM call captured during pipeline execution for UI display."""
+    phase: str                          # categorization | clause_extraction | analysis
+    call_index: int                     # which call in that phase (1-based)
+    system_prompt: str
+    user_prompt: str
+    response_text: str
+    input_tokens: int = 0
+    output_tokens: int = 0
+    latency_ms: int = 0
+
+
+class PrefilterSample(BaseModel):
+    """A sampled pre-filter decision for UI transparency."""
+    provision_id: str
+    text: str                           # Truncated provision text (≤300 chars)
+    passed: bool                        # True = sent to LLM, False = eliminated
+    reason: str                         # obligation_marker | keyword_match | no_match
+    matched_categories: list[str] = Field(default_factory=list)
+    matched_terms: list[str] = Field(default_factory=list)
+
+
 class PhaseMetrics(BaseModel):
     phase: str
     started_at: Optional[datetime] = None
@@ -114,6 +136,7 @@ class PhaseMetrics(BaseModel):
     items_processed: int = 0
     tokens_used: int = 0
     api_errors: int = 0
+    pipelined: bool = False  # True when phases run concurrently (optimized B+C)
 
 
 class PipelineMetrics(BaseModel):
@@ -127,6 +150,8 @@ class PipelineMetrics(BaseModel):
     provisions_llm_not_relevant: int = 0  # Reached LLM but classified as not-relevant
     clauses_extracted: int = 0
     findings_generated: int = 0
+    prompt_samples: list[CapturedLlmCall] = Field(default_factory=list)
+    prefilter_samples: list[PrefilterSample] = Field(default_factory=list)
 
 
 class ProcessingSession(BaseModel):

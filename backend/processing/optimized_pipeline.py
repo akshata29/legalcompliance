@@ -27,6 +27,7 @@ from openai import AsyncAzureOpenAI
 
 from config import get_settings
 from models.schemas import (
+    CapturedLlmCall,
     CategorizedProvision,
     ClauseFinding,
     ExtractedClause,
@@ -38,6 +39,7 @@ from models.schemas import (
     Provision,
 )
 from processing.prefilter import batch_prefilter
+from models.schemas import PrefilterSample
 
 logger = logging.getLogger(__name__)
 
@@ -63,6 +65,10 @@ class OptimizedPipeline:
         self._batch_size = settings.optimized_batch_size
         # Optional Redis cache — graceful fallback if unavailable
         self._cache: Optional[Any] = self._init_redis()
+        # Prompt capture
+        self._capture_log: list[dict] = []
+        self._capture_count = 0
+        self._max_samples_per_phase = 2  # 2 batch samples per phase
 
     def _init_redis(self):
         try:
@@ -90,10 +96,11 @@ class OptimizedPipeline:
         # ── Priority 2: Keyword Pre-Filter ────────────────────────────────
         await self._emit(status_callback, session, ProcessingStatus.CATEGORIZING, 15)
         prov_dicts = [p.model_dump() for p in provisions]
-        candidates, eliminated = batch_prefilter(prov_dicts)
+        candidates, eliminated, pf_samples = batch_prefilter(prov_dicts)
 
         session.metrics.provisions_categorized = len(provisions)
         session.metrics.provisions_prefiltered = len(eliminated)
+        session.metrics.prefilter_samples = [PrefilterSample(**s) for s in pf_samples]
 
         # Mark eliminated provisions as not relevant (no LLM call)
         for e in eliminated:
@@ -120,6 +127,7 @@ class OptimizedPipeline:
         cat_metrics, categorized = await self._phase_categorize(candidates, rules)
         session.provisions.extend(categorized)
         session.metrics.phases.append(cat_metrics)
+        self._collect_samples(session.metrics, "categorization")
 
         relevant = [p for p in session.provisions if p.relevant]
         session.metrics.provisions_relevant = len(relevant)
@@ -138,12 +146,14 @@ class OptimizedPipeline:
         # ── Priority 5: Pipeline Parallelism — extract + analyze in stream ─
         await self._emit(status_callback, session, ProcessingStatus.EXTRACTING_CLAUSES, 60)
         ext_metrics, ana_metrics, clauses, findings = await self._phase_extract_and_analyze(
-            relevant, status_callback, session
+            relevant, rules, status_callback, session
         )
         session.clauses = clauses
         session.findings = findings
         session.metrics.phases.append(ext_metrics)
         session.metrics.phases.append(ana_metrics)
+        self._collect_samples(session.metrics, "clause_extraction")
+        self._collect_samples(session.metrics, "analysis")
         session.metrics.clauses_extracted = len(clauses)
         session.metrics.findings_generated = len(findings)
 
@@ -198,7 +208,7 @@ class OptimizedPipeline:
 
         async def _call_batch(batch: list[dict]) -> None:
             items_text = "\n\n".join(
-                f"[{i}] ID={p['provision_id']}\n{p['text'][:600]}"
+                f"[{i}] ID={p['provision_id']}\n{p['text']}"
                 for i, p in enumerate(batch)
             )
             system = (
@@ -214,6 +224,7 @@ class OptimizedPipeline:
             batch_max_tokens = len(batch) * 120 + 50
 
             async with self._semaphore:
+                t0 = time.perf_counter()
                 response = await self._client.chat.completions.create(
                     model=self._settings.categorization_model,
                     messages=[
@@ -224,11 +235,17 @@ class OptimizedPipeline:
                     max_tokens=batch_max_tokens,
                     temperature=0.0,
                 )
+                latency_ms = int((time.perf_counter() - t0) * 1000)
 
             content = response.choices[0].message.content or "{}"
             tokens = response.usage.total_tokens if response.usage else 0
+            prompt_tokens = response.usage.prompt_tokens if response.usage else 0
+            completion_tokens = response.usage.completion_tokens if response.usage else 0
             metrics.llm_calls += 1
             metrics.tokens_used += tokens
+
+            self._capture("categorization", system, user, content,
+                          prompt_tokens, completion_tokens, latency_ms)
 
             try:
                 res_list = json.loads(content).get("results", [])
@@ -350,27 +367,41 @@ class OptimizedPipeline:
     async def _phase_extract_and_analyze(
         self,
         relevant: list[CategorizedProvision],
+        rules: list[dict],
         status_callback,
         session: ProcessingSession,
     ) -> tuple[PhaseMetrics, PhaseMetrics, list[ExtractedClause], list[ClauseFinding]]:
-        ext_metrics = PhaseMetrics(phase="clause_extraction", started_at=datetime.now(timezone.utc))
-        ana_metrics = PhaseMetrics(phase="analysis", started_at=datetime.now(timezone.utc))
+        ext_metrics = PhaseMetrics(phase="clause_extraction", started_at=datetime.now(timezone.utc), pipelined=True)
+        ana_metrics = PhaseMetrics(phase="analysis", started_at=datetime.now(timezone.utc), pipelined=True)
 
         all_clauses: list[ExtractedClause] = []
         all_findings: list[ClauseFinding] = []
 
+        # Build rule lookup so extraction can be scoped to primary rule (like legacy)
+        rule_lookup: dict[str, dict] = {r["id"]: r for r in rules}
+
         async def _extract_one(cp: CategorizedProvision) -> list[ExtractedClause]:
+            # Scope extraction to primary decision step rule (first category),
+            # matching Legacy's per-provision+rule approach
+            primary_rule_id = cp.categories[0] if cp.categories else "GENERAL"
+            rule = rule_lookup.get(primary_rule_id,
+                                   {"id": primary_rule_id, "name": primary_rule_id, "description": ""})
             system = (
-                "You are a legal clause extractor. Identify distinct legal obligations, "
-                "prohibitions, or rights in the provision. "
-                'Return ONLY JSON: {"clauses": [{"clause_text": "...", "rule_category": "...", '
+                "You are a legal clause extractor. Given a provision and a specific "
+                "compliance rule, determine whether the provision contains a clause relevant "
+                "to this rule. If relevant, extract the specific clause text that addresses "
+                "the rule. A provision addresses at most one aspect of a given rule. "
+                "Return an empty clauses array if the provision is not relevant to this rule. "
+                'Return ONLY JSON: {"clauses": [{"clause_text": "...", '
                 '"obligation_type": "shall|must|may|shall_not"}]}'
             )
             user = (
-                f"CATEGORIES: {', '.join(cp.categories)}\n\n"
+                f"RULE: {rule['id']} — {rule['name']}\n"
+                f"DESCRIPTION: {rule.get('description', '')}\n\n"
                 f"PROVISION (ID={cp.provision_id}):\n{cp.provision_text}"
             )
             async with self._extract_semaphore:
+                t0 = time.perf_counter()
                 response = await self._client.chat.completions.create(
                     model=self._settings.extraction_model,
                     messages=[
@@ -381,10 +412,15 @@ class OptimizedPipeline:
                     max_tokens=self._settings.optimized_max_tokens_extract,
                     temperature=0.0,
                 )
+                latency_ms = int((time.perf_counter() - t0) * 1000)
             content = response.choices[0].message.content or "{}"
             tokens = response.usage.total_tokens if response.usage else 0
+            prompt_tokens = response.usage.prompt_tokens if response.usage else 0
+            completion_tokens = response.usage.completion_tokens if response.usage else 0
             ext_metrics.llm_calls += 1
             ext_metrics.tokens_used += tokens
+            self._capture("clause_extraction", system, user, content,
+                          prompt_tokens, completion_tokens, latency_ms)
             try:
                 raw = json.loads(content).get("clauses", [])
             except json.JSONDecodeError:
@@ -393,7 +429,7 @@ class OptimizedPipeline:
                 ExtractedClause(
                     provision_id=cp.provision_id,
                     clause_text=c.get("clause_text", ""),
-                    rule_category=c.get("rule_category", "GENERAL"),
+                    rule_category=primary_rule_id,
                     obligation_type=c.get("obligation_type", ""),
                 )
                 for c in raw
@@ -416,6 +452,7 @@ class OptimizedPipeline:
                 f"CLAUSE (ID={clause.clause_id}):\n{clause.clause_text}"
             )
             async with self._analyze_semaphore:
+                t0 = time.perf_counter()
                 response = await self._client.chat.completions.create(
                     model=self._settings.analysis_model,
                     messages=[
@@ -426,10 +463,15 @@ class OptimizedPipeline:
                     max_tokens=self._settings.optimized_max_tokens_analyze,
                     temperature=0.0,
                 )
+                latency_ms = int((time.perf_counter() - t0) * 1000)
             content = response.choices[0].message.content or "{}"
             tokens = response.usage.total_tokens if response.usage else 0
+            prompt_tokens = response.usage.prompt_tokens if response.usage else 0
+            completion_tokens = response.usage.completion_tokens if response.usage else 0
             ana_metrics.llm_calls += 1
             ana_metrics.tokens_used += tokens
+            self._capture("analysis", system, user, content,
+                          prompt_tokens, completion_tokens, latency_ms)
             try:
                 res = json.loads(content)
             except json.JSONDecodeError:
@@ -558,6 +600,39 @@ class OptimizedPipeline:
             self._cache.setex(key, ttl, json.dumps(value))
         except Exception:
             pass
+
+    # ─── Prompt capture helpers ──────────────────────────────────────────────
+
+    def _capture(self, phase: str, system: str, user: str,
+                 response_text: str, prompt_tokens: int, completion_tokens: int,
+                 latency_ms: int) -> None:
+        """Record a sample LLM call for UI display."""
+        self._capture_count += 1
+        self._capture_log.append({
+            "phase": phase,
+            "call_index": self._capture_count,
+            "system_prompt": system,
+            "user_prompt": user,
+            "response_text": response_text,
+            "input_tokens": prompt_tokens,
+            "output_tokens": completion_tokens,
+            "latency_ms": latency_ms,
+        })
+
+    def _collect_samples(self, metrics: PipelineMetrics, phase: str) -> None:
+        """Move first N captures for a phase into metrics.prompt_samples."""
+        phase_calls = [c for c in self._capture_log if c["phase"] == phase]
+        for raw in phase_calls[: self._max_samples_per_phase]:
+            metrics.prompt_samples.append(CapturedLlmCall(
+                phase=raw["phase"],
+                call_index=raw["call_index"],
+                system_prompt=raw["system_prompt"],
+                user_prompt=raw["user_prompt"],
+                response_text=raw["response_text"],
+                input_tokens=raw.get("input_tokens", 0),
+                output_tokens=raw.get("output_tokens", 0),
+                latency_ms=raw.get("latency_ms", 0),
+            ))
 
     # ─── Status helper ───────────────────────────────────────────────────────
 

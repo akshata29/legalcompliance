@@ -11,6 +11,15 @@ import clsx from 'clsx'
 
 // ─── Optimization detail data ────────────────────────────────────────────────
 
+interface LlmExample {
+  label: string
+  system: string
+  user: string
+  response: string
+  stats: { input_tokens: number; output_tokens: number; provisions: number; latency: string }
+  legacyComparison: { calls: number; total_tokens: number; total_latency: string }
+}
+
 const OPT_DETAILS = [
   {
     priority: 'P1',
@@ -19,6 +28,51 @@ const OPT_DETAILS = [
     impact: '~70% time reduction',
     color: 'success',
     why: 'Legacy fires one synchronous LLM call per provision. The Optimized pipeline packs up to 10 provisions into a single async call, fires all batch calls concurrently via AsyncAzureOpenAI, and caches each per-provision result in Redis so repeat runs skip the LLM entirely.',
+    llmExample: {
+      label: 'Batch Categorization — 3 Provisions in 1 Call',
+      system: `You are a legal compliance analyst. Classify each numbered provision against the EU Securities rule categories below.
+Return ONLY JSON: {"results": [{"provision_id": "...", "relevant": bool, "categories": ["RULE_ID", ...], "confidence": float}, ...]}.
+Include one entry per provision in the same order.`,
+      user: `RULE CATEGORIES:
+- RISK_RETENTION: Risk Retention Requirements — Article 6 compliance
+- TRANSPARENCY: Transparency Requirements — Article 7 disclosure obligations
+- DUE_DILIGENCE: Due Diligence — Article 5 investor verification
+
+PROVISIONS:
+
+[0] ID=PROV_042
+The Issuer shall retain a material net economic interest of not less than 5% in the securitisation in accordance with Article 6 of the Securitisation Regulation.
+
+[1] ID=PROV_043
+Yield: 5.0%
+
+[2] ID=PROV_044
+The Servicer shall provide quarterly investor reports detailing the performance of the underlying assets, including default rates, recovery values, and prepayment speeds.`,
+      response: `{
+  "results": [
+    {
+      "provision_id": "PROV_042",
+      "relevant": true,
+      "categories": ["RISK_RETENTION"],
+      "confidence": 0.96
+    },
+    {
+      "provision_id": "PROV_043",
+      "relevant": false,
+      "categories": [],
+      "confidence": 0.99
+    },
+    {
+      "provision_id": "PROV_044",
+      "relevant": true,
+      "categories": ["TRANSPARENCY"],
+      "confidence": 0.93
+    }
+  ]
+}`,
+      stats: { input_tokens: 380, output_tokens: 145, provisions: 3, latency: '0.9s' },
+      legacyComparison: { calls: 3, total_tokens: 1620, total_latency: '2.7s' },
+    } as LlmExample,
     legacy: `# 1 blocking call per provision (ThreadPoolExecutor)
 def _call_one(prov):
     result, tokens = self._llm.categorize_single(
@@ -32,10 +86,10 @@ with ThreadPoolExecutor(max_workers=5) as executor:
     optimized: `# 10 provisions packed into ONE async call (batch_size=10)
 async def _call_batch(batch: list[dict]) -> None:
     items_text = "\\n\\n".join(
-        f"[{i}] ID={p['provision_id']}\\n{p['text'][:600]}"
+        f"[{i}] ID={p['provision_id']}\\n{p['text']}"
         for i, p in enumerate(batch)
     )
-    # Token budget scales with batch size — no truncation
+    # Token budget scales with batch size — full text, no truncation
     batch_max_tokens = len(batch) * 120 + 50
 
     async with self._semaphore:
@@ -108,9 +162,9 @@ await asyncio.gather(*[call_llm(p) for p in provisions])`,
     priority: 'P4',
     title: 'Redis Result Cache',
     desc: 'SHA-256 keyed cache with 7-day TTL for repeated provisions',
-    impact: 'Up to 60% on warm runs',
+    impact: 'Dormant — no Redis server',
     color: 'primary',
-    why: 'Running the same document twice (e.g. testing, re-processing after rule update) re-pays the full LLM cost in Legacy. The Optimized pipeline caches results keyed by SHA-256(provision_text + rules_summary) — a warm run skips the LLM entirely.',
+    why: 'The code exists but Redis is not running locally — all calls go to the LLM. When a Redis server is available, running the same document twice skips the LLM entirely via SHA-256(provision_text + rules_summary) cache keys with 7-day TTL. Graceful fallback: if Redis is unavailable the pipeline works normally, just without caching.',
     legacy: `# No caching — every run pays full LLM cost
 def categorize_single(text, rules):
     # Provision seen 10 times? 10 API calls.
@@ -188,6 +242,9 @@ async def _run_pipeline(session, provisions, rules):
 // ─── Optimization detail modal ───────────────────────────────────────────────
 
 function OptDetailModal({ opt, onClose }: { opt: typeof OPT_DETAILS[0]; onClose: () => void }) {
+  const [showResponse, setShowResponse] = useState(false)
+  const llm = opt.llmExample as LlmExample | undefined
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
@@ -241,6 +298,135 @@ function OptDetailModal({ opt, onClose }: { opt: typeof OPT_DETAILS[0]; onClose:
               </pre>
             </div>
           </div>
+
+          {/* LLM I/O Example — visualize what the actual API call looks like */}
+          {llm && (
+            <div className="border-t border-border">
+              <div className="px-6 py-4 bg-surface-800/50">
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-success-400 animate-pulse" />
+                    <p className="text-xs font-semibold text-success-400 uppercase tracking-wide">
+                      {llm.label}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-surface-700 text-gray-400 font-mono border border-border">
+                      POST /openai/deployments/gpt-4o/chat/completions
+                    </span>
+                  </div>
+                </div>
+
+                {/* Chat messages */}
+                <div className="space-y-3">
+                  {/* System */}
+                  <div className="rounded-lg border border-purple-500/20 bg-purple-500/5 overflow-hidden">
+                    <div className="flex items-center gap-2 px-3 py-1.5 bg-purple-500/10 border-b border-purple-500/20">
+                      <span className="text-[10px] font-bold text-purple-400 uppercase">System</span>
+                    </div>
+                    <pre className="text-[10px] text-gray-400 leading-relaxed p-3 whitespace-pre-wrap font-mono">
+                      {llm.system}
+                    </pre>
+                  </div>
+
+                  {/* User */}
+                  <div className="rounded-lg border border-blue-500/20 bg-blue-500/5 overflow-hidden">
+                    <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border-b border-blue-500/20">
+                      <span className="text-[10px] font-bold text-blue-400 uppercase">User</span>
+                      <span className="text-[9px] text-gray-500">{llm.stats.provisions} provisions in one prompt</span>
+                    </div>
+                    <pre className="text-[10px] text-gray-400 leading-relaxed p-3 whitespace-pre-wrap font-mono">
+                      {llm.user}
+                    </pre>
+                  </div>
+
+                  {/* Assistant response — expandable */}
+                  <div className="rounded-lg border border-success/20 bg-success/5 overflow-hidden">
+                    <button
+                      onClick={() => setShowResponse(!showResponse)}
+                      className="w-full flex items-center justify-between gap-2 px-3 py-1.5 bg-success/10 border-b border-success/20 hover:bg-success/15 transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-bold text-success-400 uppercase">Assistant</span>
+                        <span className="text-[9px] text-gray-500">JSON response</span>
+                      </div>
+                      <ChevronDown size={12} className={clsx(
+                        'text-gray-500 transition-transform',
+                        showResponse && 'rotate-180'
+                      )} />
+                    </button>
+                    {showResponse && (
+                      <pre className="text-[10px] text-success-300 leading-relaxed p-3 whitespace-pre-wrap font-mono">
+                        {llm.response}
+                      </pre>
+                    )}
+                  </div>
+                </div>
+
+                {/* Stats comparison bar */}
+                <div className="mt-4 rounded-lg border border-border bg-surface-900 p-3">
+                  <div className="grid grid-cols-2 gap-3">
+                    {/* Legacy column */}
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-warning-400" />
+                        <span className="text-[10px] font-semibold text-warning-400 uppercase">Legacy ({llm.legacyComparison.calls} calls)</span>
+                      </div>
+                      <div className="grid grid-cols-3 gap-2">
+                        <div className="text-center">
+                          <p className="text-sm font-bold text-warning-400 tabular-nums">{llm.legacyComparison.calls}</p>
+                          <p className="text-[9px] text-gray-500">API calls</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-sm font-bold text-warning-400 tabular-nums">{(llm.legacyComparison.total_tokens / 1000).toFixed(1)}k</p>
+                          <p className="text-[9px] text-gray-500">tokens</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-sm font-bold text-warning-400 tabular-nums">{llm.legacyComparison.total_latency}</p>
+                          <p className="text-[9px] text-gray-500">latency</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Optimized column */}
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-success-400" />
+                        <span className="text-[10px] font-semibold text-success-400 uppercase">Optimized (1 batch call)</span>
+                      </div>
+                      <div className="grid grid-cols-3 gap-2">
+                        <div className="text-center">
+                          <p className="text-sm font-bold text-success-400 tabular-nums">1</p>
+                          <p className="text-[9px] text-gray-500">API call</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-sm font-bold text-success-400 tabular-nums">{((llm.stats.input_tokens + llm.stats.output_tokens) / 1000).toFixed(1)}k</p>
+                          <p className="text-[9px] text-gray-500">tokens</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-sm font-bold text-success-400 tabular-nums">{llm.stats.latency}</p>
+                          <p className="text-[9px] text-gray-500">latency</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Savings row */}
+                  <div className="mt-3 pt-2 border-t border-border flex items-center justify-center gap-6">
+                    <span className="text-[10px] text-gray-400">
+                      <span className="text-success-400 font-bold">{Math.round((1 - 1 / llm.legacyComparison.calls) * 100)}%</span> fewer API calls
+                    </span>
+                    <span className="text-[10px] text-gray-400">
+                      <span className="text-success-400 font-bold">
+                        {Math.round((1 - (llm.stats.input_tokens + llm.stats.output_tokens) / llm.legacyComparison.total_tokens) * 100)}%
+                      </span> fewer tokens
+                    </span>
+                    <span className="text-[10px] text-gray-400">
+                      System prompt sent <span className="text-success-400 font-bold">once</span> vs {llm.legacyComparison.calls}x
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

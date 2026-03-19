@@ -32,6 +32,7 @@ from uuid import uuid4
 
 from config import get_settings
 from models.schemas import (
+    CapturedLlmCall,
     CategorizedProvision,
     ClauseFinding,
     ExtractedClause,
@@ -56,6 +57,7 @@ class LegacyPipeline:
     def __init__(self, openai_service: OpenAIService | None = None) -> None:
         self._llm = openai_service or OpenAIService()
         self._settings = get_settings()
+        self._max_samples_per_phase = 5  # capture first N calls per phase
 
     # ─── Main entry point ────────────────────────────────────────────────────
 
@@ -73,16 +75,20 @@ class LegacyPipeline:
         pipeline_start = time.perf_counter()
         session.metrics = PipelineMetrics()
 
+        # Enable prompt capture — collect all calls, trim to samples at end
+        self._llm.capture_log = []
+        self._llm._capture_count = 0
+
         # ── Phase A: Categorization ───────────────────────────────────────
         await self._emit(status_callback, session, ProcessingStatus.CATEGORIZING, 20)
+        phase_a_start_idx = 0
         session, cat_metrics = await self._phase_categorize(session, provisions, rules)
         session.metrics.phases.append(cat_metrics)
+        self._label_samples(session.metrics, "categorization", phase_a_start_idx)
 
         # Filter relevant provisions
         relevant = [p for p in session.provisions if p.relevant]
         session.metrics.provisions_relevant = len(relevant)
-        # Legacy has no pre-filter — every provision reaches the LLM individually.
-        # provisions_llm_not_relevant = all provisions the LLM classified as not-relevant.
         session.metrics.provisions_llm_not_relevant = (
             session.metrics.provisions_categorized - len(relevant)
         )
@@ -92,15 +98,20 @@ class LegacyPipeline:
 
         # ── Phase B: Clause Extraction ────────────────────────────────────
         await self._emit(status_callback, session, ProcessingStatus.EXTRACTING_CLAUSES, 55)
+        phase_b_start_idx = len(self._llm.capture_log)
         session, ext_metrics = await self._phase_extract(session, relevant, rules)
         session.metrics.phases.append(ext_metrics)
+        self._label_samples(session.metrics, "clause_extraction", phase_b_start_idx)
 
         # ── Phase C: Analysis ─────────────────────────────────────────────
         await self._emit(status_callback, session, ProcessingStatus.ANALYZING, 80)
+        phase_c_start_idx = len(self._llm.capture_log)
         session, ana_metrics = await self._phase_analyze(session, rules)
         session.metrics.phases.append(ana_metrics)
+        self._label_samples(session.metrics, "analysis", phase_c_start_idx)
 
         # ── Finalize ─────────────────────────────────────────────────────
+        self._llm.capture_log = None  # stop capturing
         session.metrics.total_duration_seconds = round(time.perf_counter() - pipeline_start, 2)
         session.metrics.total_llm_calls = sum(p.llm_calls for p in session.metrics.phases)
         session.metrics.total_tokens_used = sum(p.tokens_used for p in session.metrics.phases)
@@ -291,16 +302,15 @@ class LegacyPipeline:
         for clause in session.clauses:
             decision_steps[clause.rule_category].append(clause)
 
-        # ── Phase 3a: Per-clause classification (ThreadpoolCompletionsBatch) ─
+        # ── Phase 3a: Per-clause analysis (ThreadpoolCompletionsBatch) ───
         # Integration point #3: AiDecisionStep.process_multiple_clauses()
-        # Per-clause call returns a lightweight category (compliant/non-compliant/
-        # procedural/explanatory/definition/substantive/irrelevant) mapped to a
-        # Finding via _process_llm_response().  See architecture doc page 9.
-        def _classify_one_clause(
+        # 1 LLM call per clause, generates finding + justification.
+        # Design doc ref: page 8.
+        def _analyze_one_clause(
             rule_id: str, clause: ExtractedClause
         ) -> tuple[str, ExtractedClause, dict]:
-            """Integration point #3: 1 lightweight LLM call per Legal Clause."""
-            result, tokens = self._llm.classify_clause(
+            """Integration point #3: 1 LLM call per Legal Clause."""
+            result, tokens = self._llm.analyze_clause(
                 clause.clause_id, clause.clause_text, rule_id
             )
             metrics.llm_calls += 1
@@ -316,7 +326,7 @@ class LegacyPipeline:
         loop = asyncio.get_event_loop()
         with ThreadPoolExecutor(max_workers=self._settings.legacy_max_workers) as executor:
             futures = [
-                loop.run_in_executor(executor, _classify_one_clause, rule_id, clause)
+                loop.run_in_executor(executor, _analyze_one_clause, rule_id, clause)
                 for rule_id, clause in all_clause_tasks
             ]
             results = await asyncio.gather(*futures, return_exceptions=True)
@@ -338,9 +348,9 @@ class LegacyPipeline:
                 provision_id=clause.provision_id,
                 rule_category=rule_id,
                 finding=finding_type,
-                justification=res.get("category", ""),
-                risk_level="medium",
-                recommendation=None,
+                justification=res.get("justification", ""),
+                risk_level=res.get("risk_level", "medium"),
+                recommendation=res.get("recommendation"),
             ))
             step_clause_findings[rule_id].append(res)
 
@@ -380,6 +390,25 @@ class LegacyPipeline:
         return session, metrics
 
     # ─── Helpers ─────────────────────────────────────────────────────────────
+
+    def _label_samples(
+        self, metrics: PipelineMetrics, phase: str, start_idx: int
+    ) -> None:
+        """Take first N captured calls from this phase and add to prompt_samples."""
+        if not self._llm.capture_log:
+            return
+        phase_calls = self._llm.capture_log[start_idx:]
+        for raw in phase_calls[: self._max_samples_per_phase]:
+            metrics.prompt_samples.append(CapturedLlmCall(
+                phase=phase,
+                call_index=raw["call_index"],
+                system_prompt=raw["system_prompt"],
+                user_prompt=raw["user_prompt"],
+                response_text=raw["response_text"],
+                input_tokens=raw.get("input_tokens", 0),
+                output_tokens=raw.get("output_tokens", 0),
+                latency_ms=raw.get("latency_ms", 0),
+            ))
 
     @staticmethod
     async def _emit(callback, session, status: ProcessingStatus, pct: int) -> None:

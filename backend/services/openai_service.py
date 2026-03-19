@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import json
 import logging
+import time
 from typing import Any
 
 from openai import AzureOpenAI
@@ -24,6 +25,9 @@ class OpenAIService:
             api_key=settings.azure_openai_api_key,
             api_version=settings.azure_openai_api_version,
         )
+        # Prompt capture: pipelines set this to a list to collect samples
+        self.capture_log: list[dict] | None = None
+        self._capture_count = 0
 
     # ─── Shared helper ───────────────────────────────────────────────────────
 
@@ -36,6 +40,7 @@ class OpenAIService:
         temperature: float = 0.0,
     ) -> tuple[str, int]:
         """Returns (content, total_tokens_used)."""
+        t0 = time.perf_counter()
         response = self._client.chat.completions.create(
             model=model,
             messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
@@ -43,8 +48,25 @@ class OpenAIService:
             max_tokens=max_tokens,
             temperature=temperature,
         )
+        latency_ms = int((time.perf_counter() - t0) * 1000)
         content = response.choices[0].message.content or "{}"
         tokens = response.usage.total_tokens if response.usage else 0
+        prompt_tokens = response.usage.prompt_tokens if response.usage else 0
+        completion_tokens = response.usage.completion_tokens if response.usage else 0
+
+        # Capture sample if log is active
+        if self.capture_log is not None:
+            self._capture_count += 1
+            self.capture_log.append({
+                "call_index": self._capture_count,
+                "system_prompt": system,
+                "user_prompt": user,
+                "response_text": content,
+                "input_tokens": prompt_tokens,
+                "output_tokens": completion_tokens,
+                "latency_ms": latency_ms,
+            })
+
         return content, tokens
 
     # ─── Phase A: Categorization (single provision) ──────────────────────────
@@ -149,25 +171,18 @@ class OpenAIService:
         """
         Legacy path — one API call per (provision, rule_category) pair.
         Mirrors reference Phase 2b (`LegalClauseExtractor`): 1 call per
-        provision+rule pair, returns clause boundary + text.
+        provision+rule pair, returns clause boundaries + text specific
+        to that rule.
 
-        The reference architecture produced 8 clauses from 20 provisions
-        (0.4 clauses/provision), so this prompt is deliberately selective:
-        return at most ONE clause — the single most concrete obligation,
-        prohibition, or right that directly maps to the rule.  Return an
-        empty array when the provision is merely contextual or definitional.
+        Design doc ref: page 8, integration point #2.
         """
         system = (
-            "You are a legal clause extractor for EU Securitization compliance review. "
-            "Given a provision and one specific rule, decide whether the provision contains "
-            "a concrete, directly enforceable obligation, prohibition, or right for that rule. "
-            "If it does, extract the SINGLE most material clause — the exact sentence or "
-            "sub-paragraph that carries the obligation. Do NOT split a provision into multiple "
-            "clauses; pick the one most important obligation. "
-            "If the provision is definitional, contextual, or only indirectly related, "
-            "return an empty array. "
-            'Return ONLY JSON: {"clauses": []} or '
-            '{"clauses": [{"clause_text": "...", '
+            "You are a legal clause extractor. Given a provision and one specific rule category, "
+            "determine whether the provision contains a clause relevant to this rule. "
+            "If relevant, extract the specific clause text that addresses the rule. "
+            "A provision addresses at most one aspect of a given rule. "
+            "Return an empty clauses array if the provision is not relevant to this rule. "
+            'Return ONLY JSON: {"clauses": [{"clause_text": "...", '
             '"obligation_type": "shall|must|may|shall_not"}]}'
         )
         user = (
@@ -181,61 +196,9 @@ class OpenAIService:
         )
         try:
             clauses = json.loads(content).get("clauses", [])
-            # Enforce at-most-one: take only the first clause if LLM returns more
-            if len(clauses) > 1:
-                clauses = clauses[:1]
         except json.JSONDecodeError:
             clauses = []
         return clauses, tokens
-
-    # ─── Phase C: Clause Classification (Legacy — lightweight) ────────────
-
-    # Category-to-Finding mapping from the architecture doc (page 9):
-    # See AiDecisionStepCompletionWrapper._process_llm_response()
-    _CATEGORY_TO_FINDING = {
-        "compliant":     "compliant",
-        "non-compliant": "non_compliant",
-        "non_compliant": "non_compliant",
-        "procedural":    "needs_review",
-        "explanatory":   "not_applicable",
-        "definition":    "not_applicable",
-        "substantive":   "needs_review",
-        "irrelevant":    "not_applicable",
-    }
-
-    def classify_clause(
-        self, clause_id: str, clause_text: str, rule_category: str
-    ) -> tuple[dict, int]:
-        """Integration point #3 — lightweight per-clause classification.
-
-        Matches the reference architecture's
-        AiDecisionStepCompletionWrapper._process_llm_response():
-        the LLM returns a single category word which is mapped to a Finding.
-
-        Much faster than analyze_clause() because the output is minimal.
-        Detailed analysis (justification, risk) comes from the step-level
-        confirmation call (integration point #4).
-        """
-        system = (
-            "You are a legal compliance classifier. Classify this clause against "
-            "the specified rule category. Return ONLY a JSON object with one key: "
-            '{"category": "<one of: compliant, non-compliant, procedural, '
-            'explanatory, definition, substantive, irrelevant>"}'
-        )
-        user = f"RULE CATEGORY: {rule_category}\n\nCLAUSE (ID={clause_id}):\n{clause_text}"
-        content, tokens = self._chat(
-            system, user, self._settings.analysis_model,
-            max_tokens=50,
-            temperature=0.0,
-        )
-        try:
-            parsed = json.loads(content)
-            category = parsed.get("category", "substantive").lower().strip()
-        except json.JSONDecodeError:
-            category = "substantive"
-
-        finding = self._CATEGORY_TO_FINDING.get(category, "needs_review")
-        return {"finding": finding, "category": category}, tokens
 
     # ─── Phase C: Clause Analysis (Optimized — full) ─────────────────────────
 
