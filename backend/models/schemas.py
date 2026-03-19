@@ -121,9 +121,10 @@ class PipelineMetrics(BaseModel):
     phases: list[PhaseMetrics] = Field(default_factory=list)
     total_llm_calls: int = 0
     total_tokens_used: int = 0
-    provisions_prefiltered: int = 0
-    provisions_categorized: int = 0
-    provisions_relevant: int = 0
+    provisions_prefiltered: int = 0       # Eliminated by keyword pre-filter (Optimized only)
+    provisions_categorized: int = 0       # Total provisions fed into the pipeline
+    provisions_relevant: int = 0          # LLM (or pre-filter) said relevant
+    provisions_llm_not_relevant: int = 0  # Reached LLM but classified as not-relevant
     clauses_extracted: int = 0
     findings_generated: int = 0
 

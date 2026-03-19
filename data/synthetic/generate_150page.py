@@ -1,25 +1,39 @@
 #!/usr/bin/env python3
 """
 generate_150page.py
-Generates eu_sec_150page.txt — a synthetic 150-page EU Securitisation CLO
-deal document that produces ~1690 provisions when processed by
-DocumentService.segment_into_provisions().
+Generates synthetic EU Securitisation CLO deal documents at configurable
+page lengths for compliance pipeline testing.
 
-Design targets (from eusec_api_documentation.docx production logs):
-  - ~1690 total provisions
-  - ~20 relevant to eu_sec_rules.json (10-rule set)
-  - ~1670 irrelevant (CLO deal mechanics mentioning "risk" but not
-    specifically about the regulatory obligations in the rule categories)
+Usage examples:
+    # Generate the default 150-page document (original behaviour)
+    python data/synthetic/generate_150page.py
+
+    # Generate a specific page length
+    python data/synthetic/generate_150page.py --pages 25
+    python data/synthetic/generate_150page.py --pages 50
+    python data/synthetic/generate_150page.py --pages 100
+
+    # Generate ALL four standard sizes at once
+    python data/synthetic/generate_150page.py --all
+
+Each output file is written as  eu_sec_{N}page.txt  in the same directory.
+
+Design targets (proportionally scaled from 150-page baseline):
+  150 pages → ~1690  total provisions, ~20  relevant
+  100 pages → ~1127  total provisions, ~14  relevant
+   50 pages → ~563   total provisions, ~7   relevant
+   25 pages → ~282   total provisions, ~4   relevant
 
 Run from repo root or data/synthetic/:
-    python data/synthetic/generate_150page.py
+    python data/synthetic/generate_150page.py [--pages N | --all]
 """
 from __future__ import annotations
 
+import argparse
 import textwrap
 from pathlib import Path
 
-OUT = Path(__file__).parent / "eu_sec_150page.txt"
+OUT_DIR = Path(__file__).parent
 
 # ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -1109,11 +1123,49 @@ def s_supplemental(count: int) -> str:
 
 # ── Main assembler ─────────────────────────────────────────────────────────
 
-def build_document() -> str:
+# Baseline section sizes for a 150-page document (~1690 valid provisions).
+# Relevant section minimums ensure at least 1 relevant provision even at
+# the smallest scale so the pipeline always has something to analyse.
+_BASELINE_PAGES = 150
+_SECTIONS_150: dict[str, int] = {
+    "eligibility":          175,
+    "waterfall":            110,
+    "coverage_tests":       200,
+    "manager_obligations":  140,
+    "trustee":               90,
+    "note_conditions":      165,
+    "events_of_default":    110,
+    "amendments":            90,
+    "risk_factors":         220,
+    "reporting":             40,   # contains 5 relevant
+    "data_protection":       50,   # contains 10 relevant
+    "third_party":           45,   # contains 5 relevant
+    "miscellaneous":        140,
+    "supplemental":         110,
+    "boilerplate":           50,
+}
+
+# Minimum provision count per section so relevant provisions survive heavy scaling
+_SECTION_MIN: dict[str, int] = {
+    "reporting":        10,   # keeps all 5 relevant
+    "data_protection":  12,   # keeps all 10 relevant
+    "third_party":       7,   # keeps all 5 relevant
+}
+
+
+def _scale(base: int, factor: float, section: str) -> int:
+    scaled = max(1, round(base * factor))
+    return max(scaled, _SECTION_MIN.get(section, 1))
+
+
+def build_document(pages: int = 150) -> str:
+    factor = pages / _BASELINE_PAGES
+    S = {k: _scale(v, factor, k) for k, v in _SECTIONS_150.items()}
+
     parts = []
     parts.append("# SYNTHETIC EU SECURITISATION OFFERING CIRCULAR\n")
     parts.append("## TIP CLO I DAC — Class A to D Floating Rate Notes and Subordinated Notes\n")
-    parts.append("## Offering Circular | March 2026 | Approximately 150 Pages\n\n")
+    parts.append(f"## Offering Circular | March 2026 | Approximately {pages} Pages\n\n")
     parts.append(
         "THIS DOCUMENT IS A SYNTHETIC TEST DOCUMENT GENERATED SOLELY FOR "
         "TECHNOLOGY DEMONSTRATION AND LEGAL COMPLIANCE PIPELINE TESTING. "
@@ -1121,26 +1173,23 @@ def build_document() -> str:
         "ALL NAMES, FIGURES AND REFERENCES ARE FICTITIOUS.\n\n"
     )
 
-    # Section sizes calibrated to yield ~1690 valid provisions total
-    parts.append(s_cover_and_parties())            # ~4
-    parts.append(s_definitions(2, 25))             # ~25
-    parts.append(s_eligibility(175))               # 175
-    parts.append(s_waterfall(110))                 # 110
-    parts.append(s_coverage_tests(200))            # 200
-    parts.append(s_manager_obligations(140))       # 140
-    parts.append(s_trustee(90))                    # 90
-    parts.append(s_note_conditions(165))           # 165
-    parts.append(s_events_of_default(110))         # 110
-    parts.append(s_amendments(90))                 # 90
-    parts.append(s_risk_factors(220))              # 220 — contain "risk" but not regulatory obligations
-    parts.append(s_reporting_obligations(40))      # 40  — 5 RELEVANT
-    parts.append(s_data_protection(50))            # 50  — 10 RELEVANT
-    parts.append(s_third_party(45))               # 45  — 5 RELEVANT
-    parts.append(s_miscellaneous(140))             # 140
-    parts.append(s_supplemental(110))             # 110
-    # Total designed ~1769; with heading overhead targets ~1690 valid provisions
+    parts.append(s_cover_and_parties())
+    parts.append(s_definitions(2, max(5, round(25 * factor))))
+    parts.append(s_eligibility(S["eligibility"]))
+    parts.append(s_waterfall(S["waterfall"]))
+    parts.append(s_coverage_tests(S["coverage_tests"]))
+    parts.append(s_manager_obligations(S["manager_obligations"]))
+    parts.append(s_trustee(S["trustee"]))
+    parts.append(s_note_conditions(S["note_conditions"]))
+    parts.append(s_events_of_default(S["events_of_default"]))
+    parts.append(s_amendments(S["amendments"]))
+    parts.append(s_risk_factors(S["risk_factors"]))
+    parts.append(s_reporting_obligations(S["reporting"]))
+    parts.append(s_data_protection(S["data_protection"]))
+    parts.append(s_third_party(S["third_party"]))
+    parts.append(s_miscellaneous(S["miscellaneous"]))
+    parts.append(s_supplemental(S["supplemental"]))
 
-    # Padding: additional boilerplate definitions and interpretation provisions
     out_pad = heading("PART XVII — ADDITIONAL BOILERPLATE AND SIGNATURE PAGES", 1)
     boilerplate = [
         "Each representation and warranty made by the Collateral Manager under Article 6 "
@@ -1160,7 +1209,7 @@ def build_document() -> str:
         "The Trustee shall respond to any written request for consent within ten Business Days "
         "of receipt, failing which consent shall be deemed refused.",
     ]
-    for i in range(50):
+    for i in range(S["boilerplate"]):
         out_pad += prov(boilerplate[i % len(boilerplate)])
     parts.append(out_pad)
 
@@ -1175,15 +1224,46 @@ def count_provisions(text: str) -> int:
     return sum(1 for b in blocks if len(b.split()) >= 40)
 
 
+# ── Single-document generator ───────────────────────────────────────────────
+
+def generate_one(pages: int) -> None:
+    out_path = OUT_DIR / f"eu_sec_{pages}page.txt"
+    print(f"Generating {pages}-page synthetic EU Securitisation document...")
+    doc = build_document(pages)
+    out_path.write_text(doc, encoding="utf-8")
+    count = count_provisions(doc)
+    size_kb = len(doc.encode()) / 1024
+    relevant_est = max(4, round(20 * pages / _BASELINE_PAGES))
+    print(f"  Written:   {out_path}")
+    print(f"  File size: {size_kb:.0f} KB")
+    print(f"  Valid provisions (>=40 words): {count}")
+    print(f"  Relevant provisions (estimated): ~{relevant_est}")
+    print()
+
+
 # ── Execute ─────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    print("Generating 150-page synthetic EU Securitisation document...")
-    doc = build_document()
-    OUT.write_text(doc, encoding="utf-8")
-    count = count_provisions(doc)
-    size_kb = len(doc.encode()) / 1024
-    print(f"  Written: {OUT}")
-    print(f"  File size: {size_kb:.0f} KB")
-    print(f"  Valid provisions (>=40 words): {count}")
-    print(f"  Relevant provisions designed: ~20 (reporting, data protection, third-party sections)")
+    parser = argparse.ArgumentParser(
+        description="Generate synthetic EU Securitisation CLO offering circular(s) for pipeline testing."
+    )
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        "--pages",
+        type=int,
+        default=150,
+        metavar="N",
+        help="Number of pages to simulate (default: 150). Scales provision count proportionally.",
+    )
+    group.add_argument(
+        "--all",
+        action="store_true",
+        help="Generate all four standard sizes: 25, 50, 100 and 150 pages.",
+    )
+    args = parser.parse_args()
+
+    if args.all:
+        for n in [25, 50, 100, 150]:
+            generate_one(n)
+    else:
+        generate_one(args.pages)

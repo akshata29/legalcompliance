@@ -94,7 +94,7 @@ async def _run_pipeline(
         try:
             await _persist(sess)
         except Exception as exc:
-            logger.debug("Intermediate Cosmos write failed (non-critical): %s", exc)
+            logger.warning("Cosmos write failed at pct=%d status=%s: %s", pct, sess.status, exc)
 
     try:
         if session.pipeline_mode == PipelineMode.LEGACY:

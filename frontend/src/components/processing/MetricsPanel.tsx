@@ -36,29 +36,37 @@ export default function MetricsPanel({ metrics, mode }: MetricsPanelProps) {
       value: fmt(metrics.total_duration_seconds),
       highlight: true,
     },
-    { label: 'LLM Calls',     value: String(metrics.total_llm_calls) },
-    { label: 'Tokens Used',   value: fmtK(metrics.total_tokens_used) },
-    { label: 'Provisions',    value: String(metrics.provisions_categorized) },
-    { label: 'Relevant',      value: String(metrics.provisions_relevant) },
-    { label: 'Pre-filtered',  value: String(metrics.provisions_prefiltered) },
-    { label: 'Clauses',       value: String(metrics.clauses_extracted) },
-    { label: 'Findings',      value: String(metrics.findings_generated) },
+    { label: 'LLM Calls',      value: String(metrics.total_llm_calls) },
+    { label: 'Tokens Used',    value: fmtK(metrics.total_tokens_used) },
+    { label: 'Provisions',     value: String(metrics.provisions_categorized) },
+    { label: 'Pre-filtered',   value: String(metrics.provisions_prefiltered),
+      dimmed: !isOpt },
+    { label: 'LLM Rejected',   value: String(metrics.provisions_llm_not_relevant ?? 0),
+      tooltip: isOpt
+        ? 'Passed keyword pre-filter but LLM batch classified as not-relevant'
+        : 'Provisions individually reviewed by LLM and classified as not-relevant' },
+    { label: 'Relevant',       value: String(metrics.provisions_relevant) },
+    { label: 'Clauses',        value: String(metrics.clauses_extracted) },
+    { label: 'Findings',       value: String(metrics.findings_generated) },
   ]
 
   return (
     <div className="space-y-4">
       {/* KPIs */}
       <div className="grid grid-cols-4 gap-2">
-        {KPI.map(({ label, value, highlight }) => (
+        {KPI.map(({ label, value, highlight, tooltip, dimmed }) => (
           <div
             key={label}
+            title={tooltip}
             className={clsx(
               'rounded-xl p-3 text-center',
+              dimmed ? 'opacity-30' : '',
               highlight
                 ? isOpt
                   ? 'bg-success/10 border border-success/20'
                   : 'bg-warning/10 border border-warning/20'
-                : 'bg-surface-700 border border-border'
+                : 'bg-surface-700 border border-border',
+              tooltip ? 'cursor-help' : '',
             )}
           >
             <p

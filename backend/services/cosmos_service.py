@@ -118,21 +118,35 @@ class CosmosService:
     def upsert_item_sync(self, session: ProcessingSession) -> None:
         """
         Synchronous upsert — call directly from threads or via asyncio.to_thread().
-        Stores the complete document: provisions + clauses + findings included.
+
+        Stores metrics, status, findings, and all summary fields.
+        The `provisions` and `clauses` arrays are intentionally excluded because
+        they contain full extracted text and can easily push a 150-page document
+        past CosmosDB's 2 MB item limit.  Counts are preserved in the
+        `metrics` sub-document (provisions_categorized, clauses_extracted).
+        Full detail is available from the in-memory session store while the
+        server is running, and can be re-fetched via a new pipeline run.
         """
         if self._container is None:
             return
         doc = session.model_dump(mode="json")
         doc["id"] = session.session_id
         doc["updated_at"] = datetime.now(timezone.utc).isoformat()
+        # Strip bulk text arrays — not needed for session-list queries and
+        # they are the primary reason writes exceed the 2 MB CosmosDB limit.
+        doc.pop("provisions", None)
+        doc.pop("clauses", None)
         try:
             self._container.upsert_item(doc)
             logger.debug(
-                "CosmosDB upsert: session=%s status=%s findings=%d",
+                "CosmosDB upsert OK: session=%s status=%s findings=%d",
                 session.session_id, session.status, len(session.findings),
             )
         except Exception as exc:
-            logger.warning("CosmosDB upsert failed: %s", exc)
+            logger.error(
+                "CosmosDB upsert FAILED: session=%s status=%s findings=%d — %s",
+                session.session_id, session.status, len(session.findings), exc,
+            )
 
     # ─── Read — single session ────────────────────────────────────────────────
 

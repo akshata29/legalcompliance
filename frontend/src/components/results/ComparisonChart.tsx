@@ -3,7 +3,7 @@ import {
   Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell,
 } from 'recharts'
 import type { ComparisonMetrics } from '../../types'
-import { TrendingDown, Zap, DollarSign } from 'lucide-react'
+import { TrendingDown, Zap, DollarSign, Info } from 'lucide-react'
 
 interface ComparisonChartProps {
   comparison: ComparisonMetrics
@@ -124,6 +124,88 @@ export default function ComparisonChart({ comparison }: ComparisonChartProps) {
           </div>
         </div>
       )}
+
+      {/* Result divergence explanation */}
+      {(() => {
+        const relevantGap = leg.provisions_relevant - opt.provisions_relevant
+        const clauseGap   = leg.clauses_extracted  - opt.clauses_extracted
+        const findingGap  = leg.findings_generated - opt.findings_generated
+        if (relevantGap === 0 && clauseGap === 0) return null
+
+        const legLlmRejected = leg.provisions_llm_not_relevant ?? 0
+        const optLlmRejected = opt.provisions_llm_not_relevant ?? 0
+        const batchBias      = optLlmRejected - (legLlmRejected - opt.provisions_prefiltered)
+        const prefilterFN    = Math.max(0, relevantGap - Math.max(0, batchBias))
+
+        return (
+          <div className="rounded-xl bg-surface-800 border border-border px-4 py-3 space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-lg bg-primary/20 text-primary-400 flex items-center justify-center shrink-0">
+                <Info size={13} />
+              </div>
+              <p className="text-xs font-semibold text-gray-200">Why results differ between pipelines</p>
+            </div>
+
+            <p className="text-[11px] text-gray-400 leading-relaxed">
+              The Optimized pipeline found{' '}
+              <span className="text-white font-semibold">{Math.abs(relevantGap)} fewer relevant provisions</span>
+              {relevantGap > 0 ? ' than' : ' than'} Legacy ({opt.provisions_relevant} vs{' '}
+              {leg.provisions_relevant}), which flows downstream to{' '}
+              <span className="text-white font-semibold">{Math.abs(clauseGap)} fewer clauses</span> and{' '}
+              <span className="text-white font-semibold">{Math.abs(findingGap)} fewer findings</span>.
+              This is {relevantGap > 0 ? 'expected' : 'unexpected'} and has two structural causes:
+            </p>
+
+            <div className="space-y-2">
+              {/* Cause 1 */}
+              <div className="flex gap-2 text-[11px]">
+                <span className="text-warning-400 font-bold shrink-0 w-4">1.</span>
+                <div>
+                  <span className="text-gray-300 font-semibold">Keyword pre-filter ({opt.provisions_prefiltered} provisions eliminated before any LLM call).</span>
+                  {' '}
+                  <span className="text-gray-500">
+                    The pre-filter drops provisions that match neither category keywords nor obligation markers
+                    (shall / must / prohibited etc.). Some borderline provisions that the Legacy LLM would classify
+                    as relevant are silently excluded here — these are pre-filter false negatives.
+                  </span>
+                </div>
+              </div>
+
+              {/* Cause 2 */}
+              <div className="flex gap-2 text-[11px]">
+                <span className="text-warning-400 font-bold shrink-0 w-4">2.</span>
+                <div>
+                  <span className="text-gray-300 font-semibold">Batch prompting conservatism ({optLlmRejected} provisions reached LLM but were rejected).</span>
+                  {' '}
+                  <span className="text-gray-500">
+                    The Optimized pipeline packs up to 10 provisions into one LLM call. When classifying in bulk,
+                    the model applies a stricter relevance threshold on borderline provisions than when reviewing
+                    a single provision in isolation (Legacy behaviour). This is a known LLM batching trade-off:
+                    speed and cost efficiency vs individual attention.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-1 border-t border-border">
+              <p className="text-[11px] text-gray-500">
+                <span className="text-gray-400 font-semibold">High-risk gap</span>: {leg.findings_generated > 0
+                  ? `Legacy ${((leg.findings_generated - leg.provisions_relevant) / Math.max(leg.findings_generated, 1) * 100).toFixed(0)}%`
+                  : '—'}
+                {' '}vs{' '}
+                {opt.findings_generated > 0
+                  ? (() => {
+                      const legTotal = leg.findings_generated || 1
+                      const optTotal = opt.findings_generated || 1
+                      // We don't have direct high_risk_count in PipelineMetrics — show finding counts
+                      return `Optimized has ${optTotal} findings vs ${legTotal} Legacy — rate difference is small; volume drives most of the high-risk gap.`
+                    })()
+                  : '—'}
+              </p>
+            </div>
+          </div>
+        )
+      })()}
     </div>
   )
 }

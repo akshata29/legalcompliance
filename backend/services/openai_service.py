@@ -148,14 +148,26 @@ class OpenAIService:
     ) -> tuple[list[dict], int]:
         """
         Legacy path — one API call per (provision, rule_category) pair.
-        Mirrors reference Phase 2b: 1 call per provision+rule pair,
-        returns clause boundaries + text specific to that rule.
+        Mirrors reference Phase 2b (`LegalClauseExtractor`): 1 call per
+        provision+rule pair, returns clause boundary + text.
+
+        The reference architecture produced 8 clauses from 20 provisions
+        (0.4 clauses/provision), so this prompt is deliberately selective:
+        return at most ONE clause — the single most concrete obligation,
+        prohibition, or right that directly maps to the rule.  Return an
+        empty array when the provision is merely contextual or definitional.
         """
         system = (
-            "You are a legal clause extractor. Given a provision and one specific rule category, "
-            "identify the distinct legal obligations, prohibitions, or rights in the provision "
-            "that are relevant to this rule. "
-            'Return ONLY JSON: {"clauses": [{"clause_text": "...", '
+            "You are a legal clause extractor for EU Securitization compliance review. "
+            "Given a provision and one specific rule, decide whether the provision contains "
+            "a concrete, directly enforceable obligation, prohibition, or right for that rule. "
+            "If it does, extract the SINGLE most material clause — the exact sentence or "
+            "sub-paragraph that carries the obligation. Do NOT split a provision into multiple "
+            "clauses; pick the one most important obligation. "
+            "If the provision is definitional, contextual, or only indirectly related, "
+            "return an empty array. "
+            'Return ONLY JSON: {"clauses": []} or '
+            '{"clauses": [{"clause_text": "...", '
             '"obligation_type": "shall|must|may|shall_not"}]}'
         )
         user = (
@@ -169,11 +181,63 @@ class OpenAIService:
         )
         try:
             clauses = json.loads(content).get("clauses", [])
+            # Enforce at-most-one: take only the first clause if LLM returns more
+            if len(clauses) > 1:
+                clauses = clauses[:1]
         except json.JSONDecodeError:
             clauses = []
         return clauses, tokens
 
-    # ─── Phase C: Clause Analysis ────────────────────────────────────────────
+    # ─── Phase C: Clause Classification (Legacy — lightweight) ────────────
+
+    # Category-to-Finding mapping from the architecture doc (page 9):
+    # See AiDecisionStepCompletionWrapper._process_llm_response()
+    _CATEGORY_TO_FINDING = {
+        "compliant":     "compliant",
+        "non-compliant": "non_compliant",
+        "non_compliant": "non_compliant",
+        "procedural":    "needs_review",
+        "explanatory":   "not_applicable",
+        "definition":    "not_applicable",
+        "substantive":   "needs_review",
+        "irrelevant":    "not_applicable",
+    }
+
+    def classify_clause(
+        self, clause_id: str, clause_text: str, rule_category: str
+    ) -> tuple[dict, int]:
+        """Integration point #3 — lightweight per-clause classification.
+
+        Matches the reference architecture's
+        AiDecisionStepCompletionWrapper._process_llm_response():
+        the LLM returns a single category word which is mapped to a Finding.
+
+        Much faster than analyze_clause() because the output is minimal.
+        Detailed analysis (justification, risk) comes from the step-level
+        confirmation call (integration point #4).
+        """
+        system = (
+            "You are a legal compliance classifier. Classify this clause against "
+            "the specified rule category. Return ONLY a JSON object with one key: "
+            '{"category": "<one of: compliant, non-compliant, procedural, '
+            'explanatory, definition, substantive, irrelevant>"}'
+        )
+        user = f"RULE CATEGORY: {rule_category}\n\nCLAUSE (ID={clause_id}):\n{clause_text}"
+        content, tokens = self._chat(
+            system, user, self._settings.analysis_model,
+            max_tokens=50,
+            temperature=0.0,
+        )
+        try:
+            parsed = json.loads(content)
+            category = parsed.get("category", "substantive").lower().strip()
+        except json.JSONDecodeError:
+            category = "substantive"
+
+        finding = self._CATEGORY_TO_FINDING.get(category, "needs_review")
+        return {"finding": finding, "category": category}, tokens
+
+    # ─── Phase C: Clause Analysis (Optimized — full) ─────────────────────────
 
     def analyze_clause(
         self, clause_id: str, clause_text: str, rule_category: str
@@ -181,7 +245,12 @@ class OpenAIService:
         """Produce a compliance finding for a single extracted clause."""
         system = (
             "You are a senior EU Securities compliance officer. Analyse this clause against "
-            "the specified rule category. Return ONLY JSON: "
+            "the specified rule category. "
+            "Risk calibration — critical: potential regulatory sanction, fraud, or criminal liability; "
+            "high: material non-compliance likely to attract regulatory scrutiny or significant penalty; "
+            "medium: compliance gap requiring remediation; low: minor technical deviation. "
+            "Err on the side of a higher risk level when the obligation is unclear or ambiguous. "
+            "Return ONLY JSON: "
             "{\"finding\": \"compliant|non_compliant|needs_review|not_applicable\", "
             "\"justification\": \"...\", \"risk_level\": \"low|medium|high|critical\", "
             "\"recommendation\": \"...\"}"

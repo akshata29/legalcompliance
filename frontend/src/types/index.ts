@@ -94,6 +94,7 @@ export interface PipelineMetrics {
   provisions_prefiltered: number
   provisions_categorized: number
   provisions_relevant: number
+  provisions_llm_not_relevant: number  // reached LLM but classified as not-relevant
   clauses_extracted: number
   findings_generated: number
 }

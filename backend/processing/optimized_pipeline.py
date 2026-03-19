@@ -123,7 +123,17 @@ class OptimizedPipeline:
 
         relevant = [p for p in session.provisions if p.relevant]
         session.metrics.provisions_relevant = len(relevant)
-        logger.info("Optimized — %d/%d provisions relevant", len(relevant), len(provisions))
+        # Track how many provisions REACHED the LLM but were classified not-relevant.
+        # (candidates = passed pre-filter; categorized = what LLM returned)
+        # provisions_prefiltered already captures the pre-filter drop separately.
+        llm_seen = len(candidates)   # only non-prefiltered provisions go to LLM
+        llm_relevant = sum(1 for p in categorized if p.relevant)
+        session.metrics.provisions_llm_not_relevant = llm_seen - llm_relevant
+        logger.info(
+            "Optimized — %d/%d relevant (pre-filter: %d, LLM-rejected: %d)",
+            len(relevant), len(provisions),
+            len(eliminated), session.metrics.provisions_llm_not_relevant,
+        )
 
         # ── Priority 5: Pipeline Parallelism — extract + analyze in stream ─
         await self._emit(status_callback, session, ProcessingStatus.EXTRACTING_CLAUSES, 60)
@@ -254,6 +264,70 @@ class OptimizedPipeline:
                     metrics.api_errors += 1
                     logger.warning("Optimized categorize batch error: %s", outcome)
 
+        # ── Completeness check: retry provisions missing from batch results ──
+        # If the JSON response was truncated (model hit max_tokens mid-array),
+        # some provision_ids won't appear in batched_results.  Fall back to
+        # individual single-provision calls for those to avoid silently marking
+        # them as not-relevant.
+        missing_ids = {
+            p["provision_id"] for p in uncached
+            if p["provision_id"] not in batched_results
+               and p["provision_id"] not in cached_results
+        }
+        if missing_ids:
+            logger.warning(
+                "Optimized Phase A: %d provision(s) missing from batch results "
+                "(possible JSON truncation) — retrying individually",
+                len(missing_ids),
+            )
+            missing_provs = [p for p in uncached if p["provision_id"] in missing_ids]
+
+            async def _call_single_fallback(p: dict) -> None:
+                """Single-provision fallback call — used only for batch misses."""
+                system = (
+                    "You are a legal compliance analyst. Classify this provision against "
+                    "the EU Securities rule categories below. "
+                    'Return ONLY JSON: {"provision_id": "...", "relevant": bool, '
+                    '"categories": ["RULE_ID", ...], "confidence": float}.'
+                )
+                user = f"RULE CATEGORIES:\n{rules_summary}\n\nPROVISION ID={p['provision_id']}:\n{p['text'][:800]}"
+                async with self._semaphore:
+                    response = await self._client.chat.completions.create(
+                        model=self._settings.categorization_model,
+                        messages=[
+                            {"role": "system", "content": system},
+                            {"role": "user", "content": user},
+                        ],
+                        response_format={"type": "json_object"},
+                        max_tokens=200,
+                        temperature=0.0,
+                    )
+                content = response.choices[0].message.content or "{}"
+                tokens = response.usage.total_tokens if response.usage else 0
+                metrics.llm_calls += 1
+                metrics.tokens_used += tokens
+                try:
+                    res = json.loads(content)
+                except json.JSONDecodeError:
+                    res = {}
+                cp = CategorizedProvision(
+                    provision_id=p["provision_id"],
+                    provision_text=p["text"],
+                    relevant=res.get("relevant", False),
+                    categories=res.get("categories", []),
+                    confidence=res.get("confidence", 0.0),
+                )
+                batched_results[p["provision_id"]] = cp
+
+            fallback_outcomes = await asyncio.gather(
+                *[_call_single_fallback(p) for p in missing_provs],
+                return_exceptions=True,
+            )
+            for outcome in fallback_outcomes:
+                if isinstance(outcome, Exception):
+                    metrics.api_errors += 1
+                    logger.warning("Optimized categorize fallback error: %s", outcome)
+
         # Merge and preserve original candidate order
         all_results = {**cached_results, **batched_results}
         categorized = [all_results[p["provision_id"]] for p in candidates if p["provision_id"] in all_results]
@@ -329,6 +403,10 @@ class OptimizedPipeline:
             system = (
                 "You are a senior EU Securities compliance officer. Analyse this clause "
                 "against the specified rule category. "
+                "Risk calibration — critical: potential regulatory sanction, fraud, or criminal liability; "
+                "high: material non-compliance likely to attract regulatory scrutiny or significant penalty; "
+                "medium: compliance gap requiring remediation; low: minor technical deviation. "
+                "Err on the side of a higher risk level when the obligation is unclear or ambiguous. "
                 'Return ONLY JSON: {"finding": "compliant|non_compliant|needs_review|not_applicable", '
                 '"justification": "...", "risk_level": "low|medium|high|critical", '
                 '"recommendation": "..."}'

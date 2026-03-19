@@ -22,6 +22,7 @@ the measurable impact of the Optimized Pipeline.
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 import time
 from collections import defaultdict
@@ -80,7 +81,14 @@ class LegacyPipeline:
         # Filter relevant provisions
         relevant = [p for p in session.provisions if p.relevant]
         session.metrics.provisions_relevant = len(relevant)
-        logger.info("Legacy — %d/%d provisions relevant", len(relevant), len(provisions))
+        # Legacy has no pre-filter — every provision reaches the LLM individually.
+        # provisions_llm_not_relevant = all provisions the LLM classified as not-relevant.
+        session.metrics.provisions_llm_not_relevant = (
+            session.metrics.provisions_categorized - len(relevant)
+        )
+        logger.info("Legacy — %d/%d relevant (%d LLM-rejected)",
+                    len(relevant), len(provisions),
+                    session.metrics.provisions_llm_not_relevant)
 
         # ── Phase B: Clause Extraction ────────────────────────────────────
         await self._emit(status_callback, session, ProcessingStatus.EXTRACTING_CLAUSES, 55)
@@ -160,11 +168,47 @@ class LegacyPipeline:
         relevant: list[CategorizedProvision],
         rules: list[dict],
     ) -> tuple[ProcessingSession, PhaseMetrics]:
+        """Phase B — Extraction of Legal Clauses and Decision Steps.
+
+        Matches the reference architecture exactly:
+          1. Assign each provision to its **primary** Decision Step (first
+             rule category from Phase A categorisation).
+          2. One focused LLM call per provision, scoped to that one rule.
+          3. Total calls == len(relevant).  Clauses per call is typically
+             0 or 1, yielding a small total clause set for Phase C.
+
+        Reference 150-page log:
+          {"2.3.2 Jan 2019 - Oct 2022": 18, "2.2.1 Article 6 Retention": 2}
+          Number of LLM calls: 20, Total time: 230s
+        """
         metrics = PhaseMetrics(phase="clause_extraction", started_at=datetime.now(timezone.utc))
 
-        def _call_one(cp: CategorizedProvision) -> list[ExtractedClause]:
-            clauses_raw, tokens = self._llm.extract_clauses(
-                cp.provision_id, cp.provision_text, cp.categories
+        # Build a lookup so we can pass rule name/description to the prompt
+        rule_lookup: dict[str, dict] = {r["id"]: r for r in rules}
+
+        # ── Group provisions by primary Decision Step ────────────────────
+        # Each provision is assigned to exactly one step (its first category)
+        # — this mirrors the reference architecture's decision-step grouping.
+        decision_step_provisions: dict[str, list[CategorizedProvision]] = defaultdict(list)
+        for cp in relevant:
+            primary_rule = cp.categories[0] if cp.categories else "GENERAL"
+            decision_step_provisions[primary_rule].append(cp)
+
+        step_summary = {rule_id: len(provs)
+                        for rule_id, provs in decision_step_provisions.items()}
+        logger.info("Starting legal clause extraction:\n%s",
+                    json.dumps(step_summary, indent=2))
+
+        # ── 1 LLM call per provision, focused on its decision-step rule ──
+        def _call_one(rule_id: str, cp: CategorizedProvision) -> list[ExtractedClause]:
+            rule = rule_lookup.get(rule_id,
+                                   {"id": rule_id, "name": rule_id, "description": ""})
+            clauses_raw, tokens = self._llm.extract_clauses_for_rule(
+                cp.provision_id,
+                cp.provision_text,
+                rule["id"],
+                rule["name"],
+                rule.get("description", ""),
             )
             metrics.llm_calls += 1
             metrics.tokens_used += tokens
@@ -174,15 +218,25 @@ class LegacyPipeline:
                     ExtractedClause(
                         provision_id=cp.provision_id,
                         clause_text=c.get("clause_text", ""),
-                        rule_category=c.get("rule_category", "GENERAL"),
+                        rule_category=rule_id,
                         obligation_type=c.get("obligation_type", ""),
                     )
                 )
             return extracted
 
+        # Flatten into task list — still 1 call per provision (total == len(relevant))
+        all_tasks = [
+            (rule_id, cp)
+            for rule_id, step_provisions in decision_step_provisions.items()
+            for cp in step_provisions
+        ]
+
         loop = asyncio.get_event_loop()
         with ThreadPoolExecutor(max_workers=self._settings.legacy_max_workers) as executor:
-            futures = [loop.run_in_executor(executor, _call_one, cp) for cp in relevant]
+            futures = [
+                loop.run_in_executor(executor, _call_one, rule_id, cp)
+                for rule_id, cp in all_tasks
+            ]
             results = await asyncio.gather(*futures, return_exceptions=True)
 
         for r in results:
@@ -196,8 +250,10 @@ class LegacyPipeline:
         metrics.completed_at = datetime.now(timezone.utc)
         metrics.duration_seconds = (metrics.completed_at - metrics.started_at).total_seconds()
         logger.info(
-            "Legacy Phase B: %d calls, %.1fs, %d tokens",
+            "Legacy Phase B: Number of LLM calls: %d, Total time: %.0fs, "
+            "%d tokens, %d clauses across %d decision steps",
             metrics.llm_calls, metrics.duration_seconds, metrics.tokens_used,
+            len(session.clauses), len(decision_step_provisions),
         )
         return session, metrics
 
@@ -208,38 +264,49 @@ class LegacyPipeline:
         session: ProcessingSession,
         rules: list[dict],
     ) -> tuple[ProcessingSession, PhaseMetrics]:
-        """
-        Phase C: Analysis — exactly as documented in the dev documentation:
+        """Phase C: Analysis — matches the architecture doc exactly.
 
-          "One LLM call per Legal Clause within each Decision Step.
-           The total number of calls is therefore the sum of all clauses
-           across all decision steps."
+        From page 8 (LLM Integration Points Summary):
 
-        All calls are submitted concurrently to a ThreadpoolCompletionsBatch
-        (ThreadPoolExecutor, max_workers=legacy_max_workers).
+          #3  Analyze  AiDecisionStep.process_multiple_clauses()
+              → 1 LLM call per clause, ThreadpoolCompletionsBatch
+              → finding + justification per clause
 
-        For the reference 150-page document: 8 clauses → 8 LLM calls, 12s.
-        For this test document: len(session.clauses) calls, runtime ∝ clauses.
+          #4  Analyze  AiDecisionStep._prompt_decision_step_finding()
+              → 1 single call per rule (NOT batched)
+              → confirm overall finding per decision step
+
+        Phase 3a: Per-clause analysis (parallel, max_workers=5)
+        Phase 3b: Per-decision-step confirmation (sequential, 1 call per rule)
+
+        Reference 150-page: 2 decision steps, 8 clauses → 8+2 = 10 calls, 12s.
         """
         metrics = PhaseMetrics(phase="analysis", started_at=datetime.now(timezone.utc))
 
-        # Group clauses by rule_category to resolve rule_id per clause
+        # Build rule lookup for Phase 3b confirmation
+        rule_lookup: dict[str, dict] = {r["id"]: r for r in rules}
+
+        # Group clauses by rule_category (= decision step)
         decision_steps: dict[str, list[ExtractedClause]] = defaultdict(list)
         for clause in session.clauses:
             decision_steps[clause.rule_category].append(clause)
 
-        def _analyze_one_clause(
+        # ── Phase 3a: Per-clause classification (ThreadpoolCompletionsBatch) ─
+        # Integration point #3: AiDecisionStep.process_multiple_clauses()
+        # Per-clause call returns a lightweight category (compliant/non-compliant/
+        # procedural/explanatory/definition/substantive/irrelevant) mapped to a
+        # Finding via _process_llm_response().  See architecture doc page 9.
+        def _classify_one_clause(
             rule_id: str, clause: ExtractedClause
         ) -> tuple[str, ExtractedClause, dict]:
-            """1 LLM call per Legal Clause — the legacy bottleneck."""
-            result, tokens = self._llm.analyze_clause(
+            """Integration point #3: 1 lightweight LLM call per Legal Clause."""
+            result, tokens = self._llm.classify_clause(
                 clause.clause_id, clause.clause_text, rule_id
             )
             metrics.llm_calls += 1
             metrics.tokens_used += tokens
             return rule_id, clause, result
 
-        # Flat list of every clause across all decision steps
         all_clause_tasks = [
             (rule_id, clause)
             for rule_id, step_clauses in decision_steps.items()
@@ -249,15 +316,17 @@ class LegacyPipeline:
         loop = asyncio.get_event_loop()
         with ThreadPoolExecutor(max_workers=self._settings.legacy_max_workers) as executor:
             futures = [
-                loop.run_in_executor(executor, _analyze_one_clause, rule_id, clause)
+                loop.run_in_executor(executor, _classify_one_clause, rule_id, clause)
                 for rule_id, clause in all_clause_tasks
             ]
             results = await asyncio.gather(*futures, return_exceptions=True)
 
+        # Collect per-clause findings, grouped by decision step for Phase 3b
+        step_clause_findings: dict[str, list[dict]] = defaultdict(list)
         for r in results:
             if isinstance(r, Exception):
                 metrics.api_errors += 1
-                logger.warning("Legacy Phase C error: %s", r)
+                logger.warning("Legacy Phase 3a error: %s", r)
                 continue
             rule_id, clause, res = r
             try:
@@ -269,18 +338,43 @@ class LegacyPipeline:
                 provision_id=clause.provision_id,
                 rule_category=rule_id,
                 finding=finding_type,
-                justification=res.get("justification", ""),
-                risk_level=res.get("risk_level", "medium"),
-                recommendation=res.get("recommendation"),
+                justification=res.get("category", ""),
+                risk_level="medium",
+                recommendation=None,
             ))
+            step_clause_findings[rule_id].append(res)
+
+        # ── Phase 3b: Per-decision-step confirmation ─────────────────────
+        # Integration point #4: AiDecisionStep._prompt_decision_step_finding()
+        # One non-batched LLM call per rule — receives all clause findings and
+        # returns the step-level determination.
+        for rule_id, clause_findings in step_clause_findings.items():
+            rule = rule_lookup.get(rule_id,
+                                   {"id": rule_id, "name": rule_id})
+            try:
+                _step_result, step_tokens = self._llm.prompt_decision_step_finding(
+                    rule["id"],
+                    rule["name"],
+                    clause_findings,
+                )
+                metrics.llm_calls += 1
+                metrics.tokens_used += step_tokens
+                logger.info(
+                    "Legacy Phase 3b: step=%s finding=%s",
+                    rule_id, _step_result.get("finding", "unknown"),
+                )
+            except Exception as exc:
+                metrics.api_errors += 1
+                logger.warning("Legacy Phase 3b error for step %s: %s", rule_id, exc)
 
         session.metrics.findings_generated = len(session.findings)
         metrics.items_processed = len(session.findings)
         metrics.completed_at = datetime.now(timezone.utc)
         metrics.duration_seconds = (metrics.completed_at - metrics.started_at).total_seconds()
         logger.info(
-            "Legacy Phase C: %d clause calls across %d decision steps, %.1fs, %d tokens",
-            metrics.llm_calls, len(decision_steps),
+            "Legacy Phase C: %d clause calls + %d step confirmations across %d decision steps, "
+            "%.1fs, %d tokens",
+            len(all_clause_tasks), len(step_clause_findings), len(decision_steps),
             metrics.duration_seconds, metrics.tokens_used,
         )
         return session, metrics
