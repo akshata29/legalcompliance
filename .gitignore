@@ -1,0 +1,57 @@
+# ─── Secrets & environment ───────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ─── Python ──────────────────────────────────────────────────────────────────
+backend/.venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+*.whl
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.log
+
+# ─── Node / Frontend ─────────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+*.tsbuildinfo
+
+# ─── Editors & OS ────────────────────────────────────────────────────────────
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Azure & secrets ─────────────────────────────────────────────────────────
+*.pfx
+*.p12
+azureauth.json
+local.settings.json
+
+# ─── Data / uploads (keep synthetic, ignore real uploads) ────────────────────
+data/uploads/
+data/processed/
+*.pdf
+!docs/**/*.pdf
+
+docs/*

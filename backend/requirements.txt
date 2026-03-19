@@ -1,0 +1,36 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-multipart==0.0.9
+pydantic==2.9.2
+pydantic-settings==2.5.2
+
+# Azure Identity & Core
+azure-identity==1.18.0
+azure-core==1.31.0
+
+# Azure OpenAI
+openai==1.51.2
+
+# Azure AI Document Intelligence
+azure-ai-documentintelligence==1.0.0
+
+# Azure Blob Storage
+azure-storage-blob==12.23.0
+
+# Azure AI Search
+azure-search-documents==11.6.0
+
+# Azure Cosmos DB
+azure-cosmos==4.7.0
+
+# Redis (optional caching in optimized pipeline)
+redis==5.1.1
+
+# Async HTTP
+httpx==0.27.2
+aiofiles==24.1.0
+
+# Utilities
+python-dotenv==1.0.1
+tenacity==9.0.0
+tiktoken==0.8.0

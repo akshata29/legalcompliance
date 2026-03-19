@@ -1,0 +1,62 @@
+[
+  {
+    "id": "DATA_RETENTION",
+    "name": "Data Retention",
+    "description": "Obligations to retain personal and financial data for specified minimum periods under GDPR Art. 5(1)(e), MiFID II Art. 25, and SFTR Art. 4.",
+    "keywords": ["retain", "retention", "storage period", "kept for", "archive", "preservation", "data lifecycle", "deletion", "purge", "record for"]
+  },
+  {
+    "id": "DATA_TRANSFER",
+    "name": "Cross-Border Data Transfer",
+    "description": "Requirements governing transfer of personal data to third countries or international organisations, including adequacy decisions and Standard Contractual Clauses under GDPR Chapter V.",
+    "keywords": ["transfer", "cross-border", "third country", "recipient", "transmit", "share data", "disclose", "export data", "international transfer", "adequacy"]
+  },
+  {
+    "id": "CONSENT",
+    "name": "Consent Management",
+    "description": "Rules requiring freely given, specific, informed and unambiguous consent from data subjects prior to processing under GDPR Art. 6(1)(a) and Art. 7.",
+    "keywords": ["consent", "opt-in", "opt-out", "authorisation", "authorization", "permission", "freely given", "withdrawal of consent", "explicit consent"]
+  },
+  {
+    "id": "REPORTING",
+    "name": "Regulatory Reporting",
+    "description": "Obligations to report transactions, positions and adverse events to competent authorities (FCA, ESMA, ECB) under SFTR, EMIR, and MiFID II transaction reporting requirements.",
+    "keywords": ["report", "notify", "notification", "disclose", "submission", "file with", "inform the authority", "regulatory report", "SFTR", "MiFID", "disclosure obligation", "TR", "trade repository"]
+  },
+  {
+    "id": "RISK_DISCLOSURE",
+    "name": "Risk Disclosure",
+    "description": "Requirements to clearly disclose material investment risks, credit risk, market risk, liquidity risk and operational risks in prospectuses and communications under Prospectus Regulation and PRIIPs.",
+    "keywords": ["risk", "risk disclosure", "material risk", "credit risk", "market risk", "operational risk", "liquidity risk", "warn", "caution", "prospectus", "investment risk", "loss", "volatility"]
+  },
+  {
+    "id": "RECORD_KEEPING",
+    "name": "Record Keeping",
+    "description": "Obligations to maintain accurate, complete and retrievable records of communications, transactions and decisions under MiFID II Art. 16 and GDPR Art. 30.",
+    "keywords": ["record", "documentation", "maintain records", "audit trail", "log", "evidence", "journal", "register", "ledger", "minutes", "recordkeeping"]
+  },
+  {
+    "id": "PRIVACY_NOTICE",
+    "name": "Privacy Notice",
+    "description": "Requirements to provide transparent fair-processing information to data subjects at point of collection under GDPR Arts. 12–14.",
+    "keywords": ["privacy notice", "privacy policy", "fair processing", "information notice", "right to be informed", "personal data", "data subject", "GDPR", "data protection", "transparency"]
+  },
+  {
+    "id": "THIRD_PARTY",
+    "name": "Third-Party Management",
+    "description": "Due diligence requirements, contractual obligations and supervisory responsibilities for data processors, sub-processors and service providers under GDPR Art. 28 and EBA outsourcing guidelines.",
+    "keywords": ["third party", "processor", "sub-processor", "vendor", "outsource", "delegate", "service provider", "contractor", "agent", "data processor agreement", "DPA"]
+  },
+  {
+    "id": "LAWFUL_BASIS",
+    "name": "Lawful Processing Basis",
+    "description": "Requirement to identify, document and rely on a valid legal basis for every personal data processing activity under GDPR Art. 6.",
+    "keywords": ["lawful basis", "legal basis", "legitimate interest", "contract", "legal obligation", "vital interests", "public task", "processing purpose", "necessity"]
+  },
+  {
+    "id": "SUBJECT_RIGHTS",
+    "name": "Data Subject Rights",
+    "description": "Obligations to honour data subjects' rights of access, erasure, rectification, portability and objection under GDPR Arts. 15–22.",
+    "keywords": ["right of access", "right to erasure", "right to rectification", "data portability", "object to processing", "restrict processing", "subject access request", "SAR", "erasure request"]
+  }
+]
