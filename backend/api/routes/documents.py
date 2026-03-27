@@ -57,7 +57,7 @@ async def upload_document(file: UploadFile):
 
 @router.get("/", response_model=list[DocumentInfo])
 async def list_documents():
-    """List all documents stored in Azure Blob Storage."""
+    """List all documents stored in Azure Blob Storage, deduplicated by original filename."""
     storage = StorageService()
     try:
         blobs = storage.list_documents()
@@ -65,11 +65,20 @@ async def list_documents():
         logger.error("List failed: %s", exc)
         raise HTTPException(status_code=500, detail=str(exc))
 
-    docs: list[DocumentInfo] = []
+    # Build a map: original_filename → (doc_id, blob_info) keeping the newest upload per filename
+    seen: dict[str, tuple[str, dict]] = {}
     for b in blobs:
         parts = b["name"].split("/", 1)
-        doc_id = parts[0] if len(parts) > 1 else b["name"]
-        filename = parts[1] if len(parts) > 1 else b["name"]
+        if len(parts) != 2:
+            # Skip blobs that are not under a {uuid}/ prefix
+            continue
+        doc_id, filename = parts
+        existing = seen.get(filename)
+        if existing is None or (b.get("last_modified") or "") > (existing[1].get("last_modified") or ""):
+            seen[filename] = (doc_id, b)
+
+    docs: list[DocumentInfo] = []
+    for filename, (doc_id, b) in sorted(seen.items()):
         docs.append(
             DocumentInfo(
                 document_id=doc_id,

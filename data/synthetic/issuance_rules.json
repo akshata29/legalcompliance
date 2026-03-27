@@ -1,0 +1,80 @@
+[
+  {
+    "id": "PROSPECTUS_CONTENT",
+    "name": "Prospectus Content and Disclosure Requirements",
+    "description": "UK Prospectus Regulation (retained EU 2017/1129) requires the prospectus to contain all information necessary for investors to make an informed assessment of the issuer, the securities, and the rights attached to them. Key mandatory disclosure items include a summary, risk factors, issuer description, financial statements, use of proceeds, and operational and financial review.",
+    "keywords": ["prospectus", "disclosure", "information required", "Annex 6", "Annex 11", "risk factor", "use of proceeds", "material information", "financial statements", "UK Prospectus Regulation", "Regulation EU 2017/1129", "FCA", "responsible person", "responsibility statement", "material omission"]
+  },
+  {
+    "id": "FCA_APPROVAL",
+    "name": "FCA Prospectus Approval and Review Procedure",
+    "description": "A prospectus must be approved by the FCA as competent authority before publication. The FCA has a 10 working day review period (20 working days for first-time issuers). A Supplementary Prospectus must be filed within 2 working days of any new material information arising before the Issue Date. Investors have a 2 working day right of withdrawal after a Supplement is published.",
+    "keywords": ["FCA approval", "competent authority", "10 working days", "20 working days", "Prospectus Supplement", "Supplementary Prospectus", "Right of withdrawal", "two working days", "2 working days", "filing", "submission", "approve", "review period", "comment", "response time"]
+  },
+  {
+    "id": "MARKET_ABUSE",
+    "name": "Market Abuse Regulation — Inside Information and Disclosure",
+    "description": "UK MAR Article 17 requires prompt public disclosure of inside information and Article 18 requires maintenance of an insider list. Provisions must address management of inside information, notification of listed persons, and delay justification procedures. Violations constitute criminal offences under FSMA 2000.",
+    "keywords": ["inside information", "insider", "market abuse", "UK MAR", "Article 17", "Article 18", "insider list", "disclose", "RNS", "regulatory news", "delay disclosure", "Article 17(4)", "MAR", "price sensitive", "non-public", "FSMA", "market manipulation"]
+  },
+  {
+    "id": "MIFIR_REPORTING",
+    "name": "MiFIR Transaction Reporting",
+    "description": "MiFIR Article 26 requires investment firms to report transactions in financial instruments to their competent authority by T+1 through an Approved Reporting Mechanism. Firms must also report reference data to FIRDS (ESMA) and UK FIRDS (FCA) for newly issued instruments. Product governance under MiFID II requires target market assessment before distribution.",
+    "keywords": ["MiFIR", "MiFID", "transaction reporting", "Article 26", "T+1", "ARM", "Approved Reporting Mechanism", "FIRDS", "product governance", "target market", "PGA", "manufacturer assessment", "suitability", "distribution", "trade reporting", "MiFID II", "wholesale client"]
+  },
+  {
+    "id": "SECURITIES_IDENTIFICATION",
+    "name": "Securities Identification and ISIN Assignment",
+    "description": "All new securities issuances require ISIN assignment under ISO 6166, Common Code (for Euroclear/Clearstream), CUSIP (for DTCC/US clearing), CFI code (ISO 10962), and FISN (ISO 18774). Identifiers must be confirmed by the registrar and reported to relevant clearing systems before closing.",
+    "keywords": ["ISIN", "CUSIP", "Common Code", "CFI code", "FISN", "ANNA", "registrar", "Euroclear", "Clearstream", "DTCC", "clearing system", "identifier", "ISO 6166", "ISO 10962", "ISO 18774", "security identification", "new securities setup"]
+  },
+  {
+    "id": "INDENTURE_COVENANTS",
+    "name": "Indenture Covenants and Compliance Obligations",
+    "description": "New issuance documentation must include clearly defined covenants, including limitation on indebtedness, limitation on restricted payments, limitation on liens, limitation on asset sales, change of control provisions, and reporting covenants. Compliance certificates must be delivered periodically to the trustee.",
+    "keywords": ["covenant", "limitation on indebtedness", "limitation on liens", "restricted payments", "asset sales", "change of control", "fixed charge coverage", "net leverage ratio", "compliance certificate", "indenture", "trustee", "restricted subsidiary", "permitted basket", "permitted debt", "financial covenant"]
+  },
+  {
+    "id": "EVENTS_OF_DEFAULT",
+    "name": "Events of Default — Notification and Cure",
+    "description": "Issuers must notify the Trustee within a specified period (typically 2 Business Days) of knowledge of any Event of Default. Events of Default include payment failures, material covenant breaches, cross-default provisions, bankruptcy, and invalidity of security. Cure periods must be clearly specified.",
+    "keywords": ["event of default", "default", "notice of default", "payment default", "cross-default", "cure period", "30 days", "60 days", "insolvency", "administration", "acceleration", "Trustee notification", "2 business days", "declaration", "material adverse change", "MAE", "MAC"]
+  },
+  {
+    "id": "LEGAL_READINESS",
+    "name": "Legal Readiness and Closing Conditions",
+    "description": "Issuance closing conditions require board resolutions, guarantor authorisations, legal opinions confirming enforceability, no-litigation certificates, and bring-down representation certificates. Each must be filed with the Trustee before the Issue Date.",
+    "keywords": ["board resolution", "corporate authorisation", "legal opinion", "enforceability", "guarantor", "no litigation", "bring-down", "closing condition", "condition precedent", "issue date", "legal readiness", "officer's certificate", "no MAC", "no default certificate", "compliance clearance"]
+  },
+  {
+    "id": "ONGOING_REPORTING",
+    "name": "Periodic Reporting Obligations to Trustee and Noteholders",
+    "description": "Issuers must deliver annual accounts (within 120 days of fiscal year end), quarterly compliance certificates (within 45 days of quarter end), and prompt notice of events of default and material changes. Financial statements must be IFRS-compliant and audited annually.",
+    "keywords": ["annual report", "quarterly", "compliance certificate", "fiscal year", "120 days", "45 days", "audited", "IFRS", "UK GAAP", "trustee report", "noteholder", "material change", "notice requirement", "reporting obligation", "financial statements", "periodic reporting"]
+  },
+  {
+    "id": "SANCTIONS_AML_ISSUANCE",
+    "name": "Sanctions and AML Screening for New Issuances",
+    "description": "All underwriters and bookrunners must complete OFAC and HMT/OFSI sanctions screening of all transaction parties before closing. KYC/AML verification must be completed for each investor. Results must be documented and no-sanctions certificates must be delivered. Obligations arise under the Proceeds of Crime Act 2002, Terrorism Act 2000, and applicable OFAC regulations.",
+    "keywords": ["sanctions", "OFAC", "HMT", "OFSI", "AML", "KYC", "anti-money laundering", "sanctions screening", "no-sanctions certificate", "know your customer", "SDN list", "Specially Designated National", "Proceeds of Crime", "Terrorism Act", "PCAOB", "due diligence", "PEP screening"]
+  },
+  {
+    "id": "STABILISATION",
+    "name": "Stabilisation — Rules and Disclosure",
+    "description": "Stabilisation activities permitted under Article 5 of UK MAR may be conducted for up to 30 days after the Issue Date by the designated Stabilising Manager. The fact of possible stabilisation must be disclosed in the Prospectus. All stabilisation must be reported to the FCA in accordance with Technical Standards.",
+    "keywords": ["stabilisation", "stabilization", "stabilising manager", "Article 5", "30 days", "UK MAR", "MAR", "FCA notification", "stabilisation activities", "over-allotment", "greenshoe", "price stabilisation", "stabilisation report", "post-issue", "market making"]
+  },
+  {
+    "id": "CONSENT_AMENDMENT",
+    "name": "Consent Solicitation and Indenture Amendments",
+    "description": "Amendments to the Indenture require the consent of the Required Holders (majority of outstanding principal). Certain fundamental amendments require unanimous consent. Consent solicitations must be disclosed to all Noteholders at least 20 days before the deadline and must fully disclose the purpose and effect of the proposed amendment.",
+    "keywords": ["consent", "amendment", "consent solicitation", "Required Holders", "majority", "unanimous consent", "modify", "waiver", "restructuring", "20 days notice", "Noteholder consent", "Record Date", "extraordinary resolution", "quorum", "fundamental change", "principal amount", "interest rate change"]
+  },
+  {
+    "id": "ESG_DISCLOSURE_ISSUANCE",
+    "name": "ESG and Sustainability Disclosures",
+    "description": "Issuers listed on UK regulated markets must comply with TCFD-aligned disclosures in annual reports per FCA Listing Rules. Modern Slavery Act statements must be published annually for UK entities with turnover over GBP 36 million. Green Bond or Sustainability Bond designation requires adherence to ICMA principles.",
+    "keywords": ["ESG", "TCFD", "sustainability", "climate", "green bond", "sustainability bond", "Modern Slavery Act", "Scope 1", "Scope 2", "greenhouse gas", "carbon", "SECR", "streamlined energy", "ICMA", "Green Bond Principles", "reporting obligation", "diversity", "board diversity"]
+  }
+]

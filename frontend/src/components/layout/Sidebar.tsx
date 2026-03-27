@@ -1,11 +1,13 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Scale, LayoutDashboard, FileText, History, Zap } from 'lucide-react'
+import { Scale, LayoutDashboard, FileText, History, Zap, Brain, Cpu } from 'lucide-react'
 import clsx from 'clsx'
 
 const NAV = [
-  { to: '/',         label: 'Dashboard',    icon: LayoutDashboard },
-  { to: '/process',  label: 'Process Doc',  icon: FileText },
-  { to: '/sessions', label: 'Sessions',     icon: History },
+  { to: '/',              label: 'Dashboard',       icon: LayoutDashboard },
+  { to: '/process',       label: 'Process Doc',      icon: FileText },
+  { to: '/sessions',      label: 'Sessions',         icon: History },
+  { to: '/knowledge',     label: 'Knowledge Graph',  icon: Brain },
+  { to: '/rules-designer',label: 'Rules Designer',   icon: Cpu },
 ]
 
 export default function Sidebar() {

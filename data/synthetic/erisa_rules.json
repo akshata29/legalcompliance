@@ -1,0 +1,68 @@
+[
+  {
+    "id": "FIDUCIARY_DUTY",
+    "name": "Fiduciary Duty of Loyalty and Prudence",
+    "description": "ERISA § 404(a)(1) requires fiduciaries to act solely in the interest of participants and beneficiaries, with the care, skill, prudence and diligence of a prudent expert. Any provision that delegates authority, selects service providers, or exercises investment discretion must be evaluated for compliance with the prudent person standard.",
+    "keywords": ["fiduciary", "prudent", "sole interest", "participants", "beneficiaries", "loyalty", "prudent expert", "care skill", "diversif", "exclusive purpose", "prudent person", "prudent investor", "investment decision", "discretion"]
+  },
+  {
+    "id": "PROHIBITED_TRANSACTION",
+    "name": "Prohibited Transaction Rules",
+    "description": "ERISA §§ 406 and Code § 4975 prohibit transactions between the Plan and Parties in Interest, including sale, exchange, leasing, lending, furnishing of services, and self-dealing. Any exemption claimed must be a statutory exemption under ERISA § 408 or a DOL Prohibited Transaction Exemption (PTE).",
+    "keywords": ["prohibited transaction", "party in interest", "disqualified person", "self-dealing", "sale or exchange", "leasing", "lending", "extension of credit", "furnishing of goods", "use of plan assets", "class exemption", "PTE", "QPAM", "22c-14", "4975", "section 406"]
+  },
+  {
+    "id": "PLAN_ASSETS",
+    "name": "Plan Assets Regulation",
+    "description": "DOL Regulation § 2510.3-101 determines when assets of an entity in which a plan invests are treated as plan assets. Obligations relevant when a plan invests in a fund, limited partnership, or other entity where benefit plan investor holdings could exceed 25% of any class of equity.",
+    "keywords": ["plan assets", "plan asset regulation", "benefit plan investor", "25%", "25 percent", "operating company", "registered investment company", "look-through", "VCOC", "REOC", "underlying assets", "DOL regulation", "2510.3-101", "equity interests"]
+  },
+  {
+    "id": "VESTING",
+    "name": "Vesting and Anti-Cutback",
+    "description": "ERISA §§ 203 and 204(g) govern minimum vesting schedules and prohibit reduction of accrued benefits. Provisions addressing vesting schedules, forfeiture, break in service, and amendments to benefit formulas must comply.",
+    "keywords": ["vest", "vesting", "accrued benefit", "forfeiture", "non-forfeitable", "anti-cutback", "years of service", "break in service", "cliff vesting", "graded vesting", "three-year cliff", "six-year graded", "section 203", "section 204"]
+  },
+  {
+    "id": "REPORTING_DISCLOSURE",
+    "name": "Reporting and Disclosure — ERISA Title I Part 1",
+    "description": "ERISA §§ 101–111 require plans to file Form 5500, distribute SPDs, SMMs, benefit statements, and enrollment notices. All reporting deadlines and required content must be satisfied. DOL Regulation § 2520.104b governs electronic disclosure.",
+    "keywords": ["Form 5500", "annual report", "SPD", "summary plan description", "summary of material modification", "SMM", "benefit statement", "enrollment notice", "ERISA 101", "ERISA 102", "ERISA 104", "ERISA 105", "report", "disclose", "disclosure", "QACA notice", "automatic enrollment notice"]
+  },
+  {
+    "id": "CONTRIBUTION_TIMING",
+    "name": "Timely Deposit of Elective Deferrals",
+    "description": "DOL Regulation § 2510.3-102 requires that participant contributions be deposited to the trust as soon as reasonably possible, but not later than the 15th business day of the month after the month in which the amounts were withheld. Late deposits constitute a prohibited transaction.",
+    "keywords": ["deposit", "deferral", "elective deferral", "contribution", "withheld", "15th business day", "timely", "payroll", "remit", "transmit", "2510.3-102", "Section 3-102", "salary reduction"]
+  },
+  {
+    "id": "DISTRIBUTION_RULES",
+    "name": "Required Minimum Distributions and Distribution Form",
+    "description": "Code § 401(a)(9) requires minimum distributions to commence by the Required Beginning Date (April 1 after attaining age 73 under SECURE 2.0). ERISA § 205 and Code § 417 govern joint and survivor annuity requirements. Hardship withdrawal provisions must satisfy Treasury Regulation § 1.401(k)-1.",
+    "keywords": ["required minimum distribution", "RMD", "required beginning date", "April 1", "age 73", "age 70½", "SECURE", "joint and survivor", "QJSA", "spousal consent", "annuity", "hardship withdrawal", "immediate and heavy financial need", "code 401(a)(9)", "section 417", "distribution", "rollover"]
+  },
+  {
+    "id": "CLAIMS_PROCEDURE",
+    "name": "Claims and Appeals Procedure",
+    "description": "DOL Regulation § 2560.503-1 requires plans to establish and follow reasonable claims and review procedures, including specific timelines (90 days for initial determination, 60 days for appeal), required content in denial notices, and the right to bring a civil action under ERISA § 502(a).",
+    "keywords": ["claim", "appeal", "denial", "review procedure", "claimant", "benefit dispute", "notice of denial", "45 days", "90 days", "60 days", "503-1", "section 502", "civil action", "claims procedure", "claims review", "internal appeal"]
+  },
+  {
+    "id": "FIDELITY_BOND",
+    "name": "Fidelity Bonding Requirement",
+    "description": "ERISA § 412 requires that all fiduciaries and persons who handle plan funds be bonded for the lesser of 10% of plan assets or $500,000 ($1,000,000 for plans holding employer securities). Failure to bond constitutes a per se violation.",
+    "keywords": ["fidelity bond", "bond", "bonded", "surety", "handles funds", "ERISA 412", "section 412", "employer securities", "500,000", "$500,000", "Circular 570", "fraud or dishonesty"]
+  },
+  {
+    "id": "FUNDING",
+    "name": "Minimum Funding Standards",
+    "description": "Code § 412 and ERISA § 302 require that defined benefit plans satisfy minimum funding requirements based on actuarial calculations. Failure to meet minimum funding triggers PBGC liens under ERISA § 302(f) and excise taxes under Code § 4971.",
+    "keywords": ["minimum funding", "funding standard", "actuarial", "enrolled actuary", "amortize", "funding shortfall", "funding deficit", "PBGC", "Pension Benefit Guaranty", "Code 412", "ERISA 302", "pension contribution", "underfunded", "excise tax 4971", "required contribution"]
+  },
+  {
+    "id": "ANTI_ALIENATION",
+    "name": "Anti-Alienation and QDRO",
+    "description": "ERISA § 206(d)(1) prohibits assignment or alienation of plan benefits. The sole exception is a Qualified Domestic Relations Order under ERISA § 206(d)(3) and Code § 414(p). Benefits must be protected from creditor garnishment and third-party assignment.",
+    "keywords": ["anti-alienation", "alienation", "assignment", "garnishment", "attachment", "QDRO", "qualified domestic relations order", "alternate payee", "spendthrift", "ERISA 206", "section 206(d)", "Code 414(p)", "assignment of benefits"]
+  }
+]

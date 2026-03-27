@@ -1,0 +1,788 @@
+# SYNTHETIC ERISA PLAN DOCUMENT
+## Meridian Capital Partners Pension and Benefits Trust — Master Plan Document
+## Including 401(k) Plan, Defined Benefit Plan, and ERISA Fiduciary Policy
+## Plan Document | March 2026 | Approximately 25 Pages
+
+THIS DOCUMENT IS A SYNTHETIC TEST DOCUMENT GENERATED SOLELY FOR TECHNOLOGY DEMONSTRATION AND LEGAL COMPLIANCE PIPELINE TESTING. IT DOES NOT CONSTITUTE A LEGALLY BINDING PLAN DOCUMENT. ALL NAMES, FIGURES AND REFERENCES ARE FICTITIOUS.
+
+
+# PART I — PLAN ESTABLISHMENT AND GENERAL PROVISIONS
+
+
+### Article 1.1 — Plan Name, Effective Date and Governing Law
+
+This document constitutes the Master Plan Document for the Meridian Capital Partners Pension and
+Benefits Trust (the "Plan"), established pursuant to the Employee Retirement Income Security Act of
+1974, as amended, 29 U.S.C. §§ 1001–1461 ("ERISA"), the Internal Revenue Code of 1986, as amended
+(the "Code"), and the regulations promulgated thereunder by the Department of Labor ("DOL") and the
+Internal Revenue Service ("IRS"). The Plan is intended to qualify as a tax-exempt trust under Code
+§ 501(a) and to satisfy the qualification requirements of Code § 401(a) for the 401(k) component
+and Code § 412 for the defined benefit component.
+
+The Plan shall be effective as of January 1, 2026 (the "Effective Date"). All prior plan documents,
+summary plan descriptions, and related amendments are hereby superseded to the extent inconsistent
+with this Master Plan Document. Where any provision of this Plan conflicts with the requirements of
+ERISA or the Code, the statutory or regulatory requirement shall govern, and the Plan Administrator
+shall promptly take corrective action to bring the Plan into compliance.
+
+The Plan is maintained by Meridian Capital Partners LLC (the "Plan Sponsor"), a Delaware limited
+liability company with principal offices at 200 West 57th Street, New York, NY 10019. The Plan
+Sponsor shall have the authority to amend or terminate the Plan at any time, subject to the
+limitations imposed by ERISA § 204(g) regarding anti-cutback rules and the vesting protections of
+ERISA § 203. No amendment shall reduce the accrued benefit of any Participant or eliminate an
+optional form of benefit with respect to benefits accrued before the date of amendment.
+
+The Plan shall be governed by and construed in accordance with ERISA to the extent preempted by
+federal law, and otherwise by the laws of the State of New York. Any claim or dispute arising under
+the Plan that is not resolved through the Plan's internal claims review procedure shall be subject
+to arbitration under the American Arbitration Association's Commercial Arbitration Rules, with
+hearings held in New York City, New York, unless the parties mutually agree to an alternative venue.
+
+
+### Article 1.2 — Purpose and Plan Type
+
+The Plan consists of two component arrangements: (i) a defined contribution profit-sharing plan
+with a cash or deferred arrangement qualifying as a 401(k) plan under Code § 401(k) (the "401(k)
+Component"), and (ii) a defined benefit pension plan qualifying under Code § 401(a) and subject to
+the minimum funding requirements of Code § 412 and ERISA Part 3 (the "DB Component"). Both
+components share a single Trust and are governed by this Master Plan Document, with component-
+specific provisions set out in Schedules A and B respectively.
+
+The primary purpose of the Plan is to provide retirement income security for eligible employees of
+the Plan Sponsor and any Participating Employers. The Plan also provides pre-retirement death
+benefits, disability benefits, and hardship withdrawal rights as set forth herein. The fiduciary
+duties applicable to both components are governed exclusively by ERISA Part 4, and all fiduciaries
+named herein shall discharge their duties solely in the interest of Participants and Beneficiaries.
+
+Notwithstanding any other provision, the Plan shall at all times be operated and maintained in
+compliance with ERISA and the Code, including but not limited to ERISA §§ 101–111 (reporting and
+disclosure), ERISA §§ 201–211 (participation and vesting), ERISA §§ 301–308 (funding), ERISA
+§§ 401–414 (fiduciary responsibility), and ERISA §§ 501–521 (administration and enforcement). Any
+fiduciary breach shall be subject to personal liability under ERISA § 409 and the DOL's remedial
+authority under ERISA § 502.
+
+
+# PART II — DEFINITIONS
+
+
+### Article 2.1 — Defined Terms
+
+"Accrued Benefit" means, as of any date, the benefit accrued by a Participant under the DB
+Component as of that date, expressed as an annual benefit payable at Normal Retirement Age in the
+Normal Form of Benefit, calculated in accordance with the benefit formula set out in Schedule B.
+
+"Affiliated Employer" means any company or entity that is a member of a controlled group of
+corporations within the meaning of Code § 414(b), a trade or business under common control under
+Code § 414(c), or an affiliated service group under Code § 414(m), with respect to the Plan Sponsor.
+
+"Beneficial Owner" has the meaning given in Rule 13d-3 under the Securities Exchange Act of 1934,
+as amended.
+
+"Beneficiary" means any person or entity designated by a Participant to receive benefits under the
+Plan in the event of the Participant's death, subject to the spousal consent requirements of ERISA
+§ 205 and Code § 417.
+
+"Break in Service" means a Plan Year in which a Participant completes fewer than 501 Hours of
+Service, as determined under DOL Regulation § 2530.200b-2.
+
+"Code" means the Internal Revenue Code of 1986, as amended from time to time, and any successor
+statute. Any reference to a Code section includes the regulations and guidance issued thereunder.
+
+"Compensation" means, for purposes of the 401(k) Component, the total of all wages as defined in
+Code § 3401(a) paid to a Participant during the Plan Year, including deferrals under this Plan and
+any other Code § 401(k) or 403(b) plan maintained by the Plan Sponsor, but excluding reimbursements
+or other expense allowances, fringe benefits (cash or non-cash), moving expenses, deferred
+compensation, and welfare benefits.
+
+"Controlled Group" means the group of employers treated as a single employer under Code §§ 414(b),
+(c), (m) or (o), determined in accordance with the applicable regulations.
+
+"Disability" means a condition that causes a Participant to be unable to engage in any substantial
+gainful activity by reason of a medically determinable physical or mental impairment that can be
+expected to result in death or to last for a continuous period of not less than 12 months, as
+certified by a physician selected or approved by the Plan Administrator.
+
+"Early Retirement Date" means the first day of any month coinciding with or following a
+Participant's attainment of age 55 and completion of at least 10 Years of Service for the DB
+Component, or age 59½ for the 401(k) Component without service requirement.
+
+"ERISA" means the Employee Retirement Income Security Act of 1974, as amended, 29 U.S.C. §§ 1001–
+1461, and all regulations and guidance issued thereunder by the Department of Labor, including the
+Advisory Opinions, Field Assistance Bulletins and Prohibited Transaction Exemptions.
+
+"Fiduciary" means any person who (i) exercises any discretionary authority or control in the
+management or administration of the Plan or its assets, (ii) renders investment advice for a fee or
+other compensation with respect to Plan assets, or (iii) has any discretionary authority in the
+administration of the Plan, all within the meaning of ERISA § 3(21).
+
+"Hour of Service" means each hour for which an employee is paid or entitled to payment for the
+performance of duties for the Plan Sponsor or Affiliated Employer, calculated in accordance with
+DOL Regulations §§ 2530.200b-2 and 2530.200b-3, including hours for which back pay, irrespective
+of mitigation of damages, has been awarded.
+
+"Investment Manager" means a fiduciary who has been designated to manage Plan assets pursuant to a
+written agreement, who is either registered as an investment adviser under the Investment Advisers
+Act of 1940 ("IAA"), a bank as defined in the IAA, or an insurance company qualified to perform
+investment management services under applicable state law.
+
+"Named Fiduciary" means a fiduciary named in this Plan document or identified by an employer as a
+named fiduciary pursuant to ERISA § 402(a)(2). Named fiduciaries include the Plan Administrator,
+the Trustee, and each Investment Manager appointed pursuant to Article 5 hereof.
+
+"Normal Retirement Age" means age 65, which shall be used for all purposes under this Plan,
+including the calculation of Accrued Benefits under the DB Component, the determination of
+distribution timing requirements under Code § 401(a)(14), and the normal form of benefit elections.
+
+"Party in Interest" has the meaning given in ERISA § 3(14) and includes the Plan Sponsor, any
+fiduciary, any employee of the Plan Sponsor, any provider of services to the Plan, and any person
+owning 50% or more of the Plan Sponsor's voting shares or capital.
+
+"Plan Administrator" means the Meridian Capital Partners Benefits Committee (the "Benefits
+Committee"), a committee of three or more individuals appointed by the Board of Directors of the
+Plan Sponsor, with authority to exercise all discretionary powers vested in the Plan Administrator
+under ERISA and this Plan Document.
+
+"Plan Assets" means all assets of the Trust Fund, as defined in ERISA § 3(21)(A), including but
+not limited to annuity contracts, insurance policies, pooled separate accounts, and collective
+investment trusts, as further defined under applicable DOL regulations including DOL Reg. § 2510.3-
+101 (the "Plan Assets Regulation").
+
+"Plan Year" means the twelve-month period beginning January 1 and ending December 31 of each year
+unless the Plan Sponsor amends the Plan to change the Plan Year, subject to the IRS limitations on
+short plan years set out in Code § 441.
+
+"Prohibited Transaction" means any transaction described in ERISA § 406 or Code § 4975, including
+but not limited to a sale, exchange, or leasing of property between the Plan and a Party in
+Interest; a lending of money between the Plan and a Party in Interest; the furnishing of goods,
+services or facilities between the Plan and a Party in Interest; and the transfer or use of Plan
+Assets to or for the benefit of a Party in Interest.
+
+"Qualified Domestic Relations Order" or "QDRO" means a domestic relations order that assigns to an
+Alternate Payee the right to receive all or a portion of the benefits payable with respect to a
+Participant under the Plan, and that meets the requirements of ERISA § 206(d)(3) and Code § 414(p).
+
+"Trust" or "Trust Fund" means all assets held in trust by the Trustee for the exclusive benefit of
+Participants and Beneficiaries pursuant to the Trust Agreement, as required by ERISA § 403(a).
+
+"Trustee" means Northern Trust Company, N.A. (or such successor trustee as may be appointed by the
+Plan Sponsor), which shall serve as a directed or discretionary trustee in accordance with the terms
+of the Trust Agreement and ERISA § 403.
+
+"Year of Service" means a Plan Year during which a Participant completes at least 1,000 Hours of
+Service, used for purposes of eligibility and vesting under both Plan Components.
+
+
+# PART III — ELIGIBILITY AND PARTICIPATION
+
+
+### Article 3.1 — Eligibility Requirements
+
+Each employee of the Plan Sponsor or a Participating Employer shall be eligible to participate in
+the 401(k) Component of the Plan upon meeting all of the following requirements: (i) the employee
+has attained age 21; (ii) the employee has completed at least one Year of Service; and (iii) the
+employee is not an employee classified as a leased employee under Code § 414(n), an independent
+contractor, or a member of a collective bargaining unit whose retirement benefits have been the
+subject of good faith collective bargaining.
+
+Eligibility for the DB Component shall require the same age and service conditions specified above.
+For purposes of the DB Component, each eligible employee shall commence participation in the Plan
+on the January 1 or July 1 coinciding with or next following the date on which such employee meets
+all eligibility requirements, provided that in no case shall the participation commencement date
+exceed the later of (i) the date on which the employee attains age 21 or (ii) the first anniversary
+of the employee's employment commencement date.
+
+The Plan Administrator shall maintain records sufficient to determine each employee's eligibility
+status, Hours of Service, Compensation, and benefit accruals. Records shall be retained for at
+least six years following the date to which such records relate, in accordance with ERISA § 107,
+which requires record retention for at least six years after the filing date of the Annual Report
+(Form 5500) to which the records relate. All records shall be maintained in a format that permits
+examination, copying, and delivery to the applicable government agency upon request.
+
+An employee who is rehired following a Break in Service shall have all prior service reinstated if
+the number of consecutive one-year Breaks in Service does not equal or exceed the greater of five
+or the Participant's vested Years of Service at the time of termination, in accordance with ERISA
+§ 203(b)(3). The Plan Administrator shall notify each eligible employee of their eligibility within
+a reasonable period, and shall provide each new Participant with a written notice describing the
+material provisions of the Plan within 90 days of plan participation commencement.
+
+
+### Article 3.2 — Enrollment Procedures
+
+Each eligible employee shall be automatically enrolled in the 401(k) Component at a default
+contribution rate of 3% of Compensation, unless the employee affirmatively opts out within 90 days
+of the auto-enrollment date, pursuant to the qualified automatic contribution arrangement ("QACA")
+provisions of Code § 401(k)(13). The default contribution rate shall automatically increase by 1
+percentage point on each January 1 following the initial enrollment date until the contribution
+rate reaches 10% of Compensation, subject to the Participant's right to elect a different
+contribution rate at any time during the Plan Year.
+
+The Plan Sponsor shall provide each newly eligible employee with an enrollment notice no later than
+30 days before the date on which the employee becomes eligible to participate. The enrollment notice
+shall describe: (i) the right of the employee to elect to have contributions made on their behalf,
+(ii) the default deferral percentage that will apply in the absence of an election, (iii) the
+investment options available under the Plan, (iv) the matching contribution formula, and (v) the
+availability of investment education materials and a qualified investment adviser.
+
+Spousal beneficiary designations shall be automatically effective as of the date of a Participant's
+marriage unless the Participant and spouse complete a written joint and survivor annuity election
+waiver pursuant to ERISA § 205 and Code § 417. Any waiver of the qualified joint and survivor
+annuity or the qualified pre-retirement survivor annuity must be in writing, signed by the
+Participant and their spouse, witnessed by a notary public or Plan representative, and obtained
+within the applicable election period.
+
+
+# PART IV — CONTRIBUTIONS
+
+
+### Article 4.1 — Employee Elective Deferrals
+
+Each Participant may elect to defer up to 100% of Compensation as elective deferrals under the
+401(k) Component, subject to the annual limit prescribed by Code § 402(g), which is $23,000 for
+calendar year 2026. Catch-up contributions of up to an additional $7,500 shall be permitted for
+Participants who will attain age 50 or older during the Plan Year, pursuant to Code § 414(v).
+
+All elective deferrals shall be deposited into the Trust not later than the 15th business day of
+the month following the month in which such amounts would otherwise have been payable to the
+Participant, or such earlier date as determined by the DOL to be administratively feasible, in
+accordance with DOL Regulation § 2510.3-102. Failure to deposit deferrals within this period
+constitutes a Prohibited Transaction requiring correction under the Voluntary Correction Program
+or the DOL's Voluntary Fiduciary Correction Program.
+
+Elective deferrals shall be made on a pre-tax basis pursuant to Code § 401(k) or as Roth
+contributions pursuant to Code § 402A, at the Participant's election. Pre-tax deferrals shall be
+excluded from the Participant's gross income for federal and, where applicable, state income tax
+purposes. Roth contributions shall be includible in the Participant's current income but may be
+withdrawn tax-free on a qualified distribution basis after a five-year holding period and
+attainment of age 59½, death, or disability.
+
+
+### Article 4.2 — Employer Matching Contributions
+
+The Plan Sponsor shall make Employer Matching Contributions each Plan Year equal to 100% of a
+Participant's elective deferrals that do not exceed 3% of Compensation, plus 50% of elective
+deferrals between 3% and 5% of Compensation, for a maximum match of 4% of Compensation (the
+"Safe Harbor Match"). By making the Safe Harbor Match, the Plan intends to satisfy the
+nondiscrimination safe harbor of Code § 401(k)(12) and the top-heavy exception of Code § 416(f),
+provided all other safe harbor requirements are met.
+
+Employer Matching Contributions shall be made no later than the due date (including extensions) for
+filing the Plan Sponsor's federal income tax return for the Plan Year to which they relate, as
+required under Code § 404(a)(6). The Plan Administrator shall certify to the Trustee the amount of
+Employer Matching Contributions due in each Plan Year and shall maintain records of each
+Participant's share of matching contributions.
+
+Employer Matching Contributions shall be 100% immediately vested for Participants who complete
+the Safe Harbor Match requirements, in accordance with the QACA safe harbor vesting schedule
+permitted under Code § 401(k)(13)(D). Non-safe harbor matching contributions, if any, shall vest
+under the three-year cliff vesting schedule: 0% for less than three Years of Service and 100% after
+three or more Years of Service, as set out in the vesting schedule in Schedule A.
+
+
+### Article 4.3 — Employer Non-Elective Contributions
+
+The Plan Sponsor may, at its discretion, make non-elective Employer Profit-Sharing contributions
+to the 401(k) Component for any Plan Year, subject to the overall limit on annual additions set
+out in Code § 415(c), which is the lesser of $69,000 (for 2026) or 100% of Compensation. Such
+contributions shall be allocated among Participants in proportion to Compensation, unless the Plan
+Administrator adopts an alternative allocation formula approved by the Board of Directors.
+
+Non-elective contributions shall vest under the following schedule: 20% after two Years of Service,
+40% after three Years of Service, 60% after four Years of Service, 80% after five Years of Service,
+and 100% after six or more Years of Service (the "Graded Vesting Schedule"), as permitted under
+ERISA § 203(a)(2)(B). Upon termination of employment, a Participant shall be entitled to receive
+the vested portion of their account balance. The non-vested portion shall be forfeited and applied
+to reduce future Employer contributions or reallocated to eligible Participants.
+
+
+# PART V — FIDUCIARY RESPONSIBILITIES
+
+
+### Article 5.1 — General Fiduciary Standards
+
+Each fiduciary of the Plan shall discharge its duties with respect to the Plan solely in the
+interest of Participants and Beneficiaries and: (i) for the exclusive purpose of providing benefits
+to Participants and Beneficiaries and defraying reasonable expenses of administering the Plan;
+(ii) with the care, skill, prudence, and diligence under the circumstances then prevailing that a
+prudent person acting in a like capacity and familiar with such matters would use in the conduct of
+an enterprise of like character and aims (the "Prudent Person Standard"); (iii) by diversifying the
+investments of the Plan so as to minimize the risk of large losses, unless under the circumstances
+it is clearly prudent not to do so; and (iv) in accordance with the documents and instruments
+governing the Plan insofar as they are consistent with ERISA.
+
+Compliance with the Prudent Person Standard requires each fiduciary to investigate thoroughly all
+available options before making an investment or administrative decision, to document its
+deliberative process, and to monitor investment managers and other service providers on an ongoing
+basis. A fiduciary shall not be relieved of responsibility merely because it delegates authority to
+another party, unless such delegation satisfies the requirements of ERISA § 405(c) for proper
+delegation and monitoring of investment managers.
+
+The Plan Sponsor shall designate at least one Named Fiduciary with the authority to control and
+manage the operation and administration of the Plan. Each Named Fiduciary shall acknowledge its
+fiduciary status in writing, shall maintain records of all decisions made in a fiduciary capacity
+for at least six years, and shall act consistently with the Investment Policy Statement adopted
+pursuant to Article 5.3 hereof. The Benefits Committee shall provide written minutes of each
+meeting to the Trustee and shall retain copies of such minutes for not less than six years.
+
+
+### Article 5.2 — Prohibited Transactions
+
+The Plan shall not engage in a Prohibited Transaction as defined in ERISA § 406 and Code § 4975.
+Specifically, the Plan shall not engage, directly or indirectly, in any of the following:
+
+(a) A sale or exchange, or leasing, of any property between the Plan and a Party in Interest;
+
+(b) A lending of money or other extension of credit between the Plan and a Party in Interest;
+
+(c) The furnishing of goods, services, or facilities between the Plan and a Party in Interest;
+
+(d) A transfer to, or use by or for the benefit of, a Party in Interest, of any assets of the Plan;
+
+(e) Acquisition, on behalf of the Plan, of any employer security in excess of the limits imposed
+by ERISA § 407, or any employer real property in excess of 10% of the fair market value of Plan
+assets; or
+
+(f) Any act by a fiduciary dealing with the income or assets of the Plan in its own interest or
+for its own account, or receipt by a fiduciary of any consideration for its own personal account
+from any party dealing with the Plan in connection with a transaction involving Plan assets.
+
+Any fiduciary who knowingly participates in a Prohibited Transaction shall be personally liable
+under ERISA § 409 for any losses resulting from the breach and shall be required to restore any
+profits made through use of Plan assets. The DOL may assess an excise tax equal to 15% of the
+amount involved in any Prohibited Transaction under Code § 4975, with an additional 100% excise tax
+if the transaction is not corrected within the applicable correction period.
+
+
+### Article 5.3 — Investment Policy Statement
+
+The Benefits Committee shall adopt and maintain a written Investment Policy Statement ("IPS") in
+accordance with ERISA § 402(a)(1). The IPS shall set out: (i) the goals and objectives of the Plan;
+(ii) risk tolerance and asset allocation guidelines; (iii) criteria for selection, retention and
+removal of investment options; (iv) procedures for monitoring investment performance; and (v)
+procedures for assessing fees and expenses paid from Plan assets.
+
+The Benefits Committee shall review and, if appropriate, revise the IPS no less frequently than
+annually. Any change to the designated investment options available under the 401(k) Component must
+be evaluated against the criteria in the IPS and documented in writing before implementation. The
+Benefits Committee shall notify Participants of any change to the investment options at least 30
+days before the change takes effect, in accordance with the ERISA § 404(c) regulations to the
+extent the Plan is intended to comply with those regulations.
+
+Investment managers selected by the Benefits Committee shall execute written investment management
+agreements acknowledging fiduciary status, disclosing all fees, and agreeing to comply with all
+applicable provisions of ERISA and the IPS. Each investment manager must provide quarterly
+performance reports to the Benefits Committee, including benchmarks against an appropriate index,
+and must promptly disclose any material change in its organization, ownership, investment personnel,
+or compliance policy that could affect its ability to fulfill its obligations under the agreement.
+
+
+### Article 5.4 — Fidelity Bond
+
+Each fiduciary and every other person who handles funds or other property of the Plan shall be
+bonded in an amount equal to the lesser of (a) 10% of the Plan assets handled or (b) $500,000 (or
+$1,000,000 for plans that hold employer securities), pursuant to ERISA § 412. The fidelity bond
+shall cover losses caused by acts of fraud or dishonesty on the part of any fiduciary or other
+person covered by the bond, directly or through connivance with others. The bond shall be obtained
+from a company listed in the U.S. Treasury Department's Circular 570 as an approved surety.
+
+The Plan Administrator shall maintain records confirming that all required fidelity bonds are in
+effect and shall promptly notify the DOL if any person who handles Plan funds is not properly
+bonded. Failure to maintain the required fidelity bond is a violation of ERISA § 412 and may result
+in civil penalties under ERISA § 502(l), including penalties equal to 20% of the applicable
+recovery amount ordered by a court or agreed to in settlement.
+
+
+# PART VI — PLAN ASSETS RULES
+
+
+### Article 6.1 — Plan Assets Determination
+
+The Plan shall apply DOL Regulation § 2510.3-101 (the "Plan Asset Regulation") to determine whether
+assets of an entity in which the Plan invests are themselves "Plan Assets." If the Plan invests in
+an entity other than a publicly offered security or a registered investment company, and the Plan's
+equity interest in that entity exceeds 25% of any class of equity interests, the underlying assets
+of that entity shall be treated as Plan Assets unless the entity qualifies as an operating company
+or a registered investment company pursuant to the Plan Asset Regulation.
+
+Where underlying assets of an investee entity are treated as Plan Assets, the managers of that
+entity shall themselves be treated as fiduciaries of the Plan and shall be subject to all applicable
+provisions of ERISA Part 4, including the prohibitions on Prohibited Transactions under ERISA § 406.
+The Benefits Committee shall conduct a pre-investment analysis before authorising any investment
+that would make the investee entity's assets Plan Assets, and shall obtain a legal opinion from
+qualified ERISA counsel confirming the applicable classification.
+
+The Plan relies on the Qualified Professional Asset Manager ("QPAM") exemption under DOL Prohibited
+Transaction Class Exemption 84-14, as amended by PTE 2020-02, to permit transactions that might
+otherwise constitute Prohibited Transactions, provided that: (i) the investment manager qualifies
+as a QPAM (assets under management of at least $85 million and equity of at least $1 million for
+registered investment advisers); (ii) the QPAM negotiates the terms of the transaction at arm's
+length; and (iii) the fiduciary with authority to cause the Plan to enter into the transaction does
+not have a financial interest in the transaction or the person with whom it was negotiated.
+
+
+### Article 6.2 — 25% Test and Significant Participation
+
+The Plan Administrator shall monitor investment fund holdings on a quarterly basis to determine
+whether the Plan's investment in any entity other than a registered investment company or publicly
+offered security exceeds 25% of any class of equity interests issued by that entity. Where any such
+threshold is reached or approached, the Benefits Committee shall consult with ERISA counsel and
+shall maintain documentation of its analysis and decision in the Plan's fiduciary records.
+
+For purposes of the 25% test, the Plan must aggregate its equity interest with the interests of
+each other benefit plan investor (as defined in the Plan Asset Regulation). The Plan Sponsor shall
+require representations from investment fund managers regarding the aggregate benefit plan investor
+percentage before any investment and on a quarterly basis thereafter. Investment fund managers that
+are unable to confirm the aggregate benefit plan investor percentage below 25% shall not be
+authorised to receive new capital contributions from the Plan without the written approval of ERISA
+counsel to the Plan.
+
+
+# PART VII — DISTRIBUTIONS AND PAYMENT
+
+
+### Article 7.1 — Distribution Events and Forms
+
+A Participant shall become entitled to receive a distribution of their vested Account Balance
+(401(k) Component) or Accrued Benefit (DB Component) upon the occurrence of any of the following
+events: (i) termination of employment; (ii) attainment of Normal Retirement Age; (iii) death;
+(iv) Disability; (v) Early Retirement; or (vi) attainment of age 59½ (401(k) Component only).
+
+Distributions from the DB Component shall be made in the form of a qualified joint and survivor
+annuity ("QJSA") for married Participants and a single life annuity for unmarried Participants,
+unless the Participant (with spousal consent where applicable) elects an alternative optional form
+of benefit. Optional forms include lump sum, term-certain annuity, and installment payments, as
+set out in Schedule B. Any form of benefit other than the QJSA requires spousal consent that is in
+writing, witnessed by a notary public or Plan representative, and obtained within the applicable
+election period of 180 days before the annuity starting date.
+
+Mandatory distributions under Code § 401(a)(9) shall be made commencing no later than the
+Participant's Required Beginning Date, which is April 1 of the calendar year following the later
+of (i) the year in which the Participant attains age 73 (for Participants born after December 31,
+1950, pursuant to SECURE Act 2.0) or (ii) the year in which the Participant retires. Required
+minimum distributions shall be calculated in accordance with the IRS uniform lifetime table or, if
+the Participant's sole designated Beneficiary is a spouse more than 10 years younger, the joint life
+and last survivor table.
+
+
+### Article 7.2 — Hardship Withdrawals
+
+A Participant may receive a hardship withdrawal from their elective deferral account under the
+401(k) Component only in the event of an immediate and heavy financial need, as defined under
+Treasury Regulation § 1.401(k)-1(d)(3). The following expenses are treated as safe harbor hardship
+expenses: (i) medical expenses for the Participant, spouse, dependents or primary beneficiary; (ii)
+purchase of the Participant's principal residence; (iii) post-secondary education expenses for the
+Participant, spouse, children or primary beneficiary; (iv) prevention of eviction or foreclosure on
+the Participant's principal residence; (v) burial or funeral expenses; and (vi) casualty losses.
+
+The amount of a hardship withdrawal shall not exceed the amount of the immediate and heavy financial
+need, including amounts necessary to pay reasonably anticipated income taxes and penalties on the
+withdrawal. The Participant must represent in writing that the need cannot reasonably be relieved
+from other reasonably available resources, including the Participant's own savings, the liquidation
+of other assets, or distributions or nontaxable loans from other plans.
+
+Hardship withdrawals are not eligible rollover distributions and are therefore subject to mandatory
+20% withholding under Code § 3405(c) and the 10% early withdrawal penalty under Code § 72(t), with
+limited exceptions. The Plan Administrator shall maintain records of each hardship withdrawal,
+including the Participant's written certification of need and the determination that the withdrawal
+satisfies the applicable regulatory requirements.
+
+
+# PART VIII — CLAIMS AND APPEALS
+
+
+### Article 8.1 — Claims and Review Procedure
+
+Any Participant or Beneficiary who believes they are entitled to a benefit under the Plan that has
+not been paid or has been calculated incorrectly may file a written claim for benefits with the
+Plan Administrator. The Plan Administrator shall process all claims in accordance with DOL
+Regulation § 2560.503-1 as amended by the ERISA claims and appeals regulations.
+
+For claims relating to disability benefits, the Plan Administrator shall make a determination
+within 45 days of receipt of the claim. This period may be extended for up to 30 days if the
+extension is necessary due to matters beyond the control of the Plan, provided the claimant is
+notified before the end of the initial 45-day period of the circumstances requiring the extension
+and the date by which the Plan expects to render a decision. For all other claims, the Plan
+Administrator shall make a determination within 90 days of receipt, with extensions permitted
+where necessary.
+
+If a claim is denied, the Plan Administrator shall provide the claimant with a written notice that
+includes: (i) the specific reason(s) for the denial; (ii) reference to the specific Plan provisions
+on which the denial is based; (iii) a description of any additional material or information
+necessary for the claimant to perfect the claim and an explanation of why that material is
+necessary; and (iv) a description of the Plan's review procedures and the applicable time limits,
+including a statement of the claimant's right to bring a civil action under ERISA § 502(a).
+
+A claimant whose claim is denied may appeal the decision within 60 days following receipt of the
+denial notice. The appeal shall be heard by the Benefits Committee, which has not been involved in
+the initial claim review. The Benefits Committee shall take into account all comments, documents,
+records, and other information submitted by the claimant without regard to whether such information
+was submitted or considered previously. The Benefits Committee shall render a final determination
+within 60 days of receipt of the appeal, or within 120 days if special circumstances require an
+extension. Any final determination shall describe the claimant's right to a civil action under
+ERISA § 502(a)(1)(B).
+
+
+# PART IX — REPORTING AND DISCLOSURE
+
+
+### Article 9.1 — Annual Report and Disclosure Requirements
+
+The Plan Administrator shall cause the Plan to comply with all reporting and disclosure requirements
+under ERISA Title I, Part 1. Specifically, the Plan Administrator shall:
+
+(a) File an Annual Report on Form 5500 (including Schedule SB for the DB Component and Schedule H
+for the 401(k) Component where applicable) with the DOL within 7 months following the end of the
+Plan Year, or within 8.5 months if a timely extension is filed using Form 5558;
+
+(b) Distribute a Summary Plan Description ("SPD") to all Plan Participants and Beneficiaries within
+90 days of becoming a Participant and within 120 days of the Plan's establishment, describing in
+plain language all material terms of the Plan, including eligibility, participation, vesting,
+contribution formulas, distribution provisions, and claims procedures;
+
+(c) Distribute a Summary of Material Modifications ("SMM") within 210 days after the end of any
+Plan Year in which a material modification is adopted, or within 60 days if the modification is a
+material reduction in benefits or covered services, in accordance with DOL Regulation § 2520.104b-3;
+
+(d) Comply with the automatic enrollment notice requirements of Code § 414(w), providing initial
+and annual notices to all Participants describing their elective deferral rights and the default
+elections that will apply in the absence of an affirmative election;
+
+(e) Furnish to each Participant who so requests a statement of the Participant's total non-
+forfeitable benefits under the Plan as of the most recent valuation date, free of charge, once per
+Plan Year.
+
+
+### Article 9.2 — Individual Benefit Statements
+
+The Plan Administrator shall provide annual benefit statements to all Participants in 401(k) plans
+in which Participants have the right to direct their investments, pursuant to the enhanced
+statement requirements added by the Pension Protection Act of 2006. Each annual benefit statement
+shall include: (i) the total value of all investments; (ii) the value of each investment category;
+(iii) an illustration of projected retirement income; and (iv) a notice regarding diversification
+rights.
+
+For the DB Component, a benefit statement shall be furnished to any Participant who makes a written
+request therefor, no more than once per calendar year, showing the Participant's total Accrued
+Benefit as of the most recent valuation date and, if the Participant is entitled to a distribution
+in the current Plan Year, the estimated amount of such distribution.
+
+The Plan Administrator shall comply with all electronic delivery requirements under DOL Regulation
+§ 2520.104b-1, which permits electronic distribution of required disclosures where Participants
+have affirmatively consented to electronic delivery or are "wired employees" who have work-related
+computer access as a natural part of their duties. Records of all consents and deliveries shall be
+maintained for six years.
+
+
+# PART X — PLAN AMENDMENT AND TERMINATION
+
+
+### Article 10.1 — Amendment
+
+The Plan Sponsor reserves the right to amend the Plan at any time and from time to time, provided
+that no amendment shall: (i) reduce the Accrued Benefit of any Participant, in violation of the
+anti-cutback rules of ERISA § 204(g) and Code § 411(d)(6); (ii) eliminate or restrict an optional
+form of benefit with respect to benefits accrued before the amendment effective date; or (iii)
+reduce vesting percentages applicable to Years of Service already credited, unless the Plan
+thereafter provides that any Participant with three or more Years of Service may elect to have
+their vested percentage calculated under the pre-amendment schedule.
+
+Any amendment that would adversely affect the rights of Participants must be preceded by advance
+notice to Participants at least 15 days before the effective date of the amendment, in the form of
+a Summary of Material Modification. Retroactive amendments that eliminate or reduce early retirement
+benefits, retirement-type subsidies, or optional forms of benefit that have already accrued are
+prohibited unless a court order or IRS determination authorizes such retroactive effect.
+
+
+### Article 10.2 — Plan Termination
+
+The Plan Sponsor may terminate the Plan at any time, subject to the requirements of ERISA § 4041
+for single-employer defined benefit plans and the vesting requirements of ERISA § 203(e) for all
+components. Upon termination of either component of the Plan, the Accrued Benefits of all affected
+Participants shall become fully vested and non-forfeitable, regardless of the Participants' number
+of Years of Service.
+
+Upon termination of the DB Component, the Plan Sponsor shall notify the Pension Benefit Guaranty
+Corporation ("PBGC") at least 60 days in advance if the termination is a standard termination, or
+as soon as administratively feasible if the termination is a distress termination, in accordance
+with ERISA §§ 4041 and 4042. A standard termination requires that the Plan have sufficient assets
+to purchase annuity contracts from an insurance company for the benefit of all Participants and
+Beneficiaries, on or before the final distribution date.
+
+The assets of the Trust shall be applied first to provide all benefits due to Participants and
+Beneficiaries, including purchase of annuity contracts where required, before any reversion to the
+Plan Sponsor. A reversion of residual assets to the Plan Sponsor is permissible only if the Plan
+expressly permits it, the Plan has no underfunded benefit liabilities, and an excise tax of 20–50%
+on the reversion amount has been paid, pursuant to Code § 4980.
+
+
+# PART XI — INVESTMENT OPTIONS AND QUALIFIED DEFAULT INVESTMENT ALTERNATIVES
+
+
+### Article 11.1 — Investment Options
+
+The Benefits Committee shall designate the investment options available to Participants under the
+401(k) Component, including a diversified menu of equity, fixed income, balanced, and stable value
+funds, as set out in Exhibit C. The Benefits Committee shall ensure that the investment menu
+complies with the ERISA § 404(c) requirements, including that: (i) there are at least three
+diversified investment alternatives with materially different risk and return characteristics; (ii)
+Participants can give investment instructions at least once quarterly; and (iii) all required
+disclosures are provided to Participants.
+
+All fund fees and expenses, including expense ratios, sales loads, and surrender charges, shall be
+disclosed to Participants in the fee disclosures required by DOL Regulation § 2550.404a-5. The
+Benefits Committee shall retain documentation in its fiduciary records of its analysis of the
+reasonableness of the fees and expenses associated with each investment option, including
+benchmarking against comparable investment alternatives. Fee disclosures shall be provided at least
+annually to all Participants and quarterly for any changes made to the investment options.
+
+
+### Article 11.2 — Qualified Default Investment Alternative
+
+The Plan designates the Meridian Target Date Collective Investment Trust series as the Qualified
+Default Investment Alternative ("QDIA") pursuant to DOL Regulation § 2550.404c-5. Contributions
+for Participants who fail to make an investment election shall be invested in the QDIA corresponding
+to the Participant's projected retirement date (assumed to be age 65). The Plan Sponsor shall
+satisfy the QDIA notice requirements of DOL Regulation § 2550.404c-5, providing advance notice at
+least 30 days before the first investment in the QDIA and at least 30 days before each subsequent
+Plan Year.
+
+Participants invested in the QDIA shall have the right to transfer out of the QDIA into any other
+designated investment option at least once per quarter without charges or penalties, in accordance
+with DOL Regulation § 2550.404c-5(c)(5). The Benefits Committee shall confirm that the QDIA
+provider has executed a written investment management agreement acknowledging fiduciary status and
+shall monitor the QDIA's performance against appropriate benchmarks on at least an annual basis.
+
+
+# PART XII — MULTIEMPLOYER AND GOVERNMENT CONTRACTOR PROVISIONS
+
+
+### Article 12.1 — Reserved for ERISA-Compliant Amendments
+
+This Part XII is reserved for provisions relating to government contract compliance, affirmative
+action plan integration, USERRA compliance for veterans' re-employment rights (38 U.S.C. §§ 4301–
+4335), and FMLA integration. The Benefits Committee shall amend this Part as needed to reflect
+applicable regulatory changes affecting benefit plan administration.
+
+The Plan shall at all times comply with the Uniformed Services Employment and Re-employment Rights
+Act of 1994 ("USERRA") by crediting Hours of Service and Years of Service for military leave as
+if the employee had remained continuously employed during the leave period, and by permitting
+returned veterans to make up missed elective deferrals during a period equal to three times the
+period of military service (but not more than five years), pursuant to ERISA § 203(d).
+
+
+# PART XIII — MISCELLANEOUS PROVISIONS
+
+
+### Article 13.1 — Spendthrift Clause
+
+Except as required by a QDRO pursuant to ERISA § 206(d)(3) and Code § 414(p), or as permitted
+under applicable law, no benefit or interest of any Participant or Beneficiary under the Plan shall
+be subject to alienation, assignment, garnishment, attachment, execution, or levy of any kind, in
+accordance with the anti-alienation requirement of ERISA § 206(d)(1). Any purported assignment or
+alienation of benefits in violation of this provision shall be void and of no effect.
+
+Notwithstanding the foregoing, the Plan shall comply with a federal tax levy made pursuant to Code
+§ 6331 upon proper notification from the IRS, and shall comply with a criminal restitution order
+issued under 18 U.S.C. § 3663A, which are both expressly excluded from the anti-alienation rule in
+accordance with Code § 401(a)(13)(B).
+
+
+### Article 13.2 — Invalid Provisions
+
+If any provision of the Plan is held to be invalid or unenforceable, the remaining provisions shall
+continue in full force and effect. The Plan Administrator shall take such steps as are reasonably
+necessary to bring the Plan into compliance with applicable law in the event of any such invalidity.
+If any provision is required to be amended to comply with applicable law, such amendment shall be
+retroactive to the extent required to preserve the qualified status of the Plan under Code § 401(a).
+
+
+### Article 13.3 — Correction of Errors
+
+The Plan Administrator shall promptly correct any operational or documentary failure to satisfy the
+qualification requirements of Code § 401(a) or the requirements of ERISA, using the IRS Employee
+Plans Compliance Resolution System ("EPCRS") set out in IRS Revenue Procedure 2021-30 (as updated),
+which permits self-correction of certain insignificant and significant failures under the Self-
+Correction Program ("SCP"), or correction with IRS approval under the Voluntary Correction Program
+("VCP"), or as part of an IRS audit under the Audit Closing Agreement Program ("Audit CAP").
+
+Operational failures that are discovered and corrected within the two-year self-correction period
+are eligible for the SCP if the Plan has established practices and procedures reasonably designed
+to promote compliance with the qualification requirements. The Plan Administrator shall maintain
+written documentation of all corrections, including the nature of the failure, the correction method
+used, and the date of correction, and shall retain that documentation for at least seven years.
+
+
+### Article 13.4 — Counterparts and Electronic Execution
+
+This Plan Document may be executed in one or more counterparts, each of which shall be deemed an
+original, and together shall constitute a single instrument. Electronic signatures are permitted and
+shall be treated as equivalent to handwritten signatures for purposes of the Plan's administration,
+in accordance with the Electronic Signatures in Global and National Commerce Act (E-Sign), 15
+U.S.C. §§ 7001–7006, and applicable state law.
+
+
+# SCHEDULE A — 401(k) COMPONENT SPECIFIC PROVISIONS
+
+### A.1 — Self-Directed Brokerage Account
+
+Participants may direct a portion of their Account Balance into a self-directed brokerage account
+("SDBA") through the Plan's designated brokerage provider, subject to a minimum balance of $5,000
+in the core investment menu at all times. Investments through the SDBA are deemed individually
+directed by the Participant and are excluded from ERISA § 404(c) protection with respect to the
+Participant's investment in any security that is not part of the designated investment menu. The
+Benefits Committee shall ensure that the SDBA provider complies with applicable securities laws and
+complies with the 408(b)(2) disclosure requirements.
+
+
+### A.2 — Loan Provisions
+
+Participants may borrow from their 401(k) Component Account Balance, subject to the following
+requirements: (i) the maximum loan amount shall not exceed the lesser of $50,000 (reduced by the
+highest outstanding loan balance in the previous 12 months) or 50% of the Participant's vested
+account balance; (ii) the loan shall be repayable within five years through payroll deductions,
+except for loans used to purchase the Participant's principal residence which may be repaid over a
+period not exceeding 25 years; (iii) the loan shall bear interest at a rate equal to the prime
+rate published in The Wall Street Journal on the first business day of the month in which the loan
+is made, plus 1%; and (iv) only one loan per Participant shall be outstanding at any time.
+
+A loan that fails to meet the requirements of Code § 72(p) shall be treated as a taxable
+distribution in the year of default, subject to income tax and the 10% early withdrawal penalty
+under Code § 72(t). The Plan Administrator shall maintain records of all outstanding loans,
+including terms, repayment schedules, and any defaults, for at least six years following repayment.
+
+
+# SCHEDULE B — DEFINED BENEFIT COMPONENT SPECIFIC PROVISIONS
+
+### B.1 — Benefit Formula
+
+The annual Normal Retirement Benefit for each Participant under the DB Component shall be equal to
+the sum of: (i) 1.5% of average Annual Compensation for the five consecutive Plan Years of highest
+Compensation ("Final Average Compensation") multiplied by Years of Benefit Service earned before
+January 1, 2010; plus (ii) 1.25% of Final Average Compensation multiplied by Years of Benefit
+Service earned on and after January 1, 2010, subject to a maximum of 40 Years of Benefit Service
+for purposes of the formula.
+
+The annual benefit provided under the benefit formula above shall not exceed the limitations of
+Code § 415(b), which is the lesser of: (i) $275,000 (for 2026), indexed to the cost of living; or
+(ii) 100% of the Participant's average Compensation for the three consecutive highest-paid years.
+The Plan Administrator shall calculate and apply the Code § 415 limits on each annuity starting
+date and shall apply the required adjustments for payment forms other than straight life annuities.
+
+### B.2 — Minimum Funding
+
+The Plan Sponsor shall make contributions to the DB Component sufficient to meet the minimum
+funding requirements of Code § 412 and ERISA § 302, as calculated by the Plan's enrolled actuary
+using the funding method and actuarial assumptions adopted by the Benefits Committee. The funding
+method shall not be changed without IRS approval pursuant to Code § 412(d)(1). The most recent
+actuarial report shall be made available to each Named Fiduciary and shall be filed with the DOL as
+part of the Form 5500 Annual Report.
+
+A funding shortfall shall be corrected by the Plan Sponsor within the time limits prescribed by
+Code § 412(e), which generally requires the shortfall to be amortized over seven years in level
+annual installments. If the Plan Sponsor fails to make required minimum contributions, the PBGC
+lien provisions of ERISA § 302(f) shall apply, and the DOL may assess a penalty of 10% of the
+unpaid contribution, with an additional 100% penalty for contributions that remain unpaid after a
+Tax Court decision, under Code § 4971.
+
+---
+*This document is a synthetic test artifact. All plan names, employer names, numerical figures and
+regulatory citations are used for readability only. No legal or tax advice is provided or implied.*

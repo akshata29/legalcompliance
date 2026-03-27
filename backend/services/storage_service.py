@@ -77,3 +77,14 @@ class StorageService:
             }
             for b in container_client.list_blobs()
         ]
+
+    async def delete_blobs_for_document(self, document_id: str) -> int:
+        """Delete all blobs stored under the {document_id}/ prefix. Returns count deleted."""
+        container_client = self._client.get_container_client(self._container)
+        prefix = f"{document_id}/"
+        deleted = 0
+        for blob in container_client.list_blobs(name_starts_with=prefix):
+            container_client.delete_blob(blob.name)
+            logger.info("Deleted blob %s", blob.name)
+            deleted += 1
+        return deleted

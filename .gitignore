@@ -51,6 +51,8 @@ local.settings.json
 # ─── Data / uploads (keep synthetic, ignore real uploads) ────────────────────
 data/uploads/
 data/processed/
+data/ontology/
+data/rules/
 *.pdf
 !docs/**/*.pdf
 

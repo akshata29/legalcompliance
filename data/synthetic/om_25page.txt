@@ -1,0 +1,645 @@
+# SYNTHETIC OFFERING MEMORANDUM
+## Harrow Street Capital Fund III LP — Private Placement Offering Memorandum
+## Multi-Strategy Alternative Investment Fund | Rule 506(b) Exemption
+## Offering Memorandum | March 2026 | Approximately 25 Pages
+
+THIS DOCUMENT IS A SYNTHETIC TEST DOCUMENT GENERATED SOLELY FOR TECHNOLOGY DEMONSTRATION AND LEGAL COMPLIANCE PIPELINE TESTING. IT DOES NOT CONSTITUTE AN OFFER OR SOLICITATION TO INVEST. ALL NAMES, FIGURES AND REFERENCES ARE FICTITIOUS. THIS MEMORANDUM HAS NOT BEEN REVIEWED OR APPROVED BY ANY REGULATORY AUTHORITY.
+
+
+# PART I — SUMMARY OF OFFERING
+
+
+### Article 1.1 — The Offering
+
+Harrow Street Capital Fund III LP (the "Fund") is a Delaware limited partnership formed on January
+10, 2026, for the purpose of making investments primarily in private credit, structured equity, and
+special situations transactions across North America and Western Europe. The Fund is being offered
+exclusively to "accredited investors" as defined in Regulation D, Rule 501(a) under the Securities
+Act of 1933, as amended (the "Securities Act"), and, where applicable, to "qualified purchasers"
+as defined in Section 2(a)(51) of the Investment Company Act of 1940 (the "Investment Company
+Act"). The Fund is not registered under the Investment Company Act in reliance upon the exemption
+set out in Section 3(c)(7) of that Act.
+
+The General Partner, Harrow Street Capital GP III LLC (the "General Partner"), is a Delaware
+limited liability company and is the sole general partner of the Fund. The General Partner and its
+affiliates constitute registered investment advisers under the Investment Advisers Act of 1940 (the
+"Advisers Act") and are regulated by the Securities and Exchange Commission ("SEC"). By accepting
+delivery of this Offering Memorandum, each prospective investor acknowledges that no regulatory
+authority has confirmed the accuracy or adequacy of this document and that any representation to
+the contrary is an offence.
+
+The Fund is being offered in a private placement exempt from registration under Section 4(a)(2) of
+the Securities Act and Rule 506(b) promulgated thereunder. Interests in the Fund (the "Interests")
+have not been registered under the Securities Act or the securities laws of any state or other
+jurisdiction, and may not be offered or sold except in transactions that are exempt from the
+registration requirements of the Securities Act and any applicable state securities laws. Each
+investor shall be required to make representations confirming their accredited investor and, where
+applicable, qualified purchaser status as a condition of investment.
+
+
+### Article 1.2 — Key Offering Terms
+
+The following summary is qualified in its entirety by the detailed provisions set forth in the
+Limited Partnership Agreement (the "LPA") attached as Exhibit A to this Offering Memorandum. In
+the event of any conflict between this summary and the LPA, the terms of the LPA shall govern.
+
+**Fund Size**: The Fund is targeting aggregate Commitments of USD 750,000,000, with a hard cap of
+USD 1,000,000,000 at the discretion of the General Partner. The General Partner and its affiliates
+shall commit capital equal to at least 2% of total capital commitments made to the Fund, aligning
+economic interests with those of Limited Partners.
+
+**Minimum Investment**: USD 5,000,000, which may be reduced to USD 1,000,000 in the General
+Partner's sole discretion for certain institutional investors, family offices, and co-investment
+partners. No subscription shall be accepted for less than USD 1,000,000 without the written
+consent of the General Partner.
+
+**Investment Period**: The period beginning on the Final Closing Date and ending on the earlier of
+(i) the fourth anniversary of the Final Closing Date or (ii) the date on which all committed capital
+has been either invested or reserved for investments, fees and expenses. The Investment Period may
+be extended for one additional year by the Advisory Committee.
+
+**Fund Term**: Ten years from the Final Closing Date, subject to two one-year extensions at the
+discretion of the General Partner and two additional one-year extensions with the consent of
+two-thirds in interest of the Limited Partners.
+
+**Management Fee**: 1.75% per annum of (i) aggregate capital commitments during the Investment
+Period, reducing to (ii) 1.50% per annum of invested capital (net asset value) following
+expiration or termination of the Investment Period. The Management Fee shall be payable quarterly
+in advance from the Fund's available cash. Management Fees are subject to an annual offset of 80%
+of deal-related fees, monitoring fees, and transaction fees received by the General Partner or
+its affiliates from Portfolio Companies.
+
+**Carried Interest**: 20% of cumulative net profits attributable to each Limited Partner's
+investment, subject to a preferred return (the "Hurdle Rate") of 8% per annum, compounded
+annually, on contributed capital. Carried Interest shall be subject to a 100% clawback obligation
+payable by the General Partner upon dissolution of the Fund if cumulative carried interest
+distributions to the General Partner exceed the amount that would have been distributable based on
+the Fund's total realized returns.
+
+**Subscription Drawdown**: Capital commitments shall be drawn down in tranches pursuant to Capital
+Calls issued not less than 10 Business Days before the relevant drawdown date. Each Capital Call
+notice shall describe (i) the investment to be funded or the purpose of the drawdown; (ii) the per-
+unit amount due from each Limited Partner; (iii) the drawdown date; and (iv) the consequences of a
+default by any Limited Partner.
+
+
+# PART II — INVESTMENT STRATEGY AND RESTRICTIONS
+
+
+### Article 2.1 — Investment Objective and Strategy
+
+The Fund's investment objective is to generate risk-adjusted returns superior to comparable public
+market indices by investing in privately negotiated transactions where the General Partner believes
+value can be created through active asset management, financial restructuring, or operational
+improvement. The Fund will target an investment portfolio of 15–25 assets diversified across
+industry sectors, geographies, and risk profiles.
+
+The Fund shall pursue the following sub-strategies:
+
+**Private Credit**: Senior secured and unitranche loans, second lien loans, and mezzanine debt
+instruments arranged on a direct lending basis to middle-market and upper-middle-market borrowers
+with EBITDA between USD 20 million and USD 150 million. Private credit investments shall represent
+at least 30% of invested capital during the Investment Period.
+
+**Structured Equity**: Preferred equity, convertible notes, revenue participations, and other
+hybrid instruments combining debt-like downside protection with equity upside, primarily in growth-
+stage and mature private companies. Structured equity investments shall represent up to 40% of
+invested capital.
+
+**Special Situations**: Opportunistic credit including distressed debt purchases, post-
+reorganization equity, rescue financing, and situations arising from regulatory catalysts, sector
+dislocation, or financing market disruption. Special situations shall represent up to 30% of
+invested capital at cost.
+
+
+### Article 2.2 — Investment Restrictions and Concentration Limits
+
+The General Partner shall observe the following investment restrictions in managing the Portfolio,
+which may be amended only with the approval of a majority of the Advisory Committee:
+
+(a) No single Portfolio Company shall represent more than 15% of aggregate capital commitments at
+cost;
+
+(b) Investments in Portfolio Companies domiciled outside the United States and Canada shall not in
+aggregate exceed 25% of aggregate capital commitments at cost;
+
+(c) The Fund shall not acquire majority control of a Portfolio Company without first obtaining a
+fairness opinion from a qualified independent financial adviser where the investment exceeds USD 50
+million;
+
+(d) Leverage at the Fund level (facilities other than individual Portfolio Company financings) shall
+not exceed 30% of the net asset value of the Portfolio as of the most recent quarterly valuation
+date, and shall be limited to bridge facilities that are repaid within 180 days of drawdown;
+
+(e) The Fund shall not invest in publicly traded securities as a primary strategy, although the Fund
+may hold publicly traded securities received as consideration in a restructuring, merger or
+disposition of a Portfolio Company investment for up to 18 months following receipt;
+
+(f) Investments in companies in the cannabis, tobacco, weapons manufacturing, or adult entertainment
+industries are prohibited, in accordance with the Fund's Environmental, Social and Governance
+("ESG") Policy adopted on the Fund's formation date.
+
+
+# PART III — RISK FACTORS
+
+
+### Article 3.1 — General Investment Risks
+
+Investment in the Fund involves a substantial degree of risk, including the risk of loss of the
+entire amount invested. Prospective investors should carefully consider the following risk factors
+and all other information in this Offering Memorandum before making an investment decision. The
+following risk factors are not exhaustive, and additional risks not discussed herein may also
+adversely affect the Fund's performance.
+
+**Illiquidity**: Interests in the Fund are illiquid and subject to long-term restrictions on
+transfer. There is no public market for Interests, and none is expected to develop. Limited Partners
+wishing to transfer their Interests must obtain the prior written consent of the General Partner,
+which may be withheld in its sole discretion. Limited Partners should assume they will be unable
+to liquidate their investment in the Fund for the full term of the Fund.
+
+**Manager Dependence**: The performance of the Fund is substantially dependent on the skill and
+expertise of key investment professionals. The loss of key persons, including the principal
+investment professionals of the General Partner, could have a material adverse effect on the
+performance of the Fund. The LPA contains a Key Person provision pursuant to which the Investment
+Period shall be suspended if fewer than two of the designated Key Persons remain actively involved
+in the management of the Fund.
+
+**Valuation Uncertainty**: Private investments are difficult to value accurately because they are
+not traded on public markets. The General Partner shall establish and maintain a written valuation
+policy for the Fund in accordance with applicable GAAP standards and SEC guidance for registered
+investment advisers. The valuation policy shall require that all material investments be subject to
+an independent valuation review at least annually by an independent, qualified valuation firm.
+
+**Leverage Risk**: Portfolio Company investments may involve the use of significant financial
+leverage, which increases both the potential for return and the risk of loss. In the event of a
+decline in the value of a Portfolio Company's assets, leverage may magnify losses and could result
+in the total loss of the Fund's investment.
+
+**Regulatory and Compliance Risk**: Changes in applicable laws, including securities laws,
+regulatory capital requirements, banking regulations, tax laws and tax treaties could adversely
+affect the Fund's ability to implement its investment strategy or result in unanticipated costs or
+losses. The Fund shall maintain a compliance programme designed to monitor and manage material
+regulatory risk, including appointment of a Chief Compliance Officer for the General Partner.
+
+**Counterparty Risk**: The Fund's investments will generally be undocumented or privately
+negotiated, and the Fund will rely on the creditworthiness of counterparties in connection with
+trading and investment activities. The failure of any counterparty to fulfil its obligations could
+result in significant losses.
+
+
+### Article 3.2 — Specific Risk Disclosures
+
+**Credit Risk**: Investments in private credit and mezzanine instruments are exposed to the risk
+that borrowers will fail to make timely payments of interest or principal, or that the value of
+collateral securing any loan will be insufficient to cover outstanding obligations. The General
+Partner must disclose to prospective investors all material credit risks associated with any
+investment class constituting more than 10% of the Fund's portfolio.
+
+**Market Risk**: Valuations of Portfolio Company investments are exposed to changes in macroeconomic
+conditions, including interest rate movements, credit spread widening, currency fluctuations, and
+equity market dislocations. The Fund does not systematically hedge market risk at the Fund level.
+Investors should be aware that market risk exposures may be correlated across multiple Portfolio
+Company investments.
+
+**ERISA Considerations**: The General Partner shall monitor the "plan asset" status of the Fund on
+an ongoing basis. If 25% or more of the value of any class of interests in the Fund is held by
+"benefit plan investors" as defined under ERISA and the DOL's Plan Asset Regulation, the General
+Partner and the Fund shall be subject to ERISA's fiduciary requirements and prohibited transaction
+rules. The General Partner shall endeavour to maintain a benefit plan investor percentage below 25%
+for each class of interests and shall provide quarterly notices of the current percentage to all
+Limited Partners.
+
+**Tax Risk**: Prospective investors are advised to consult their own tax advisers regarding the
+applicable tax consequences of an investment in the Fund. Tax laws applicable to the Fund and its
+investments may be subject to interpretation, legislative change, or adverse regulatory action that
+could result in materially increased tax obligations for the Fund or for individual investors.
+
+
+# PART IV — MANAGEMENT, FEES AND EXPENSES
+
+
+### Article 4.1 — The General Partner and Management Team
+
+The General Partner, Harrow Street Capital GP III LLC, is solely responsible for the management and
+operation of the Fund. The General Partner has the authority to make all investment decisions,
+including approval of new investments, valuations, and dispositions, subject to the limited
+partnership agreement and the Advisory Committee's consultation rights set out in Article 7 hereof.
+
+The principal investment professionals of the General Partner who will have primary responsibility
+for the management of the Fund are as follows:
+
+**Senior Managing Director — Chief Investment Officer**: 25 years of investment experience in
+private credit and alternative investments; formerly Managing Director at two global alternative
+asset managers; member of the General Partner's Investment Committee.
+
+**Managing Director — Credit and Structured Products**: 17 years of experience in leveraged finance
+and structured credit; formerly Head of Direct Lending at a major European bank; member of the
+General Partner's Investment Committee.
+
+**Managing Director — Special Situations**: 14 years of experience in distressed debt and
+restructuring; formerly partner at a leading restructuring advisory firm; member of the Investment
+Committee.
+
+The General Partner shall notify Limited Partners within 20 Business Days of the permanent
+departure of any Key Person, and the Investment Period shall be suspended from the date of such
+departure until re-activated by a majority vote of the Advisory Committee. During any suspension
+of the Investment Period, the General Partner may only make follow-on investments in existing
+Portfolio Company investments.
+
+
+### Article 4.2 — Fee Schedule
+
+**Management Fee**: The Management Fee shall accrue daily and be payable quarterly in advance on
+January 1, April 1, July 1, and October 1 of each year. The Management Fee shall commence on the
+First Closing Date for each Limited Partner's Commitment. Management Fees paid during the
+Investment Period shall be calculated at 1.75% per annum on the Commitment of each Limited Partner.
+Management Fees payable following the Investment Period shall be calculated at 1.50% per annum on
+the Invested Capital attributable to each Limited Partner.
+
+**Transaction and Monitoring Fees**: Any transaction fees, break-up fees, monitoring fees, board
+fees, and arrangement fees received by the General Partner or its affiliates directly from Portfolio
+Companies shall be offset against Management Fees in an amount equal to 80% of the aggregate of
+such fees received in the relevant year (the "Fee Offset"). Each year, the General Partner shall
+provide to the Advisory Committee a written schedule of all fees received from Portfolio Companies
+and the resulting Fee Offset calculation, certified by the Fund's auditors.
+
+**Organizational and Offering Expenses**: The Fund shall bear all reasonable legal, accounting,
+filing, and other expenses incurred in connection with the formation and offering of the Fund, up
+to a maximum of USD 1,500,000, after which all further organizational and offering expenses shall
+be borne by the General Partner. The Fund shall also bear all ongoing operating expenses,
+including audit fees, tax preparation, fund administration, legal fees, and portfolio monitoring
+costs.
+
+**Placement Fees**: The General Partner may engage placement agents to assist in the marketing of
+the Fund. Any placement fees shall be paid by the General Partner and shall not be an expense of
+the Fund or of any individual Limited Partner. Investors are entitled to receive disclosure of any
+placement fee arrangements pursuant to Form ADV Part 2A and applicable SEC guidance on marketing
+practices.
+
+**Carried Interest**: The General Partner shall be entitled to Carried Interest equal to 20% of
+cumulative net profits after all Limited Partners have received return of all contributed capital
+and a preferred return of 8% per annum, compounded annually, on all contributed capital from the
+date of each drawdown (the "Preferred Return"). Carried Interest distributions shall be made in
+accordance with the distribution waterfall described in Article 6 hereof.
+
+
+### Article 4.3 — Indemnification
+
+The Fund shall indemnify and hold harmless the General Partner, its affiliates, and each of their
+respective partners, members, officers, directors, employees, and agents (each, an "Indemnified
+Person") from and against any losses, claims, damages, liabilities, and expenses (including
+reasonable legal fees) arising from or in connection with the Fund's activities, except to the
+extent arising from an Indemnified Person's fraud, wilful misconduct, gross negligence, or material
+breach of a fiduciary duty owed to the Fund or its Limited Partners under the LPA or applicable law.
+
+No Indemnified Person shall be indemnified for: (i) any liability arising from the Indemnified
+Person's role as an investment adviser under the Advisers Act; (ii) civil money penalties assessed
+by the SEC arising from violations of securities laws; or (iii) any amounts for which the
+Indemnified Person has received insurance proceeds. The Fund shall maintain directors' and officers'
+liability insurance and errors and omissions insurance at commercially reasonable levels, with the
+cost of such insurance borne by the Fund.
+
+
+# PART V — LIMITED PARTNERSHIP GOVERNANCE
+
+
+### Article 5.1 — Limited Partners' Rights
+
+Limited Partners shall have no right to participate in the management or operation of the Fund.
+The limited partnership structure means that limited partners' liability shall, in the absence of
+fraud or a breach of the LPA, be limited to the amount of their capital commitments. Limited
+Partners shall have the following rights under the LPA:
+
+(a) The right to receive quarterly fund reports (within 45 days after the end of each fiscal
+quarter) and audited annual financial accounts (within 90 days after the end of each fiscal year);
+
+(b) The right to inspect and copy the books and records of the Fund upon reasonable prior written
+notice to the General Partner, subject to confidentiality obligations and the protection of trade
+secrets and commercially sensitive information;
+
+(c) The right to vote on the removal of the General Partner for Cause, requiring approval of at
+least two-thirds in interest of the Limited Partners;
+
+(d) The right to vote on the dissolution of the Fund, requiring approval of at least a majority in
+interest of the Limited Partners where supported by the Advisory Committee;
+
+(e) The right to withdraw from the Fund in the event the General Partner is convicted of fraud or
+a felony in connection with the management of the Fund, without penalty.
+
+
+### Article 5.2 — Transfer of Interests
+
+No Limited Partner may directly or indirectly sell, assign, transfer, pledge, hypothecate, or
+otherwise dispose of all or any part of their Interest in the Fund without the prior written consent
+of the General Partner, which may be withheld in the General Partner's sole discretion, provided
+that the General Partner shall not unreasonably withhold consent to a transfer by a Limited Partner
+to an affiliate or fund of funds vehicle managed or controlled by the same investment management
+firm, subject to the transferee confirming accredited investor and, where applicable, qualified
+purchaser status.
+
+Any purported transfer in violation of this Article 5.2 shall be void and of no effect. The General
+Partner shall not be obligated to recognize any transfer until it has received such documentation
+as it may reasonably require to confirm the transferee's eligibility to hold an Interest, including
+a completed subscription agreement, investor representations, and, if required by law, a legal
+opinion confirming the availability of an exemption from registration.
+
+
+# PART VI — DISTRIBUTIONS AND WATERFALL
+
+
+### Article 6.1 — Distribution Waterfall
+
+All amounts available for distribution from the Fund (including proceeds from sales of Portfolio
+Company investments, income, and other receipts) shall be distributed in the following order of
+priority (the "Distribution Waterfall"):
+
+First, 100% to all Limited Partners pro rata in proportion to their funded capital commitments,
+until each Limited Partner has received an amount equal to 100% of its aggregate capital
+contributions;
+
+Second, 100% to all Limited Partners pro rata in proportion to their funded capital commitments,
+until each Limited Partner has received a cumulative preferred return at the Hurdle Rate of 8% per
+annum, compounded annually, on all contributed capital from the date of each drawdown to the date
+of distribution (the "Preferred Return Catch-Up");
+
+Third, 100% to the General Partner until the General Partner has received 20% of the sum of (i)
+the total Preferred Return distributions made in the Second tier and (ii) distributions to the
+General Partner in this Third tier (the "GP Catch-Up");
+
+Fourth, 80% to all Limited Partners pro rata in proportion to their funded capital commitments and
+20% to the General Partner (as Carried Interest).
+
+The General Partner shall submit a distribution calculation to the Fund's auditors for confirmation
+before each distribution to the extent such distribution includes Carried Interest, and shall
+provide Limited Partners with a written distribution notice at least 10 Business Days before each
+distribution, detailing the source of funds and the amount payable to each Limited Partner.
+
+
+### Article 6.2 — Clawback Obligation
+
+If, upon the final liquidation of the Fund, the General Partner has received cumulative Carried
+Interest distributions in excess of the amounts that would have been available to it based on the
+total realised returns of the Fund calculated in accordance with the Distribution Waterfall, the
+General Partner shall repay such excess to the Fund within 90 days following the final distribution
+date (the "Clawback Obligation"). The Clawback Obligation shall be secured by an escrow account
+equal to 30% of cumulative Carried Interest distributions, which shall be maintained by a third-
+party escrow agent and released to the General Partner only upon the written certification of the
+Fund's auditors that no Clawback Obligation remains outstanding.
+
+Individual principals of the General Partner shall provide personal guarantees of the Clawback
+Obligation in proportion to their respective interests in the General Partner, secured by a pledge
+of their interests in the General Partner. The General Partner shall provide Annual Clawback
+Reporting to all Limited Partners showing the cumulative Carried Interest received, the cumulative
+preferred return distributed, and the estimated Clawback Obligation as of the end of each fiscal
+year.
+
+
+# PART VII — ADVISORY COMMITTEE
+
+
+### Article 7.1 — Composition and Role
+
+The Advisory Committee shall comprise representatives of four to six Limited Partners chosen by the
+General Partner from among the largest institutional investors in the Fund. Representation on the
+Advisory Committee shall not confer fiduciary duties on Limited Partner representatives, and
+Advisory Committee members shall not be responsible for investment decisions of the Fund. The
+Advisory Committee shall meet at least twice per year, with at least one in-person meeting annually.
+
+The Advisory Committee shall have the right to: (i) approve or disapprove potential conflicts of
+interest or related-party transactions as described in Article 8 hereof; (ii) approve extensions of
+the Investment Period or the Fund's term; (iii) approve any change to the Management Fee rate;
+(iv) approve valuations of investments where a conflict of interest exists; and (v) remove the
+General Partner for Cause (together with a two-thirds vote of Limited Partners).
+
+The General Partner shall provide the Advisory Committee with advance written notice of any
+transaction involving a potential conflict of interest at least 10 Business Days before the
+anticipated transaction date. The Advisory Committee may request additional information within 5
+Business Days, and the General Partner shall not proceed with the transaction without Advisory
+Committee approval or the expiry of a 15 Business Day response period.
+
+
+# PART VIII — CONFLICTS OF INTEREST AND COMPLIANCE
+
+
+### Article 8.1 — Conflicts Policy
+
+The General Partner maintains a written Conflicts of Interest Policy applicable to all of its
+investment activities, including those of its affiliates. Prospective investors should be aware that
+the General Partner and its affiliates manage other funds and accounts with investment mandates that
+may overlap with the Fund's mandate, and that such concurrent management may give rise to conflicts
+of interest in connection with investment allocation, staffing, fee arrangements, and the
+disposition of portfolio investments.
+
+Investment opportunities that are suitable for both the Fund and any other vehicle managed by the
+General Partner or its affiliates shall be allocated in accordance with the General Partner's
+written allocation policy, which requires fair and equitable treatment of all client accounts and
+consistent application of allocation criteria. The General Partner shall disclose material
+allocation decisions to the Advisory Committee annually and, in instances of material conflict,
+shall obtain Advisory Committee approval before proceeding.
+
+**Side Letters**: The General Partner may enter into side letters or similar agreements with
+individual Limited Partners granting such investors economic or governance rights that are different
+from those generally applicable to Limited Partners. The General Partner shall notify other Limited
+Partners of the existence of side letter arrangements granting material governance rights (but not
+economic terms) to any Limited Partner within 30 days of execution of any such arrangement, to the
+extent permitted by the confidentiality obligations in the LPA.
+
+**Co-investments**: The General Partner may offer co-investment opportunities to Limited Partners
+and third parties in respect of specific Portfolio Company investments. Co-investments will be
+offered on a best-efforts basis in accordance with the General Partner's co-investment policy,
+which requires that co-investments be offered on terms no less favourable than those available to
+the Fund in respect of the relevant investment. Co-investment fees, if any, shall be fully disclosed
+to the Advisory Committee.
+
+
+### Article 8.2 — Regulatory Compliance
+
+The General Partner is registered as an investment adviser under the Advisers Act and is subject to
+ongoing regulatory oversight by the SEC. The General Partner shall at all times maintain a
+compliance programme that satisfies the requirements of Rule 206(4)-7 under the Advisers Act,
+including annual compliance reviews, a written compliance manual, and the designation and
+compensation of a qualified Chief Compliance Officer.
+
+The Fund shall comply with all applicable anti-money laundering regulations, economic sanctions
+programmes administered by the Office of Foreign Assets Control ("OFAC"), and the requirements
+of the Bank Secrecy Act and the USA PATRIOT Act. Each prospective investor shall be required to
+complete know-your-customer ("KYC") verification procedures, and no subscription shall be accepted
+from any person appearing on the OFAC Specially Designated Nationals list or any other relevant
+sanctions list. The Fund's administrator shall be responsible for ongoing AML/KYC monitoring.
+
+The General Partner shall maintain records of all investment decisions, advisory agreements, and
+compliance exceptions for a minimum period of five years from the date of creation, and three years
+in an easily accessible place, in accordance with Rule 204-2 under the Advisers Act. Records shall
+be maintained in a manner that permits examination by the SEC's examination staff upon reasonable
+notice. Failure to maintain required records constitutes a violation of Rule 204-2 and may result
+in regulatory sanctions.
+
+
+# PART IX — REPORTING AND AUDITED ACCOUNTS
+
+
+### Article 9.1 — Financial Reporting
+
+The General Partner shall cause the Fund to prepare and distribute to all Limited Partners the
+following financial information:
+
+(a) **Quarterly Reports** (within 45 days after the end of each fiscal quarter): including (i) a
+summary schedule of investments showing the cost and estimated fair market value of each Portfolio
+Company investment; (ii) a fund-level income statement and balance sheet; (iii) a capital account
+statement showing each Limited Partner's opening balance, contributions, distributions, and
+estimated value; and (iv) performance metrics including gross and net IRR as of the quarter end;
+
+(b) **Annual Audited Financial Statements** (within 90 days after the end of each fiscal year):
+prepared in accordance with U.S. GAAP, audited by a nationally recognized, independent public
+accounting firm registered with the PCAOB, and delivered to all Limited Partners. Annual financial
+statements shall include notes disclosing all material related-party transactions, the valuation
+policy, and the management fee calculations;
+
+(c) **Tax Information** (within 120 days after year-end, with extension to 180 days if the Fund
+files for an extension): Schedule K-1 or equivalent information required for each Limited Partner
+to prepare its tax return, prepared by the Fund's tax advisers.
+
+The General Partner shall also provide an annual written report to Limited Partners summarizing
+the Fund's investment activities, any material changes to the investment team, performance
+attribution, and a description of each material conflict of interest that arose during the year
+and how it was resolved. This annual report shall be provided simultaneously with the annual
+audited financial statements.
+
+
+### Article 9.2 — AIFMD Reporting Obligations
+
+To the extent the Fund is marketed to investors in any member state of the European Union under
+the Alternative Investment Fund Managers Directive ("AIFMD"), the General Partner shall ensure
+that the requirements of AIFMD Articles 22–24 are met, including: (i) disclosure in the annual
+report of the remuneration of senior management and the total carried interest paid to the General
+Partner; (ii) disclosure of the Fund's leverage, liquidity, and risk profile; and (iii) regular
+reporting to competent authorities regarding the Fund's principal markets, investment strategy
+concentration, and aggregate leverage.
+
+The General Partner shall notify the relevant regulatory authority and all Limited Partners promptly
+(and in any event within five Business Days) of any breach of AIFMD requirements or any material
+change in the information disclosed in the Fund's AIFMD registration. The Fund shall appoint a
+depositary in the EU for assets held in the EU to the extent required by AIFMD Article 21.
+
+
+# PART X — SUBSCRIPTION PROCEDURES
+
+
+### Article 10.1 — How to Subscribe
+
+Prospective investors wishing to invest in the Fund must complete and return to the General Partner:
+(i) a completed Subscription Agreement in the form attached as Exhibit B; (ii) the Investor
+Questionnaire confirming accredited investor status and, where applicable, qualified purchaser
+status; (iii) KYC/AML documentation as specified in the Subscription Agreement; (iv) a completed
+FATCA/CRS self-certification form; and (v) any additional documents required by applicable law or
+the General Partner's compliance programme.
+
+The General Partner reserves the right to refuse or accept subscriptions in its sole discretion.
+Subscriptions received after the Final Closing Date will not be accepted. Subscriptions received
+before a Closing Date shall be effective as of the applicable Closing Date, and late admission
+investors shall be subject to equalization interest on their capital commitments as set out in the
+LPA. All subscription proceeds shall be held in a segregated subscription account pending the
+applicable Closing.
+
+Each subscriber shall represent and warrant to the General Partner that: (i) it satisfies applicable
+eligibility requirements; (ii) it has received and reviewed this Offering Memorandum and the LPA;
+(iii) it is making the investment decision independently and not in reliance on communications from
+the General Partner other than this Offering Memorandum; (iv) it is aware that the Fund's Interests
+are subject to restrictions on transfer and that there is no secondary market for the Interests; and
+(v) if it is acting as a fiduciary, it has determined independently that the investment is
+consistent with its investment mandates and fiduciary obligations.
+
+
+### Article 10.2 — Confidentiality
+
+This Offering Memorandum is confidential and is provided only to the named prospective investor for
+the purpose of evaluating an investment in the Fund. It may not be reproduced, photocopied or
+transmitted to any other person in whole or in part without the prior written consent of the
+General Partner. Each recipient of this Offering Memorandum agrees to maintain its confidentiality
+and to use it only for the purpose of evaluating an investment in the Fund.
+
+The General Partner shall keep confidential the identity of each Limited Partner, the amount of
+each Limited Partner's commitment, and the terms of any side letter, except as required by law,
+regulation, or court order, or as expressly authorised by the relevant Limited Partner. Limited
+Partners shall maintain the confidentiality of information regarding Portfolio Company investments
+disclosed in quarterly reports, annual financial statements, and other communications from the
+General Partner.
+
+
+# PART XI — TAXATION
+
+
+### Article 11.1 — U.S. Tax Considerations
+
+The Fund is intended to be treated as a partnership for U.S. federal income tax purposes and not as
+an association taxable as a corporation. Each Limited Partner's distributive share of the Fund's
+income, gain, deduction, and loss shall flow through to the Limited Partner for U.S. tax purposes.
+No representation has been made by the General Partner that the Fund will achieve its investment
+objectives, and no representation is made with respect to the U.S. federal income tax consequences
+of an investment in the Fund.
+
+The Offshore Funds and Non-U.S. Investors section of Exhibit D describes additional tax
+considerations applicable to non-U.S. investors, including withholding tax on U.S.-source income,
+the potential application of the Foreign Investment in Real Property Tax Act ("FIRPTA"), and the
+disclosure obligations under the Foreign Account Tax Compliance Act ("FATCA"), 26 U.S.C. §§ 1471–
+1474. Non-U.S. investors are strongly encouraged to consult with U.S. and local tax counsel before
+investing.
+
+The Fund shall comply with the information reporting requirements of the Common Reporting Standard
+("CRS") and the Intergovernmental Agreements implementing FATCA. The Fund's administrator shall
+be responsible for collecting required documentation, making required classifications, and filing
+required reports with applicable tax authorities. Limited Partners who fail to provide required
+FATCA or CRS documentation may be subject to withholding under 26 U.S.C. § 1471.
+
+
+# SCHEDULE C — COVENANTS AND MONITORING OBLIGATIONS
+
+### C.1 — Portfolio Company Covenants
+
+The General Partner shall use commercially reasonable efforts to obtain the following material
+protective covenants in documentation governing each debt investment constituting more than 5% of
+invested capital:
+
+(a) **Financial Performance Covenant**: A maximum net leverage ratio tested quarterly (typically
+Senior Net Leverage equal to or less than 6.5x EBITDA and Total Net Leverage equal to or less than
+7.5x EBITDA);
+
+(b) **Minimum Liquidity Covenant**: Minimum unrestricted cash and available revolving credit of the
+greater of USD 10 million or 5% of trailing twelve months revenue, tested monthly;
+
+(c) **Reporting Covenant**: Delivery of monthly management accounts within 30 days of month end and
+audited annual financial statements within 120 days of fiscal year end;
+
+(d) **Restricted Payments Covenant**: Prohibition on dividends, distributions, and restricted
+payments unless leverage ratios are within a defined basket (typically Net Leverage below 4.5x);
+
+(e) **Additional Indebtedness Covenant**: Prohibition on incurring additional indebtedness in excess
+of 10% of total assets without prior written consent of the majority lender group.
+
+The General Partner shall monitor compliance with material covenants on an ongoing basis, shall
+report any material covenant breach to the Advisory Committee within 10 Business Days of discovery,
+and shall maintain a written record of all covenant waivers and amendments negotiated with
+Portfolio Companies.
+
+
+### C.2 — Fund-Level Financial Covenants
+
+The Fund shall maintain the following fund-level financial covenants with its credit facility
+lenders:
+
+(a) Minimum Net Asset Value: The Net Asset Value of the Fund shall not fall below 70% of the peak
+Net Asset Value achieved on any prior quarter-end valuation date;
+
+(b) Leverage Covenant: Fund-level borrowings shall not exceed 30% of Net Asset Value as calculated
+on any quarterly valuation date. Breach of this threshold shall require immediate repayment of the
+excess, and the General Partner must notify all Limited Partners within 5 Business Days of any
+breach;
+
+(c) Diversification Covenant: No single Portfolio Company investment shall represent more than 20%
+of the total Net Asset Value of the Fund for more than 90 consecutive days, unless the Advisory
+Committee has approved a temporary exception.
+
+---
+*This document is a synthetic test artifact. All fund names, financial figures, and regulatory
+references are included for readability only. No offer or solicitation is made. No legal, tax, or
+financial advice is provided or implied.*

@@ -34,3 +34,15 @@ aiofiles==24.1.0
 python-dotenv==1.0.1
 tenacity==9.0.0
 tiktoken==0.8.0
+
+# ── Knowledge Graph ────────────────────────────────────────────────────────────
+rdflib==7.1.1
+owlrl==6.0.2
+PyYAML==6.0.2
+networkx==3.4.2
+
+# Batch scheduling
+APScheduler==3.10.4
+
+# BDD testing
+pytest-bdd==7.3.0

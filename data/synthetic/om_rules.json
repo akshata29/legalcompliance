@@ -1,0 +1,80 @@
+[
+  {
+    "id": "RISK_DISCLOSURE",
+    "name": "Risk Factor Disclosure",
+    "description": "Offering memoranda must contain a comprehensive Risk Factors section disclosing all material investment risks. This includes liquidity risk, market risk, manager dependence, valuation uncertainty, leverage risk, regulatory risk, and counterparty risk. Risk disclosures must be specific, not generic, and must caution investors about the potential loss of their entire investment.",
+    "keywords": ["risk", "risk factor", "material risk", "risk disclosure", "loss of investment", "illiquid", "illiquidity", "market risk", "manager dependence", "key person", "valuation", "leverage risk", "regulatory risk", "counterparty risk", "warn", "caution", "entire amount invested"]
+  },
+  {
+    "id": "FEE_DISCLOSURE",
+    "name": "Fee and Expense Disclosure",
+    "description": "All management fees, performance / carried interest fees, transaction fees, organizational expenses, and placement fees must be fully disclosed, including offset mechanisms and clawback provisions. Fee offset and carried interest calculations must be verifiable by investors.",
+    "keywords": ["management fee", "carried interest", "incentive fee", "performance fee", "fee offset", "placement fee", "transaction fee", "monitoring fee", "board fee", "organizational expense", "clawback", "expense", "fee schedule", "fee disclosure", "1.75%", "1.5%", "20%", "preferred return", "hurdle rate"]
+  },
+  {
+    "id": "ACCREDITED_INVESTOR",
+    "name": "Investor Eligibility and Securities Act Compliance",
+    "description": "Interests offered under Rule 506(b) of Regulation D may only be sold to accredited investors. Section 3(c)(7) fund exemptions require qualified purchaser status for all investors. The offering must comply with Section 4(a)(2) private placement exemption or Regulation D. No general solicitation or general advertising is permitted.",
+    "keywords": ["accredited investor", "qualified purchaser", "Rule 506", "Regulation D", "Section 4(a)(2)", "3(c)(7)", "3(c)(1)", "private placement", "Securities Act", "registration", "exempt", "general solicitation", "eligible investor", "qualified eligible person", "qualified client"]
+  },
+  {
+    "id": "CONFLICTS_OF_INTEREST",
+    "name": "Conflicts of Interest Disclosure",
+    "description": "Investment advisers must disclose all material actual and potential conflicts of interest, including co-investment policies, allocation policies, side letters, affiliate fees, and multi-fund management conflicts. Regulation S-K and Form ADV Part 2A require written disclosure of conflicts and how they are managed.",
+    "keywords": ["conflict of interest", "related party", "side letter", "allocation policy", "co-investment", "affiliate", "self-dealing", "fairness opinion", "independent", "advisory committee approval", "concurrent management", "multiple funds", "Form ADV", "material conflict"]
+  },
+  {
+    "id": "DISTRIBUTION_WATERFALL",
+    "name": "Distribution Waterfall and Clawback",
+    "description": "Private fund offering documents must clearly describe the distribution waterfall including return of capital, preferred return / hurdle rate, general partner catch-up, and carried interest split. Clawback obligations must be disclosed including escrow arrangements and personal guarantee provisions.",
+    "keywords": ["distribution waterfall", "waterfall", "clawback", "preferred return", "hurdle rate", "GP catch-up", "catch-up", "return of capital", "carried interest", "profit sharing", "20%", "80%", "net profits", "distribution priority", "escrow", "personal guarantee", "final distribution"]
+  },
+  {
+    "id": "TRANSFER_RESTRICTION",
+    "name": "Transfer Restrictions and Liquidity",
+    "description": "Offering documents must clearly disclose restrictions on transfer, including consent requirements, absence of a secondary market, and lock-up periods. Investors must be warned that interests are illiquid and that no liquidity is expected for the full duration of the fund.",
+    "keywords": ["transfer", "transfer restriction", "no public market", "illiquid", "lock-up", "consent to transfer", "resale restriction", "secondary market", "freely transferable", "restricted", "assignability", "hypothecate", "pledge", "disposition"]
+  },
+  {
+    "id": "KEY_PERSON",
+    "name": "Key Person and Suspension Provisions",
+    "description": "Where the fund's performance depends on specific individuals, offering documents should disclose key person provisions that trigger suspension of the investment period upon departure of named individuals and the process for reinstatement of the investment period.",
+    "keywords": ["key person", "key man", "key individual", "suspension", "Investment Period", "departure", "principal", "managing partner", "senior managing director", "investment committee", "reinstatement", "advisory committee vote", "contingency"]
+  },
+  {
+    "id": "REPORTING_OBLIGATIONS",
+    "name": "Investor Reporting Obligations",
+    "description": "Offering memoranda must disclose the frequency and content of financial reporting to investors, including quarterly reports and timelines, annual audited accounts and timelines, tax reporting obligations, and capital account statements.",
+    "keywords": ["quarterly report", "annual report", "audited", "financial statements", "GAAP", "capital account", "K-1", "Schedule K-1", "tax information", "reporting obligation", "45 days", "90 days", "120 days", "fiscal year", "performance", "IRR", "MOIC", "NAV"]
+  },
+  {
+    "id": "INVESTMENT_RESTRICTIONS",
+    "name": "Investment Restrictions and Concentration Limits",
+    "description": "Private fund offering documents must clearly specify investment restrictions, concentration limits, geographic restrictions, leverage limits, and prohibited asset classes. Restrictions may only be amended with investor or advisory committee approval.",
+    "keywords": ["investment restriction", "concentration limit", "concentration", "geographic restriction", "leverage limit", "fund-level leverage", "prohibited investment", "ESG restriction", "excluded industry", "diversification", "single investment", "15%", "25%", "30%", "advisory committee approval"]
+  },
+  {
+    "id": "VALUATION_POLICY",
+    "name": "Valuation Policy and Fair Value",
+    "description": "Investment advisers managing private funds are required under SEC guidance and Rule 2a-5 under the Investment Company Act to adopt written valuation policies. Valuations of illiquid assets must be performed by or with oversight of a qualified independent party at least annually.",
+    "keywords": ["valuation", "fair value", "independent valuation", "valuation policy", "quarterly valuation", "independent valuer", "NAV", "net asset value", "mark-to-market", "illiquid", "GAAP", "ASC 820", "ASU 2011-04", "valuation methodology", "Rule 2a-5"]
+  },
+  {
+    "id": "REGULATORY_COMPLIANCE_OM",
+    "name": "Regulatory Compliance — Advisers Act and Investment Company Act",
+    "description": "General partners and investment managers of private funds must disclose registration status under the Advisers Act, their compliance programme under Rule 206(4)-7, AML/KYC obligations under the Bank Secrecy Act, and OFAC sanctions compliance. Required recordkeeping under Rule 204-2 must be described.",
+    "keywords": ["Advisers Act", "Investment Advisers Act", "registered investment adviser", "Rule 206(4)-7", "compliance programme", "Chief Compliance Officer", "CCO", "OFAC", "sanctions", "AML", "KYC", "Bank Secrecy Act", "USA PATRIOT", "anti-money laundering", "Rule 204-2", "recordkeeping", "5 years", "examination"]
+  },
+  {
+    "id": "ERISA_PLAN_ASSET_OM",
+    "name": "ERISA Plan Asset Considerations in OM",
+    "description": "Offering memoranda for private funds that may receive investment from ERISA-governed benefit plans must disclose the fund's benefit plan investor monitoring, the 25% threshold test, and the consequences of plan asset status for the fund manager.",
+    "keywords": ["ERISA", "benefit plan investor", "25%", "plan assets", "ERISA fiduciary", "prohibited transaction", "QPAM", "pension fund", "benefit plan", "plan asset regulation", "2510.3-101", "DOL", "plan asset status"]
+  },
+  {
+    "id": "AIFMD_COMPLIANCE",
+    "name": "AIFMD and Cross-Border Distribution",
+    "description": "Funds marketed to EU investors must comply with the Alternative Investment Fund Managers Directive (AIFMD), including disclosure of remuneration, leverage, liquidity, annual report requirements under Article 22, and regulatory reporting under Articles 23–24.",
+    "keywords": ["AIFMD", "Alternative Investment Fund", "AIFM", "EU investor", "Article 22", "Article 23", "Article 24", "depositary", "remuneration disclosure", "leverage disclosure", "ESMA", "competent authority", "national private placement", "passport", "marketing notification"]
+  }
+]

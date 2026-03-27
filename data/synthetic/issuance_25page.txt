@@ -1,0 +1,583 @@
+# SYNTHETIC NEW SECURITIES ISSUANCE — COMPLIANCE CLEARANCE PACKAGE
+## Vertex Infrastructure Holdings plc — Senior Secured Notes
+## Security Setup Request, Readiness Assessment, and Compliance Clearance
+## Issuance Document | March 2026 | Approximately 25 Pages
+
+THIS DOCUMENT IS A SYNTHETIC TEST DOCUMENT GENERATED SOLELY FOR TECHNOLOGY DEMONSTRATION AND LEGAL COMPLIANCE PIPELINE TESTING. IT DOES NOT CONSTITUTE AN OFFER, SOLICITATION, OR LEGAL ADVICE. ALL NAMES, FIGURES AND REFERENCES ARE FICTITIOUS.
+
+
+# PART I — TRANSACTION OVERVIEW AND SECURITY SETUP REQUEST
+
+
+### Article 1.1 — Issuer and Transaction Summary
+
+Vertex Infrastructure Holdings plc (the "Issuer") is a public limited company incorporated under
+the laws of England and Wales (registered number 09441782), with registered office at 100 Gresham
+Street, London EC2V 7QN, and is the holding company for a group of infrastructure services
+companies operating across the United Kingdom, Ireland, and the Benelux region (the "Group"). The
+Issuer's ordinary shares are listed on the Main Market of the London Stock Exchange under ticker
+symbol VIFH.
+
+The Issuer proposes to issue GBP 350,000,000 in aggregate principal amount of 6.875% Senior
+Secured Notes due 2033 (the "Notes") in an offering exempt from registration pursuant to Rule 144A
+and Regulation S under the Securities Act of 1933, as amended (the "Securities Act"). The Notes
+shall be secured by first ranking fixed charges over the Issuer's material intellectual property,
+bank accounts and receivables, and floating charges over the remaining assets of the Group, all
+pursuant to an Intercreditor Agreement governed by the laws of England and Wales.
+
+The Joint Bookrunners for the offering are Northgate Investment Bank plc, Meridian Securities
+Limited, and Continental Finance AG (London Branch) (together, the "Underwriters"). The Issuer
+shall pay to the Underwriters a combined underwriting discount of 1.75% of the aggregate principal
+amount of Notes issued, subject to the conditions precedent set out in the Underwriting Agreement
+dated as of the Issue Date.
+
+This Security Setup Request and Compliance Clearance package has been prepared by the Issuer's
+legal counsel in collaboration with the Underwriters' counsel for submission to the Issuer's Board
+Compliance Committee, and for review and approval by the Compliance Officer. The Issuer confirms
+that this document accurately reflects the state of compliance readiness as of the date hereof.
+
+
+### Article 1.2 — Security Identification and Setup
+
+The following identifiers shall apply to the Notes upon issuance, and must be confirmed by the
+Issuer's registrar and the relevant clearing systems before closing:
+
+**ISIN (Rule 144A)**:      GB00BQ4RJXRTST (to be confirmed by registrar)
+**ISIN (Regulation S)**:   XS2938471265ST (to be confirmed by registrar)
+**Common Code**:           293847126 (Euroclear / Clearstream)
+**CUSIP**:                 G9345TBQ5 (DTCC)
+**CFI Code**:              DBFXXX (Debt / Fixed Income / Senior Secured)
+**FISN**:                  VERTEX INFRA/6.875 331215 (ISO 18774)
+**ANNA Classification**:   Corporate Bond — Investment Grade equivalent
+
+The Issuer is required, pursuant to Article 4 of Regulation (EU) No 648/2012 (EMIR) as applicable
+in the UK under the European Union (Withdrawal) Act 2018, to report all relevant OTC derivative
+contracts to a registered trade repository within one working day of execution. Where the Notes or
+any related hedging arrangements constitute reportable OTC derivatives, the Issuer shall designate
+Northgate Investment Bank plc as delegated reporting entity for such transactions.
+
+All new securities issuances by a UK-regulated entity must be notified to the Financial Conduct
+Authority ("FCA") and to the relevant recognised investment exchange prior to admission to trading,
+pursuant to the FCA's Listing Rules (UKLR) Chapter 9. The Issuer shall submit a Prospectus or
+appropriate listing document to the FCA for approval not less than 10 Business Days before the
+expected admission date, and shall publish the approved Prospectus on its website and via a
+Regulatory Information Service ("RIS") on the date of approval.
+
+
+# PART II — REGULATORY COMPLIANCE CERTIFICATIONS
+
+
+### Article 2.1 — Prospectus Regulation Compliance
+
+This issuance is subject to the UK Prospectus Regulation (Regulation EU 2017/1129 as
+retained in UK law) and the FCA's Prospectus Regulation Rules. A full prospectus ("Prospectus")
+shall be prepared by the Issuer and submitted to the FCA for approval as the competent authority.
+The Prospectus shall include all information required by Annex 6 (debt securities with minimum GBP
+100,000 denomination) and Annex 11 (guarantor information) of the UK Prospectus Regulation
+delegated regulation.
+
+The Issuer and each of the Underwriters shall conduct a reasonable investigation (commonly referred
+to as "due diligence") with respect to the accuracy and completeness of the Prospectus. The
+Issuer's directors shall be required to give a responsibility statement confirming that information
+in the Prospectus is, to the best of their knowledge, in accordance with the facts and contains no
+omission likely to affect its import, as required by UK Prospectus Regulation Article 11.
+
+Material information that arises between the date of approval of the Prospectus and the Issue Date
+that could affect investors' assessment of the Notes shall be disclosed in a Prospectus Supplement
+filed with the FCA pursuant to UK Prospectus Regulation Article 23. The Issuer must file such
+Supplement within two Working Days of becoming aware of the material information. An investor who
+has agreed to purchase Notes before the Supplement is published has a right of withdrawal within
+two Working Days after publication of the Supplement.
+
+
+### Article 2.2 — Market Abuse Regulation Compliance
+
+The Issuer is subject to UK Market Abuse Regulation ("UK MAR"), as retained under the European
+Union (Withdrawal) Act 2018. The Issuer must not engage in insider dealing, market manipulation,
+or unlawful disclosure of inside information in connection with the issuance and trading of the
+Notes, pursuant to UK MAR Articles 8, 10, and 12.
+
+Inside information relating to the Notes or the Issuer's financial condition that meets the
+threshold of precision, price sensitivity, and non-public status specified in UK MAR Article 7 must
+be disclosed to the market simultaneously and without delay, by means of a Regulatory News Service
+announcement, unless the Issuer can justify delay in accordance with UK MAR Article 17(4). Any
+decision to delay disclosure shall be documented in writing and notified to the FCA immediately
+after disclosure is made.
+
+The Issuer shall maintain an insider list pursuant to UK MAR Article 18, identifying all persons
+who have access to inside information relating to the Notes. The insider list shall be maintained
+in the format prescribed by FCA Technical Standards and shall be provided to the FCA within the
+time specified in any request made by the FCA. All persons included in the insider list shall be
+notified in writing of their inclusion and of the legal obligations arising from their access to
+inside information.
+
+Stabilisation in connection with the issuance may be carried out in accordance with FCA Stabilising
+Rules (Article 5 of UK MAR) by the Stabilising Manager (being Northgate Investment Bank plc) for
+up to 30 days following the Issue Date. Any stabilisation undertaken must be disclosed in the
+Prospectus and reported to the FCA in accordance with the Technical Standards.
+
+
+### Article 2.3 — MIFID II / MIFIR Reporting Obligations
+
+The Notes shall be subject to the Markets in Financial Instruments Directive II ("MiFID II") and
+the Markets in Financial Instruments Regulation ("MiFIR"), as retained in UK law. Each of the
+Underwriters shall be required to report all transactions in the Notes to the FCA pursuant to
+MiFIR Article 26, within one working day of execution ("T+1 reporting"). Transaction reports shall
+be submitted through an Approved Reporting Mechanism ("ARM") or directly to the FCA.
+
+Product governance requirements under Commission Delegated Directive (EU) 2017/593 require each
+Underwriter to maintain a target market assessment for the Notes and to distribute the Notes only
+to investors who fall within a positive target market. The Issuer shall provide to each Underwriter
+a manufacturer's product governance assessment ("PGA") document as part of the Underwriting
+Agreement side letter no later than 5 Business Days before the Issue Date. Each Underwriter shall
+distribute the Notes only to clients for whom the Notes are suitable in accordance with the PGA.
+
+The Joint Bookrunners shall report the Notes to the relevant financial instrument reference data
+systems (FIRDS) maintained by ESMA (for EU Regulation S sales) and to the FCA's Financial
+Instruments Reference Data System (UK FIRDS) for all UK transactions, within the time period
+specified by MiFIR Technical Standards. The Issuer shall co-operate with the Joint Bookrunners in
+filing any required reference data reports.
+
+
+# PART III — READINESS INDICATORS AND COMPLIANCE CHECKLIST
+
+
+### Article 3.1 — Legal Readiness
+
+**Item 3.1.1 — Corporate Authorization**: The Board of Directors of the Issuer has passed
+resolutions authorizing the issuance of the Notes, the execution of all Transaction Documents, and
+the granting of security over specified assets. Board minutes evidencing such authorization shall
+be certified by the Company Secretary and delivered to the Trustee not less than three Business
+Days before the Issue Date. The Issuer must also confirm that shareholder approval is not required
+under the Issuer's Articles of Association or the UK Listing Rules for the issuance.
+
+**Item 3.1.2 — Guarantor Confirmation**: Each Material Subsidiary designated as a Guarantor of the
+Notes (as defined in the Indenture) shall have delivered to the Trustee an executed Guarantee and
+corporate authorization documentation not less than two Business Days before the Issue Date. The
+Issuer shall provide a structural diagram identifying each Guarantor and confirming that each
+Guarantor represents at least 85% of the Group's consolidated EBITDA and 80% of the Group's
+consolidated total assets, in accordance with the Indenture's coverage test.
+
+**Item 3.1.3 — Enforceability Opinion**: External legal counsel to the Issuer shall deliver a
+written legal opinion to the Underwriters (addressed to the Underwriters and the Trustee) confirming
+the due incorporation of the Issuer, the authority and capacity of the Issuer to enter into the
+Transaction Documents, and the enforceability of the Transaction Documents under English law (and
+the laws of each jurisdiction in which a Guarantor is incorporated). The legal opinion shall be
+substantively consistent with market standard for Rule 144A high yield transactions.
+
+**Item 3.1.4 — No Litigation Certificate**: The Chief Legal Officer shall certify to the
+Underwriters and the Trustee, as of the Issue Date, that there is no pending or, to the knowledge
+of the Issuer after reasonable inquiry, threatened litigation, arbitration, regulatory investigation,
+or other legal proceeding that could reasonably be expected to have a material adverse effect on the
+business, assets, financial condition, or results of operations of the Group, taken as a whole.
+
+
+### Article 3.2 — Financial Readiness
+
+**Item 3.2.1 — Audited Financial Statements**: The Issuer shall cause to be provided the following
+financial statements in connection with the offering: (i) audited consolidated financial statements
+of the Issuer for the fiscal years ended December 31, 2023, 2024, and 2025, prepared in accordance
+with IFRS as adopted by the UK; and (ii) unaudited condensed consolidated financial statements for
+any interim period ended more than 45 days before the Issue Date. All financial statements included
+in the Prospectus must be accompanied by the applicable auditor's report or review report.
+
+**Item 3.2.2 — Comfort Letter**: The Issuer's auditors shall deliver a customary comfort letter to
+the Underwriters (in form and substance agreed between the parties) covering the financial
+information included in the Prospectus, including procedures agreed to with respect to financial
+data not covered by the auditor's report. An "update" comfort letter shall be delivered on the
+Issue Date, bringing the original comfort letter current to within five Business Days of the Issue
+Date.
+
+**Item 3.2.3 — Pro Forma Financial Information**: To the extent that the proceeds of the Notes are
+used to fund an acquisition or other transformative transaction, the Issuer must include pro forma
+financial statements in the Prospectus showing the effect of the use of proceeds and any related
+transactions, prepared in accordance with Annex 20 of the UK Prospectus Regulation delegated
+regulation. Pro forma financial information must be reviewed by the Issuer's auditors in accordance
+with ISAE 3420.
+
+**Item 3.2.4 — Cash Flow and Covenant Projections**: The Issuer's Chief Financial Officer shall
+prepare and certify financial projections for the period covering the term of the Notes, including
+projected EBITDA, capital expenditure, debt service coverage, and compliance with the financial
+covenants set out in the Indenture. Projections shall be based on reasonable assumptions consistent
+with available historical performance and disclosed macroeconomic assumptions.
+
+
+### Article 3.3 — Regulatory Readiness
+
+**Item 3.3.1 — FCA Prospectus Approval**: The Prospectus shall be submitted to the FCA no less
+than 10 Working Days before the anticipated Issue Date. The FCA shall have a review period of 10
+Working Days (or 20 Working Days if the Issuer does not have a previous prospectus approved by the
+FCA). The Issuer shall promptly respond to all comments received from the FCA within 2 Working Days
+in order to maintain the review schedule. Failure to obtain FCA Prospectus approval before the
+Issue Date shall require postponement of the offering.
+
+**Item 3.3.2 — Listing Application**: The Issuer shall submit a listing application to the London
+Stock Exchange for admission of the Notes to trading on the Regulated Market. The listing
+application shall be submitted concurrently with the filing of the Prospectus. Admission to trading
+shall be effective as of the Issue Date, conditional on approval of the Prospectus by the FCA.
+
+**Item 3.3.3 — CMA and Competition Clearance**: If the use of proceeds involves an acquisition that
+is subject to merger control review by the UK Competition and Markets Authority ("CMA") or any
+other competition authority, the Issuer must obtain all required competition approvals before the
+Issue Date or before completion of the relevant acquisition. The Issuer shall notify the Underwriters
+immediately upon the receipt of any communication from a competition authority that is likely to
+delay or condition any required clearance.
+
+**Item 3.3.4 — Sanctions and AML Screening**: All bookrunning entities must conduct and update OFAC
+and HMT/OFSI sanctions screening of the Issuer's principal shareholders, board members, and key
+management before and on the Issue Date, using a reputable database that is updated at least daily.
+No sanctions screening concern that remains unresolved shall delay or prevent closing unless the
+General Counsel delivers a written no-sanctions certificate to the Underwriters.
+
+
+# PART IV — INDENTURE — KEY TERMS SUMMARY
+
+
+### Article 4.1 — Covenants Summary
+
+The Notes shall be issued pursuant to an Indenture dated as of the Issue Date between the Issuer,
+the Guarantors, and the Trustee, which shall contain the following material restrictive covenants
+(each subject to carve-outs, exceptions, and baskets to be agreed in the Indenture):
+
+**Limitation on Indebtedness**: The Issuer and its restricted subsidiaries shall not incur
+additional indebtedness unless, after giving pro forma effect to such incurrence, the Consolidated
+Net Leverage Ratio does not exceed 5.0x EBITDA (the "Leverage Ratio Test"), or unless such
+indebtedness falls within a permitted basket (including a Permitted Debt basket of GBP 50 million
+and a Revolving Credit Facility basket of GBP 100 million);
+
+**Limitation on Restricted Payments**: The Issuer shall not make dividends, distributions,
+purchases of equity, payments to affiliates, or other Restricted Payments unless the conditions set
+out in the Indenture are met, including a Fixed Charge Coverage Ratio of at least 2.0x;
+
+**Limitation on Liens**: The Issuer shall not create or permit to exist any lien on its assets
+other than Permitted Liens as defined in the Indenture, including the first ranking security
+created in connection with the Notes, the revolving credit facility security, and purchase money
+liens incurred in the ordinary course of business;
+
+**Limitation on Asset Sales**: The Issuer shall not sell, transfer, lease, or otherwise dispose of
+any assets outside the ordinary course of business unless (i) the consideration is at least equal to
+fair market value as certified by the Board of Directors, (ii) at least 75% of the consideration is
+cash or Cash Equivalents, and (iii) Excess Proceeds above GBP 20 million in any twelve-month period
+are applied to repurchase Notes at par;
+
+**Change of Control**: Upon a Change of Control (as defined in the Indenture), the Issuer must
+offer to repurchase all outstanding Notes at a price equal to 101% of par plus accrued and unpaid
+interest to the repurchase date.
+
+
+### Article 4.2 — Events of Default
+
+The Indenture shall provide that each of the following events constitutes an Event of Default:
+
+(a) Failure to pay interest on the Notes when due, and continuation of such failure for a period of
+30 days;
+
+(b) Failure to pay principal on any Note when due at maturity, upon redemption, upon required
+repurchase, upon declaration, or otherwise;
+
+(c) Failure to comply with any covenant or agreement under the Indenture (other than those relating
+to payment) and continuation of such failure for a cure period of 60 days after written notice from
+the Trustee or Holders of 25% or more of the outstanding Notes;
+
+(d) Any representation or warranty in the Indenture or any security document proving to have been
+inaccurate in any material respect when made, and continuation of such inaccuracy for 30 days after
+the Issuer obtains knowledge thereof;
+
+(e) Any default by the Issuer or any Material Subsidiary in payments due under other indebtedness
+exceeding GBP 25 million (cross-default), or the acceleration of such indebtedness;
+
+(f) Insolvency of the Issuer or any Material Subsidiary, including the commencement of
+administration, liquidation, or receivership proceedings;
+
+(g) Invalidity or unenforceability of any security document over assets representing more than 15%
+of Consolidated Total Assets, which is not remedied within 30 days of written notice from the
+Trustee.
+
+Upon the occurrence and continuance of an Event of Default, the Trustee (or the Required Holders)
+may, by written notice to the Issuer, declare all outstanding principal and accrued interest to be
+immediately due and payable. The Issuer shall notify the Trustee within two Business Days of
+obtaining knowledge of any default or Event of Default.
+
+
+# PART V — COMPLIANCE CLEARANCE SIGN-OFF
+
+
+### Article 5.1 — Compliance Clearance Framework
+
+The Issuer has established a formal Compliance Clearance Framework for all new securities issuances,
+administered by the Chief Compliance Officer and the Board's Audit and Risk Committee. No issuance
+shall proceed unless all mandatory clearance items listed in this Article 5 have been completed and
+verified, with documented sign-off from the responsible officer.
+
+The Compliance Clearance Framework requires the following sequential clearances:
+
+**Stage 1 — Legal Clearance**: Confirmation from external legal counsel that all Transaction
+Documents are in final agreed form, that all required corporate authorisations have been obtained,
+and that there are no outstanding legal concerns that would prevent closing. Legal clearance shall
+be confirmed in the form of the enforceability opinion described in Item 3.1.3 above.
+
+**Stage 2 — Financial Clearance**: Confirmation from the Chief Financial Officer that financial
+statements are accurate and complete, that comfort letters are in order, and that the Issuer is in
+pro forma compliance with all financial covenants as of the Issue Date. Financial clearance shall
+be confirmed by a written officer's certificate delivered to the Trustee.
+
+**Stage 3 — Regulatory Clearance**: Confirmation from the Compliance Officer that all required
+regulatory approvals have been obtained, including FCA Prospectus approval, listing approval, and
+any competition clearances. Regulatory clearance shall be confirmed by a written certificate of the
+Chief Compliance Officer.
+
+**Stage 4 — Sanctions and AML Clearance**: Confirmation from the General Counsel that all required
+sanctions screening has been completed with no unresolved concerns, and that the Issuer and all
+parties to the Transaction Documents have been verified against applicable sanctions lists.
+
+Each clearance must be confirmed in writing to the Trustee at least one Business Day before the
+Issue Date.
+
+
+### Article 5.2 — Representations at Closing
+
+On the Issue Date, the Issuer shall deliver a closing certificate to the Trustee and the
+Underwriters (a "Bring-Down Certificate") confirming that: (i) each representation and warranty in
+the Underwriting Agreement and the Indenture is true and accurate as of the Issue Date; (ii) no
+Material Adverse Change has occurred since the date of the Prospectus; (iii) all conditions
+precedent in the Underwriting Agreement have been satisfied or waived; and (iv) no Event of Default
+or event that with the passage of time would constitute an Event of Default has occurred and is
+continuing.
+
+The Issuer shall also deliver, on the Issue Date, a compliance certificate confirming that: (i) the
+Issuer has not engaged in any insider dealing, market manipulation, or other conduct that would
+constitute a violation of UK MAR; (ii) all inside information related to the Notes has been properly
+managed and disclosed; (iii) the insider list has been maintained and all designated persons have
+been notified; and (iv) the Issuer has no knowledge of any investigation or inquiry by the FCA or
+any other regulatory body that relates to the Notes or any Transaction Document.
+
+
+# PART VI — USE OF PROCEEDS
+
+
+### Article 6.1 — Application of Proceeds
+
+The gross proceeds of the offering will be approximately GBP 350,000,000. After deducting the
+Underwriting Discount of approximately GBP 6,125,000 (1.75% of principal) and estimated offering
+expenses of approximately GBP 2,500,000, net proceeds will be approximately GBP 341,375,000. The
+Issuer intends to apply the net proceeds as follows:
+
+(a) GBP 250,000,000 to repay in full the outstanding amounts under the Issuer's existing term loan
+facility maturing in October 2027, including all accrued and unpaid interest and prepayment fees;
+
+(b) GBP 75,000,000 to fund a portion of the purchase price of the acquisition of Sigma Utilities
+Maintenance Limited (the "Acquisition"), which is expected to complete concurrently with the
+issuance of the Notes;
+
+(c) The remaining net proceeds (approximately GBP 16,375,000) for general corporate purposes,
+which may include capital expenditure, working capital, and costs related to the Acquisition.
+
+The Issuer confirms that, after giving effect to the issuance of the Notes and the application of
+proceeds, the Issuer will be in compliance with all financial covenants set out in the Indenture.
+The foregoing use of proceeds disclosure constitutes a material commitment by the Issuer; any
+material deviation from the described use of proceeds after closing must be disclosed to Noteholders
+by means of a Regulatory News Service announcement.
+
+
+### Article 6.2 — Disclosure of Material Contracts
+
+The Issuer confirms that the following material contracts are in full force and effect as of the
+Issue Date and that no material breach, termination, or amendment of such contracts has occurred
+that has not been disclosed in the Prospectus:
+
+(a) The infrastructure maintenance and asset management contract with UK Power Networks Holdings
+Limited, dated April 1, 2021, as amended (the "UKPN Contract"), which is responsible for
+approximately 28% of the Group's annual revenue and is due to expire on March 31, 2028;
+
+(b) The facilities management framework agreement with National Grid Electricity Transmission plc,
+dated September 15, 2022, which is responsible for approximately 19% of the Group's annual revenue;
+
+(c) The senior revolving credit facility agreement with a syndicate of UK clearing banks, dated
+December 1, 2023, with a committed amount of GBP 100 million, maturing on December 1, 2028.
+
+The Issuer shall promptly notify the Trustee and Noteholders of any material amendment, termination,
+or adverse development in connection with any of the foregoing material contracts that could
+reasonably be expected to have a material adverse effect on the Issuer's ability to service the
+Notes.
+
+
+# PART VII — ONGOING REPORTING AND ACCESS TO INFORMATION
+
+
+### Article 7.1 — Periodic Reporting Obligations
+
+The Issuer shall provide the following periodic reports to the Trustee and, to the extent required
+by the Indenture, to the Noteholders:
+
+(a) **Annual Report**: Within 120 days after the end of each fiscal year, the Issuer shall provide
+the Trustee with a copy of the Issuer's audited consolidated annual report and accounts prepared
+in accordance with IFRS as adopted by the UK, together with a Directors' Certificate confirming
+compliance with the Indenture as of the fiscal year end;
+
+(b) **Quarterly Compliance Certificate**: Within 45 days after the end of each fiscal quarter, the
+Chief Financial Officer shall deliver to the Trustee a written compliance certificate setting out
+the Consolidated Net Leverage Ratio, the Fixed Charge Coverage Ratio, and the Interest Coverage
+Ratio as of the last day of such fiscal quarter, together with a calculation showing compliance
+with each financial covenant;
+
+(c) **Notice of Default**: The Issuer shall notify the Trustee and the Rating Agencies in writing
+within two Business Days of obtaining knowledge of the occurrence, or reasonable expectation of
+occurrence, of any Event of Default or any event that with the passage of time would constitute an
+Event of Default;
+
+(d) **Material Change Disclosure**: The Issuer shall notify the Trustee within five Business Days
+of any material change in the Issuer's ownership, management, or business that could affect the
+Notes, including any change of control, material litigation, regulatory investigation, or
+significant asset sale not contemplated by the Indenture.
+
+
+### Article 7.2 — Access to Books and Records
+
+The Issuer shall, upon reasonable prior written notice, grant the Trustee or its authorised
+representative access to the financial and operational records of the Issuer and the Guarantors for
+the purpose of verifying compliance with the Indenture, investigating any suspected Event of Default,
+or responding to a request from a regulatory authority. Access shall be provided during normal
+business hours and subject to applicable confidentiality protections and legal privilege.
+
+The Issuer shall maintain books and records in a form that accurately reflects its financial
+condition and complies with applicable accounting standards and legal requirements, and shall retain
+such records for the period required by applicable law, being not less than six years from the date
+of creation for financial records and not less than the life of the Notes plus six years for records
+related to the Transaction Documents and security arrangements.
+
+All records maintained by the Issuer in connection with the Notes shall be subject to inspection
+by the FCA, the Prudential Regulation Authority ("PRA"), and any other competent regulatory
+authority with jurisdiction over the Issuer, pursuant to applicable financial services legislation
+and the FCA's access to information powers under the Financial Services and Markets Act 2000
+("FSMA").
+
+
+# PART VIII — AMENDMENT AND OUTSTANDING MATTERS
+
+
+### Article 8.1 — Consent Solicitation and Amendment Procedures
+
+Any amendment or waiver of the terms of the Indenture shall require the consent of the Required
+Holders (at least a majority of the outstanding principal amount of the Notes). Certain fundamental
+changes shall require the consent of all outstanding Noteholders, including changes to: (i) the
+maturity date of the Notes; (ii) the principal amount of any Note; (iii) the interest rate
+applicable to the Notes; (iv) the ranking of the Notes relative to other indebtedness; or (v) the
+consent threshold required for amendments.
+
+Where the Issuer proposes an amendment or waiver requiring Noteholder consent, the Issuer shall
+notify the Trustee at least 30 days before the consent record date and shall disseminate the
+consent solicitation document to all Noteholders at least 20 days before the solicitation deadline.
+The consent solicitation shall fully disclose the purpose and effect of the proposed amendment.
+
+Any amendment or consent obtained through misrepresentation, material omission, or coercive
+solicitation shall be voidable at the election of the affected Noteholders. The Issuer confirms
+that no extraordinary general meeting, consent solicitation, or exchange offer in respect of the
+Notes is currently contemplated.
+
+
+### Article 8.2 — Outstanding Compliance Matters
+
+The following matters have been identified by the Issuer's legal and compliance team as outstanding
+items requiring resolution before or concurrent with issuance of the Notes:
+
+**(a) Pending Regulatory Inquiry**: The Issuer has received a general information request from the
+FCA dated February 14, 2026, relating to disclosure practices in connection with the UKPN Contract
+renewal. The Issuer has engaged external counsel and expects to provide a full response within 30
+days. This inquiry has been disclosed in the Prospectus under "Legal Proceedings and Regulatory
+Matters." The inquiry does not, in the Issuer's view, constitute an Event of Default or a Material
+Adverse Change as of the Issue Date.
+
+**(b) Environmental Compliance**: One Material Subsidiary is subject to an improvement notice
+issued by the Environment Agency dated November 2025 in respect of soil remediation requirements
+at a legacy operational site. The Issuer has accrued GBP 4.2 million for remediation costs in its
+2025 financial statements. The remediation programme is on schedule for completion by Q3 2026, and
+no further regulatory escalation is anticipated.
+
+**(c) LIBOR/SONIA Transition**: All references to IBOR benchmarks in existing financial contracts
+have been reviewed as part of the Group's LIBOR transition programme, completed in 2024. The Notes
+shall reference SONIA as the floating rate benchmark for any variable rate payments, consistent
+with the Bank of England's SONIA recommendations and FCA guidance on benchmark reform.
+
+Each outstanding compliance matter described in this Article 8.2 has been disclosed in the
+Prospectus. No additional material compliance matters have come to the attention of the Issuer's
+legal or compliance team as of the date of this document.
+
+
+# PART IX — ENVIRONMENTAL, SOCIAL AND GOVERNANCE DISCLOSURES
+
+
+### Article 9.1 — Sustainability Framework
+
+The Issuer has adopted a Sustainability Framework (the "Framework") consistent with the International
+Capital Market Association ("ICMA") Green Bond Principles 2021 and Sustainability Bond Guidelines
+2021. The Notes are not designated as Green Bonds or Sustainability Bonds; however, the Issuer
+undertakes to publish an annual Sustainability Report disclosing progress against its ESG targets,
+including: (i) absolute Scope 1 and Scope 2 greenhouse gas emissions reductions of at least 30% by
+2030 against a 2019 base year; (ii) Fleet electrification of at least 60% by 2030; and
+(iii) maintenance of high governance standards, including gender diversity of at least 40% on the
+Board and all executive committees.
+
+The Issuer shall comply with the Task Force on Climate-related Financial Disclosures ("TCFD")
+framework in its annual reports and accounts, including governance, strategy, risk management, and
+metrics and targets disclosures, consistent with the FCA's Listing Rule requirements for Premium
+commercial companies.
+
+The Issuer shall comply with the UK Streamlined Energy and Carbon Reporting ("SECR") framework
+as required by the Companies Act 2006 (Strategic Report and Directors' Report) Regulations 2018,
+disclosing energy consumption, Scope 1 and Scope 2 greenhouse gas emissions, and emissions
+intensity metrics in its Directors' report for each financial year.
+
+
+### Article 9.2 — Modern Slavery Act Compliance
+
+The Issuer shall publish an annual statement under Section 54 of the Modern Slavery Act 2015
+(the "MSA Statement") within six months of the end of each financial year, describing the steps
+taken by the Issuer and each Group member with annual turnover above GBP 36 million to ensure that
+slavery and human trafficking is not taking place in its supply chain or in any part of its business.
+The MSA Statement shall be approved by the Board of Directors, signed by a director, and published
+on the Issuer's website.
+
+The Issuer shall maintain supply chain due diligence procedures designed to identify and remediate
+risks of forced labour, child labour, or other forms of modern slavery, including supplier code of
+conduct requirements, periodic supplier questionnaires, and enhanced due diligence for high-risk
+categories. The Issuer shall report any identified modern slavery risk to the Board's Social
+Responsibility Committee within 10 Business Days of identification.
+
+
+# SCHEDULE I — COMPLIANCE SIGN-OFF CHECKLIST
+
+### Pre-Issuance Compliance Checklist
+
+The responsible officer designated in the column below must confirm that each item is complete
+before issuance of the Notes proceeds.
+
+| Item | Description | Responsible Officer | Status |
+|------|-------------|---------------------|--------|
+| 1 | Board resolution authorising issuance | Company Secretary | Required |
+| 2 | FCA Prospectus approval obtained | CFO / CLO | Required |
+| 3 | London Stock Exchange admission approved | Company Secretary | Required |
+| 4 | Comfort letter from auditors received | CFO | Required |
+| 5 | Legal enforceability opinion delivered | External Counsel | Required |
+| 6 | Guarantor authorisations delivered | Company Secretary | Required |
+| 7 | Sanctions/AML screening completed | General Counsel | Required |
+| 8 | No Material Adverse Change certification | CEO / CFO | Required |
+| 9 | Bring-Down Certificate prepared | CFO / CLO | Required |
+| 10 | CUSIP / ISIN confirmed by registrar | CFO | Required |
+| 11 | Security registration in clearing systems | Paying Agent | Required |
+| 12 | Insider list maintained and notified | Compliance Officer | Required |
+| 13 | Trade report (OTC derivatives, if any) | Compliance Officer | Conditional |
+| 14 | MiFIR product governance assessment | Underwriters | Required |
+
+
+### Outstanding Items Pending Final Confirmation
+
+The following items are noted as pending and must be resolved before the Issue Date:
+
+1. Guarantor authorization documentation for Sigma FM Engineering Limited (expected 5 BDs before
+Issue Date); 2. Final confirmation of ISIN numbers from registrar (expected 3 BDs before Issue
+Date); 3. Comfort letter update to be delivered on Issue Date morning.
+
+---
+*This document is a synthetic test artifact. All issuer names, transaction terms, regulatory
+citations, and financial figures are used for demonstration purposes only. No information herein
+constitutes a prospectus, offer, or legal advice of any kind.*

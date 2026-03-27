@@ -51,6 +51,50 @@ class DocumentService:
         logger.info("Document Intelligence: %d pages, %d chars markdown", page_count, len(markdown))
         return markdown, page_count
 
+    async def process_document_for_enrichment(
+        self,
+        document_id: str,
+        document_url: Optional[str] = None,
+    ) -> dict:
+        """
+        Download a document from Blob Storage by document_id, parse it, and
+        return a session-like dict that ontology.enrichment.enrich_from_session()
+        can consume directly.
+        """
+        from services.storage_service import StorageService
+
+        storage = StorageService()
+        blobs = storage.list_documents()
+        blob_entry = next(
+            (b for b in blobs if b["name"].startswith(document_id + "/")), None
+        )
+        if not blob_entry:
+            raise ValueError(f"Document {document_id} not found in storage")
+
+        data = await storage.download_document(blob_entry["name"])
+        filename = blob_entry["name"].split("/", 1)[-1]
+
+        if filename.lower().endswith((".txt", ".md")):
+            markdown = data.decode("utf-8", errors="replace")
+        else:
+            markdown, _ = await self.analyse_document_bytes(data)
+
+        provisions = self.segment_into_provisions(markdown, filename)
+        logger.info(
+            "process_document_for_enrichment: %s → %d provisions",
+            filename, len(provisions),
+        )
+        return {
+            "document_id": document_id,
+            "document_name": filename,
+            "provisions": [
+                {"provision_id": p.provision_id, "provision_text": p.text}
+                for p in provisions
+            ],
+            "clauses": [],
+            "findings": [],
+        }
+
     async def analyse_document_url(self, url: str) -> tuple[str, int]:
         """
         Run prebuilt-layout via a blob URL (avoids re-upload).

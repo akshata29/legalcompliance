@@ -42,9 +42,24 @@ _sessions: dict[str, ProcessingSession] = {}
 _SYNTHETIC_DOC_ID = "synthetic-001"
 
 
-def _load_rules() -> list[dict]:
-    """Load EU Sec rule categories from the data directory."""
-    rules_path = Path(__file__).parent.parent.parent.parent / "data" / "synthetic" / "eu_sec_rules.json"
+def _load_rules(doc_name: str = "") -> list[dict]:
+    """Load rule categories appropriate for the document being processed."""
+    data_dir = Path(__file__).parent.parent.parent.parent / "data" / "synthetic"
+    name = doc_name.lower()
+    if "erisa" in name:
+        fname = "erisa_rules.json"
+    elif name.startswith("om_") or "_om_" in name:
+        fname = "om_rules.json"
+    elif "issuance" in name:
+        fname = "issuance_rules.json"
+    else:
+        fname = "eu_sec_rules.json"
+    rules_path = data_dir / fname
+    if rules_path.exists():
+        with open(rules_path, encoding="utf-8") as f:
+            return json.load(f)
+    # Fall back to eu_sec_rules.json if selected file is missing
+    rules_path = data_dir / "eu_sec_rules.json"
     if rules_path.exists():
         with open(rules_path, encoding="utf-8") as f:
             return json.load(f)
@@ -104,6 +119,22 @@ async def _run_pipeline(
 
         session = await pipeline.run(session, provisions, rules, _status_cb)
         _sessions[session.session_id] = session
+
+        # Knowledge Graph enrichment — runs automatically for every Optimized
+        # pipeline run regardless of enable_indexing. Non-blocking: fires as a
+        # background task so the pipeline response is not delayed.
+        if session.pipeline_mode == PipelineMode.OPTIMIZED and session.status == ProcessingStatus.COMPLETE:
+            try:
+                from ontology.enrichment import enrich_from_session
+                asyncio.create_task(
+                    enrich_from_session(session.model_dump(mode="json")),
+                )
+                logger.info(
+                    "Knowledge graph enrichment scheduled for session %s",
+                    session.session_id,
+                )
+            except Exception as _enc_exc:
+                logger.warning("Could not schedule graph enrichment: %s", _enc_exc)
 
         # Bulk AI Search indexing — only for the Optimized pipeline (P6) and
         # only when the caller explicitly opted in via enable_indexing.
@@ -181,7 +212,7 @@ async def start_processing(body: ProcessDocumentRequest, background: BackgroundT
         except Exception as exc:
             raise HTTPException(status_code=500, detail=f"Document analysis failed: {exc}")
 
-    rules = _load_rules()
+    rules = _load_rules(doc_name)
 
     session = ProcessingSession(
         document_id=body.document_id,
