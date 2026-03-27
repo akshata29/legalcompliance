@@ -134,7 +134,12 @@ async def chat_stream(req: ChatRequest):
                 yield chunk
         except Exception as exc:
             import json
-            yield f"data: {json.dumps({'error': str(exc)})}\n\n"
+            from openai import APIConnectionError, APITimeoutError
+            if isinstance(exc, (APIConnectionError, APITimeoutError)):
+                err_msg = "The AI service is temporarily unavailable — please try again."
+            else:
+                err_msg = str(exc)
+            yield f"data: {json.dumps({'error': err_msg})}\n\n"
         finally:
             elapsed_ms = (time.perf_counter() - start) * 1000
             record_query(req.question, intent, persona=req.persona, latency_ms=elapsed_ms)

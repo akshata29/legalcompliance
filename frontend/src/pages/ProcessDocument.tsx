@@ -32,7 +32,7 @@ export default function ProcessDocument() {
   const [mode, setMode] = useState<PipelineMode>('legacy')
   const [docId, setDocId] = useState<string | null>(null)
   const [docName, setDocName] = useState<string>('eu_sec_prospectus_sample.txt')
-  const [enableIndexing, setEnableIndexing] = useState(false)
+  const [enableIndexing, setEnableIndexing] = useState(true)
 
   // Per-mode state so toggling restores the previous run's data
   const [sessionIds, setSessionIds] = useState<Partial<Record<PipelineMode, string>>>({})
@@ -220,7 +220,8 @@ export default function ProcessDocument() {
               )}
             </div>
 
-            {/* Indexing option */}
+            {/* Indexing option — only meaningful for Optimized pipeline */}
+            {mode === 'optimized' && (
             <label className="flex items-center gap-2.5 cursor-pointer select-none group">
               <input
                 type="checkbox"
@@ -231,9 +232,10 @@ export default function ProcessDocument() {
               />
               <span className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">
                 Enable AI Search indexing
-                <span className="ml-1 text-gray-500">(slow — skip for testing)</span>
+                <span className="ml-1 text-gray-500">(enables semantic chat — recommended)</span>
               </span>
             </label>
+            )}
           </div>
 
           {/* Right column — status + results */}

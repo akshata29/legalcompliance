@@ -178,7 +178,7 @@ class ProcessDocumentRequest(BaseModel):
     document_id: str
     pipeline_mode: PipelineMode = PipelineMode.LEGACY
     document_name: Optional[str] = None
-    enable_indexing: bool = False   # when False the AI Search indexing step is skipped
+    enable_indexing: bool = True    # index provisions into AI Search for semantic chat retrieval
 
 
 class ProcessingStatusResponse(BaseModel):

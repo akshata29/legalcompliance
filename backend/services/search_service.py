@@ -129,7 +129,14 @@ class SearchService:
     async def semantic_search(
         self, query: str, document_id: Optional[str] = None, top: int = 5
     ) -> list[dict]:
-        """Vector similarity search over indexed provisions."""
+        """Async wrapper — runs sync search in a thread so the event loop is never blocked."""
+        import asyncio
+        return await asyncio.to_thread(self._sync_semantic_search, query, document_id, top)
+
+    def _sync_semantic_search(
+        self, query: str, document_id: Optional[str] = None, top: int = 5
+    ) -> list[dict]:
+        """Synchronous vector similarity search over indexed provisions."""
         try:
             query_vector = self._embed(query)
             vector_query = VectorizedQuery(
@@ -156,3 +163,24 @@ class SearchService:
         except Exception as exc:
             logger.warning("AI Search query failed: %s", exc)
             return []
+
+    def delete_document(self, document_id: str) -> int:
+        """Delete all indexed provisions for a document. Returns count deleted.
+        Synchronous — call via asyncio.to_thread() from async contexts."""
+        try:
+            # Fetch all IDs for this document first (Search SDK requires IDs to delete)
+            results = self._search_client.search(
+                search_text="*",
+                filter=f"document_id eq '{document_id}'",
+                select=["id"],
+                top=1000,
+            )
+            ids = [{"id": r["id"]} for r in results]
+            if not ids:
+                return 0
+            self._search_client.delete_documents(ids)
+            logger.info("Deleted %d AI Search docs for document_id=%s", len(ids), document_id)
+            return len(ids)
+        except Exception as exc:
+            logger.warning("AI Search delete failed for %s: %s", document_id, exc)
+            return 0

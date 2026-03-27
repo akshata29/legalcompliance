@@ -129,7 +129,7 @@ async def enrich_from_session(session_dict: dict) -> int:
     for prov in session_dict.get("provisions", []):
         prov_id = prov.get("provision_id", "")
         prov_uri = _provision_uri(prov_id)
-        text = prov.get("provision_text", "")[:500]
+        text = prov.get("provision_text", "")  # store full text
         triples += [
             (prov_uri, RDF.type,              LC.Provision),
             (prov_uri, LC.containedInDocument, doc_uri),
@@ -152,7 +152,7 @@ async def enrich_from_session(session_dict: dict) -> int:
             (finding_uri, LC.citesProvision,  prov_uri),
             (finding_uri, LC.extractedFrom,   doc_uri),
             (finding_uri, LC.ruleId,          Literal(clause.get("rule_category", ""))),
-            (finding_uri, LC.verbatim,        Literal(clause.get("clause_text", "")[:400])),
+            (finding_uri, LC.verbatim,        Literal(clause.get("clause_text", ""))),  # no truncation, ranked at query time
         ]
         if finding:
             f_type = finding.get("finding", "unknown")

@@ -12,6 +12,7 @@ Flow:
 """
 from __future__ import annotations
 
+import asyncio
 import json
 from typing import AsyncIterator
 
@@ -20,6 +21,7 @@ from pydantic import BaseModel
 from agents.citation_builder import Citation, CitationBuilder
 from agents.listener import Listener, ParsedIntent
 from agents.model_adapter import ModelAdapter, get_agent_adapter
+from services.search_service import SearchService
 from ontology.graph_query import (
     check_erisa_exemption,
     find_entity_by_hint,
@@ -108,7 +110,7 @@ class KnowledgeAgent:
     ) -> AgentResponse:
         """Non-streaming answer for REST endpoint."""
         intent = await self._listener.parse(question, persona)
-        context, entity_urns = await self._build_context(intent, instrument_urn=instrument_urn)
+        context, entity_urns = await self._build_context(intent, instrument_urn=instrument_urn, question=question)
         system_prompt = _build_system_prompt(persona, instrument_urn)
         user_msg = _build_user_message(question, context, session_history)
 
@@ -143,7 +145,7 @@ class KnowledgeAgent:
         Final event: "data: [CITATIONS] <json>\n\n"
         """
         intent = await self._listener.parse(question, persona)
-        context, entity_urns = await self._build_context(intent, instrument_urn=instrument_urn)
+        context, entity_urns = await self._build_context(intent, instrument_urn=instrument_urn, question=question)
         system_prompt = _build_system_prompt(persona, instrument_urn)
         user_msg = _build_user_message(question, context, session_history)
 
@@ -168,6 +170,7 @@ class KnowledgeAgent:
         self,
         intent: ParsedIntent,
         instrument_urn: str | None = None,
+        question: str = "",
     ) -> tuple[str, list[str]]:
         """
         Route the parsed intent to the appropriate graph query and return
@@ -186,26 +189,35 @@ class KnowledgeAgent:
 
         entity_urns: list[str] = []
 
-        # ── When scoped to a specific instrument, ALWAYS load its findings so
-        #    the LLM has real evidence regardless of how the intent was classified.
+        # ── When scoped to a specific instrument, retrieve relevant chunks from
+        #    AI Search (semantic vector search) first, fall back to graph findings.
         scoped_findings_ctx = ""
         if _scoped_urn:
-            findings = get_instrument_findings(_scoped_urn)
-            detail   = get_instrument_detail(_scoped_urn)
-            entity_urns = [_scoped_urn]
-            scoped_findings_ctx = _format_instrument_context(detail, findings)
+            doc_uuid = _scoped_urn.split(":")[-1]
+            ai_search_ctx = await _search_relevant_chunks(question, doc_uuid)
+            if ai_search_ctx:
+                # AI Search found relevant chunks — use them as primary context
+                detail = get_instrument_detail(_scoped_urn)
+                entity_urns = [_scoped_urn]
+                scoped_findings_ctx = _format_detail_only(detail) + ai_search_ctx
+            else:
+                # Fallback: graph findings with keyword ranking
+                findings = get_instrument_findings(_scoped_urn)
+                detail   = get_instrument_detail(_scoped_urn)
+                entity_urns = [_scoped_urn]
+                scoped_findings_ctx = _format_instrument_context(detail, findings, question)
 
         if i_type == "instrument_detail" and (hint or _scoped_urn):
             if _scoped_urn:
                 context = scoped_findings_ctx
             else:
                 rows = find_entity_by_hint(hint)
-                urn = str(rows[0]["uri"]) if rows else None
+                urn = str(rows[0]["entity"]) if rows else None
                 if urn:
                     entity_urns = [urn]
                     detail = get_instrument_detail(urn)
                     findings = get_instrument_findings(urn)
-                    context = _format_instrument_context(detail, findings)
+                    context = _format_instrument_context(detail, findings, question)
                 else:
                     context = f"No instrument found matching '{hint}'."
 
@@ -214,7 +226,7 @@ class KnowledgeAgent:
                 urn = _scoped_urn
             else:
                 rows = find_entity_by_hint(hint)
-                urn = str(rows[0]["uri"]) if rows else None
+                urn = str(rows[0]["entity"]) if rows else None
             if urn:
                 if urn not in entity_urns:
                     entity_urns = [urn]
@@ -235,25 +247,25 @@ class KnowledgeAgent:
                         context = scoped_findings_ctx or f"No findings for rule '{rule_id}'."
                 else:
                     context = scoped_findings_ctx or _format_instrument_context(
-                        get_instrument_detail(urn), get_instrument_findings(urn)
+                        get_instrument_detail(urn), get_instrument_findings(urn), question
                     )
             else:
                 context = scoped_findings_ctx or f"No instrument found matching '{hint}'."
 
         elif i_type == "erisa_restricted":
             rows = get_erisa_restricted_instruments()
-            entity_urns = [str(r["uri"]) for r in rows]
+            entity_urns = [str(r["instrument"]) for r in rows]
             context = _format_list("ERISA-restricted instruments", rows, "label")
             # Check for exemptions
             for r in rows[:5]:
-                urn = str(r["uri"])
+                urn = str(r["instrument"])
                 exempt = check_erisa_exemption(urn)
                 if exempt:
                     context += f"\n  → {urn}: exemption {exempt[0].get('type','?')} ({exempt[0].get('status','?')})"
 
         elif i_type == "find_entities":
             rows = find_entity_by_hint(hint or intent.entity_type or "")
-            entity_urns = [str(r["uri"]) for r in rows]
+            entity_urns = [str(r["entity"]) for r in rows]
             context = _format_list("Matching entities", rows, "label") or "No matching entities found."
 
         elif i_type == "graph_explore":
@@ -327,8 +339,89 @@ def _build_user_message(
     return "\n".join(parts)
 
 
-def _format_instrument_context(detail: dict, findings: list[dict]) -> str:
-    """Combine instrument properties and findings into LLM-readable context."""
+async def _search_relevant_chunks(question: str, document_id: str, top: int = 6) -> str:
+    """
+    Query AI Search for the top-N semantically relevant chunks for this question
+    scoped to a specific document. Uses asyncio.to_thread so the synchronous
+    embedding + search SDK calls never block the event loop or the SSE stream.
+    Returns formatted context string, or empty string if unavailable/no results.
+    """
+    if not question or not document_id:
+        return ""
+    try:
+        def _run_search() -> list[dict]:
+            # SearchService.__init__ calls _ensure_index (HTTP) and _sync_semantic_search
+            # calls _embed (OpenAI sync) — both must run in a thread.
+            svc = SearchService()
+            return svc._sync_semantic_search(question, document_id, top)
+
+        results = await asyncio.to_thread(_run_search)
+        if not results:
+            return ""
+        lines = [f"\nDOCUMENT CHUNKS (top {len(results)} semantically relevant to your question):"]
+        for r in results:
+            score = r.get("score", 0)
+            section = r.get("section") or ""
+            text = r.get("text", "")
+            lines.append(f"  [score={score:.2f}{' §' + section if section else ''}]\n  {text}")
+        return "\n".join(lines) + "\n"
+    except Exception as exc:
+        logger.debug("AI Search unavailable, falling back to graph findings: %s", exc)
+        return ""
+
+
+def _format_detail_only(detail: dict) -> str:
+    """Format instrument properties without findings (used when AI Search provides chunks)."""
+    out: list[str] = []
+    props = detail.get("properties", [])
+    if props:
+        out.append("INSTRUMENT PROPERTIES:")
+        for r in props:
+            pred = r.get("predicate", "?")
+            val  = r.get("value", "?")
+            if any(skip in pred for skip in ["rdf-syntax", "rdf#type", "owl#", "22-rdf"]):
+                continue
+            short_pred = pred.split("#")[-1].split("/")[-1].split(":")[-1]
+            out.append(f"  {short_pred}: {val}")
+    return "\n".join(out) + "\n" if out else ""
+
+
+_STOP_WORDS = {
+    "a","an","the","is","are","was","were","be","been","being","have","has","had",
+    "do","does","did","will","would","could","should","may","might","shall","must",
+    "and","or","but","in","on","at","to","for","of","with","by","from","as","into",
+    "what","which","who","whom","how","when","where","why","that","this","these","those",
+    "not","any","all","each","only","also","about","up","after","before","between",
+    "i","me","my","we","our","you","your","it","its","they","their",
+}
+
+
+def _rank_findings(findings: list[dict], question: str, top_n: int = 8) -> list[dict]:
+    """
+    Select top-N findings most relevant to the question by keyword overlap.
+    This is in-memory RAG: relevance-aware retrieval from the graph at query time,
+    replacing the old blind truncation. Re-ingest documents to get full-length verbatim.
+    Falls back to first top_n when no question keywords match.
+    """
+    import re
+    if not findings:
+        return []
+    if not question or len(findings) <= top_n:
+        return findings[:top_n]
+    q_words = set(re.sub(r"[^a-z0-9 ]", "", question.lower()).split()) - _STOP_WORDS
+    if not q_words:
+        return findings[:top_n]
+    scored = []
+    for f in findings:
+        text = (f.get("verbatim") or "").lower()
+        score = sum(1 for w in q_words if w in text)
+        scored.append((score, id(f), f))
+    scored.sort(key=lambda x: (-x[0], x[1]))
+    return [f for _, _, f in scored[:top_n]]
+
+
+def _format_instrument_context(detail: dict, findings: list[dict], question: str = "") -> str:
+    """Inject the top-relevant findings at full length into the LLM context."""
     out: list[str] = []
     props = detail.get("properties", [])
     if props:
@@ -341,14 +434,15 @@ def _format_instrument_context(detail: dict, findings: list[dict]) -> str:
                 continue
             short_pred = pred.split("#")[-1].split("/")[-1].split(":")[-1]
             out.append(f"  {short_pred}: {val}")
-    if findings:
-        out.append("\nCOMPLIANCE FINDINGS:")
-        for r in findings:
+    relevant = _rank_findings(findings, question)
+    if relevant:
+        out.append(f"\nCOMPLIANCE FINDINGS ({len(relevant)} of {len(findings)} most relevant):")
+        for r in relevant:
             rule     = r.get("ruleId", "?")
             verdict  = r.get("findingType", "?")
             risk     = r.get("riskLevel", "?")
             page     = r.get("page") or "?"
-            verbatim = (r.get("verbatim") or "")[:200]
+            verbatim = r.get("verbatim") or ""
             out.append(f"  [{rule}] {verdict} (risk={risk}) p.{page} — \"{verbatim}\"")
     else:
         out.append("\nFINDINGS: none recorded.")
@@ -360,7 +454,9 @@ def _format_list(title: str, rows: list[dict], label_key: str) -> str:
         return f"{title}: none.\n"
     out = [f"{title}:"]
     for r in rows:
-        out.append(f"  • {r.get('uri','?')} ({r.get(label_key,'?')})")
+        # SPARQL variable may be "uri", "entity", or "instrument" depending on query
+        urn = r.get("uri") or r.get("entity") or r.get("instrument") or "?"
+        out.append(f"  • {urn} ({r.get(label_key,'?')})")
     return "\n".join(out) + "\n"
 
 

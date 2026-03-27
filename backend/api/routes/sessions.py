@@ -70,11 +70,16 @@ async def delete_sessions_by_document(document_id: str):
         deleted_triples = await asyncio.to_thread(
             GraphStore.get().remove_document_triples, document_id
         )
+        from services.search_service import SearchService
+        deleted_chunks = await asyncio.to_thread(
+            SearchService().delete_document, document_id
+        )
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
     return {
         "deleted": deleted_sessions,
         "deleted_blobs": deleted_blobs,
         "deleted_triples": deleted_triples,
+        "deleted_chunks": deleted_chunks,
         "document_id": document_id,
     }
